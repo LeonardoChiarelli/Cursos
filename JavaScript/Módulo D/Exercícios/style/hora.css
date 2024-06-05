@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+header{
+    text-align: center;
+    padding: 30px;
+    font-size: 1.5em;
+}
+
+main{
+    background-color: white;
+    margin: auto;
+    width: 85vw;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.359);
+}
+
+div{
+    text-align: center;
+    padding: 10px;
+}
+
+footer{
+    text-align: center;
+    font-style: italic;
+    font-size: 1.1em;
+}
+
+#msg{
+    font-size: 1.3em;
+}
+
+#ins{
+    margin-top: 15px;
+}

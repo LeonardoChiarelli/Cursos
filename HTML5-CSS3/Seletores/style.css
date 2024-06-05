@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+* {
+    height: auto;
+    background-attachment: fixed;
+}
+
+main {
+    background-color: grey;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px black;
+    width: 50%;
+    padding: 10px;
+    margin: auto;
+}
+
+body {
+    background-image: linear-gradient(to bottom, #A6A6A6, #595959);
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+}
+
+h1 {
+    color: #0D0D0D;
+    font-family: serif;
+}
+
+#principal {
+    text-align: center;
+    background-color: #262626;
+    color: #f2f2f2;
+}
+
+.classe {
+    text-align: justify;
+    font-family: serif;
+}
+
+.importante {
+    text-align: right;
+}
+
+h2 {
+    color: #1b1b1b;
+}
+
+#d1 {
+    background-color: lightgrey;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    border: 1px solid black;
+    text-align: center;
+    height: 200px; /* altura */
+    width: 200px; /* largura */
+}
+
+#d1:hover {
+    background-color: red;
+}
+
+#d1:hover > p {
+    display: block;
+    background-color: orange;
+    color: white;
+}
+
+#d1 > p {
+    display: none;      /* div > p : significa que esse parâmetro só vale pro "p" que esta dentro da div */
+}
+/* display: none - para não mostrar nada */
+a {
+    color: red;
+    text-decoration: none;
+    font-weight: lighter;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a:visited {
+    color: darkred;
+    font-weight: bold;
+}
+
+a:hover {
+    color: black;
+    text-decoration: underline;
+}
+
+a:active {
+    color: yellow;
+}
+
+a::after { /* depois de todos os links */
+    content: ' [link]';
+    text-decoration: none;
+    font-weight: normal;
+    color: darkgrey;
+}

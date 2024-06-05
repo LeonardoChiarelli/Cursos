@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style/idade.css">
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <title>Verificador de idade</title>
+</head>
+<body>
+    <header>
+        <h1>Verificador de idade</h1>
+    </header>
+    <main>
+        <form action="JS/hora.js" method="post">
+            <div>
+                <p>
+                    <label for="iano">Ano de nascimenento: </label>
+                    <input type="number" name="ano" id="iano" required min="0" >
+                </p>
+                <p>
+                    Sexo:
+                    <input type="radio" name="sexo" id="masc" required>
+                    <label for="masc">Masculino</label>
+                    <input type="radio" name="sexo" id="fem" required>
+                    <label for="fem">Feminino</label>
+                </p>
+                <p>
+                    <input type="reset" value="Limpar" id="limpar">
+                    <input type="button" value="Verificar" onclick="verificar()">
+                </p>
+            </div>
+        </form>
+        <div id="res">
+            Preencha os dados acima para ver o resultado!!
+        </div>
+    </main>
+    <footer>
+        <p>@leochiarelli</p>
+    </footer>
+    <script src="JS/idade.js"></script>
+</body>
+</html>

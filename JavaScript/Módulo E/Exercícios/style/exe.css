@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-color: antiquewhite;
+}
+
+h1{
+    padding: 10px;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: underline;
+}
+
+main{
+    padding: 10px;
+    text-align: justify;
+    margin: auto;
+    background-color: white;
+    border-radius: 10px;
+    width: 75vw;
+    box-shadow: 5px 6px 10px rgba(0, 0, 0, 0.31);
+}
+
+input{
+    margin: 5px;
+}
+
+#dados{
+    padding: 10px;
+}
+
+#res{
+    padding: 10px;
+}
+
+select{
+    padding: 10px;
+}
+
+footer{
+    padding: 10px;
+    text-align: center;
+    font-style: italic;
+    font-size: 1.1em;
+}

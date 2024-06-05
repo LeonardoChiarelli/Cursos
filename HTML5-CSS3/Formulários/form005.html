@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <title>Checkbox e radio button</title>
+        <style>
+            h1{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Formulários com checkbox e radio button</h1>
+        <form action="cadastro.php" method="post" autocomplete="on">
+            <fieldset>
+                <legend>SEXO<small>(adoro)</small></legend>
+                <input type="radio" name="sexo" id="imasc"> <label for="imasc">Masculino</label><br>
+                <input type="radio" name="sexo" id="ifem"> <label for="ifem">Feminino</label><br>
+                <input type="radio" name="sexo" id="ifiat"> <label for="ifiat">Fiat Uno</label>
+            </fieldset>
+            <fieldset>
+                <legend>ESPORTES FAVORITOS</legend>
+                <input type="checkbox" name="fut" id="ifut"> <label for="ifut">Futebol</label><br>
+                <input type="checkbox" name="basq" id="ibasq"> <label for="ibasq">Basquete</label><br>
+                <input type="checkbox" name="nat" id="inat"> <label for="inat">Natação</label><br>
+                <input type="checkbox" name="ten" id="iten"> <label for="iten">Tênis</label>
+            </fieldset>
+            <p>
+                <input type="submit" value="Enviar">
+                <input type="reset" value="Limpar">
+            </p>
+        </form>
+        <ul>
+            <li>radio button - colocar o mesmo "name" para todos os dados pertencentes ao mesmo grupo</li>
+        </ul>
+    </body>
+</html>

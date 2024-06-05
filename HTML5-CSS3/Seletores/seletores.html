@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="style.css">
+        <title>Seletores</title>
+    </head>
+    <body>
+        <main>
+            <h1 id="principal">Como estilizar de maneira separada cada tag</h1>
+            <ul>
+                <li><h1>Usando o parâmetro <q>id=''</q>:</h1></li>
+                <ul type="square">
+                    <li>IMPORTANTE: dentro de um mesmo documento html só se pode ter 1 elemento com 'id' com o mesmo nome segundo a W3C</li>
+                </ul>
+                <li><h1 class="classe">Usando o parâmetro <q>class</q>:</h1></li>
+                <ul type="square">
+                    <li>IMPORTANTE: Um mesmo documento html pode ter várias classes e várias tag's com a mesma classe</li>
+                    <li>DICA: Sempre colocar a função no nome da classe, nunca cores nem alguma estilização</li>
+                </ul>
+                <li><h1>Pseudo-classes:</h1></li>
+                <ul>
+                    <li>Servem para configurar o estado da tag</li>
+                    <div id="d1">01</div>
+                    <div id="d2">02</div>
+                    <div id="d3">03</div>
+                    <li><h1>Exemplo de hover</h1></li>
+                    <ul>
+                        <p>Passe o mouse sobre o texto abixo</p>
+                        <div>
+                            Passe o mouse aqui
+                            <p>TEXTO ESCONDIDO...</p>
+                        </div>
+                        <p>Fim do Exemplo</p>
+                    </ul>
+                    <li><h1>Personalizando links</h1></li>
+                    <ul>
+                    <li><a href="https://gustavoguanabara.github.io" target="_blank" rel="external">Repositório GitHub</a></li>
+                    <li><a href="https://youtube.com/cursoemvideo/" target="_blank" rel="external">Canal do Youtube</a></li>
+                    <li><a href="https:/www.cursoemvideo.com" target="_blank" rel="external">Site do curso em vídeo</a></li>
+                    </ul>
+                </ul>
+                <li><h1>Pseudo-elementos</h1></li>
+            </ul>
+            <h1>Colocando os parâmetros nas CSS</h1>
+            <ul>
+                <li>id</li>
+                <ul>
+                    <pre>
+<code>'tag escolhida'#'nome que foi colocado' {
+}
+                        </code>
+                    </pre>
+                </ul>
+                <li>class</li>
+                <ul>
+                    <pre>
+<code>.'nome do elemento' {
+}
+                        </code>
+                    </pre>
+                </ul>
+                <li>pseudo-classe</li>
+                <ul>
+                    <pre>
+                        <code>
+'tag desejada': {
+}
+                        </code>
+                    </pre>
+                </ul>
+                <li>pseudo-elementos</li>
+                <pre>
+                    <code>
+'tag desejada':: {
+}
+                    </code>
+                </pre>
+            </ul>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+.bloco {
+    height: 200px;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 10px;
+    background-image: url('../imagens/wallpaper002.jpg');
+}
+
+#b1 {
+    background-position: left top;
+}
+
+#b2 {
+background-position: left center;    
+}
+
+#b3 {
+background-position: right bottom;
+}
+
+#b4 {
+background-position: center center;
+}
+
+/* 
+- background-position: escolher onde a imagem vai começar
+*/

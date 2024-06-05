@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+body {
+    background-color: antiquewhite;
+}
+
+h1 {
+    text-align: center;
+    border: 20px solid black;
+    padding: 10px;
+    border-image: url('borda.png') 35 repeat;
+    /* source:  para colocar a imagem desejada */
+    /* slice: para fatiar a borda */
+    /* repepeat: para repetir a borda */
+
+}

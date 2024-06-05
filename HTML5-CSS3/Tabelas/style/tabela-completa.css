@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+body {
+    text-align: center;
+}
+
+table {
+    width: auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+th {
+    border: 1px dashed black;
+    text-align: center;
+}
+
+tr td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.grupo {
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.filme {
+    border: 1px solid rgba(211, 211, 211, 0.512);
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    text-align: left;
+}
+
+#ultimo {
+    border-right: 1px solid black;
+}

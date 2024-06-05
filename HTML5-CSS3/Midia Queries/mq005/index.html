@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="style/style.css" media="all">
+        <link rel="stylesheet" href="style/print.css" media="print">
+        <link rel="stylesheet" href="style/tablet.css" media="screen and (min-width: 769px) and (max-width: 992px)">
+        <link rel="stylesheet" href="style/pc.css" media="screen and (min-width: 993px) and (max-width: 1200px)">
+        <link rel="stylesheet" href="style/tv.css" media="screen and (min-width: 1201px)">
+        <title>Midia Query</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body onresize="mudouTamanho()">
+        <header>
+            <h1>Meu Site</h1>
+            <i id="burger" class="material-icons" onclick="clickMenu()">menu</i>
+            <menu id="menu">
+                <ul>
+                    <li><a href="#">Opção 1</a></li>
+                    <li><a href="#">Opção 2</a></li>
+                    <li><a href="#">Opção 3</a></li>
+                    <li><a href="#">Opção 4</a></li>
+                    <li><a href="#">Opção 5</a></li>
+                </ul>
+            </menu>
+        </header>
+        <main>
+            <article>
+                <h2>Testando Media Query</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quisquam dolorem magni nemo! Quas ipsa voluptatem cumque. Odit, deserunt. Illo quod sapiente ipsa eum porro voluptates, modi ducimus commodi minus. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam hic suscipit, aspernatur repellat ex placeat. Rem architecto fugiat vitae ab, optio aspernatur ratione dolor quidem distinctio eius? Harum, perspiciatis. Iure? Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, sint aliquam dignissimos ducimus vel maiores suscipit neque tempore, vero quam, beatae iste architecto voluptatum voluptatem iusto illum. Sapiente, hic veniam?</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam placeat, amet quisquam et molestiae ad natus unde assumenda ut nihil facere animi minima? Adipisci eveniet architecto amet suscipit ex alias. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias similique, suscipit aliquid dolore earum, debitis repellat enim temporibus in accusamus natus a cum quasi optio minima! Cum in esse accusantium? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore maxime aliquid nam distinctio molestiae corporis doloribus veritatis ipsa cumque, vero dicta aliquam maiores sint ea praesentium quas asperiores, officia possimus!</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum vel nisi beatae, in eligendi repudiandae, rem quaerat asperiores fugit distinctio quia placeat nam minima repellat incidunt sed sint quo architecto. Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt provident nostrum aliquam exercitationem molestias fugit non consequatur et possimus accusantium, sit tempore, esse corrupti ipsum? Nesciunt reiciendis expedita velit voluptas? Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus similique beatae adipisci soluta ullam quod aliquam quam magnam illo, corrupti repellat cum exercitationem incidunt blanditiis eaque autem nemo rerum! Inventore.</p>
+            </article>
+        </main>
+        <script>
+            function clickMenu(){
+                if(menu.style.display == 'block'){
+                    menu.style.display = 'none'
+                }
+                else{
+                    menu.style.display = 'block'
+                }
+            }
+            function mudouTamanho(){
+                if(window.innerWidth >= 769){
+                    menu.style.display = 'block'
+                }
+                else{
+                    menu.style.dispaly = 'none'
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale:1.0">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="style/cabeçalho-fixo.css">
+        <title>Cabeçalho fixo</title>
+    </head>
+    <body>
+        <h1>Cabeçalho fixo</h1>
+        <table>
+            <caption>População da Unidades Federativas</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Posição</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">População</th>
+                    <th scope="col">% da pop. total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1º</td>
+                    <td>São Paulo</td>
+                    <td class="num">44.411.238</td>
+                    <td>21,88%</td>
+                </tr>
+                <tr>
+                    <td>2º</td>
+                    <td>Minas Gerais</td>
+                    <td class="num">20.538.718</td>
+                    <td>10,11%</td>
+                </tr>
+                <tr>
+                    <td>3º</td>
+                    <td>Rio de Janeiro</td>
+                    <td class="num">16.054.524</td>
+                    <td>7,91%</td>
+                </tr>
+                <tr>
+                    <td>4º</td>
+                    <td>Bahia</td>
+                    <td class="num">14.141.626</td>
+                    <td>6,96%</td>
+                </tr>
+                <tr>
+                    <td>5º</td>
+                    <td>Paraná</td>
+                    <td class="num">11.444.380</td>
+                    <td>5,64%</td>
+                </tr>
+                <tr>
+                    <td>6º</td>
+                    <td>Rio Grande do Sul</td>
+                    <td class="num">10.882.965</td>
+                    <td>5,36%</td>
+                </tr>
+                <tr>
+                    <td>7º</td>
+                    <td>Pernambuco</td>
+                    <td class="num">9.058.931</td>
+                    <td>4,46%</td>
+                </tr>
+                <tr>
+                    <td>8º</td>
+                    <td>Ceará</td>
+                    <td class="num">8.794.957</td>
+                    <td>4,33%</td>
+                </tr>
+                <tr>
+                    <td>9º</td>
+                    <td>Pará</td>
+                    <td class="num">8.121.025</td>
+                    <td>4,1%</td>
+                </tr>
+                <tr>
+                    <td>10º</td>
+                    <td>Santa Catarina</td>
+                    <td class="num">7.610.361</td>
+                    <td>3,75%</td>
+                </tr>
+                <tr>
+                    <td>11º</td>
+                    <td>Goiás</td>
+                    <td>7.056.495</td>
+                    <td>3,47%</td>
+                </tr>
+                <tr>
+                    <td>12º</td>
+                    <td>Maranhão</td>
+                    <td>6.775.805</td>
+                    <td>3,34%</td>
+                </tr>
+                <tr>
+                    <td>13º</td>
+                    <td>Paraíba</td>
+                    <td>3.974.687</td>
+                    <td>1,96%</td>
+                </tr>
+                <tr>
+                    <td>14º</td>
+                    <td>Amazonas</td>
+                    <td>3.941.613</td>
+                    <td>1,94%</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th scope="row">Total de Habitantes</th>
+                    <td>151.058.725</td>
+                </tr>
+            </tfoot>
+        </table>
+        <ul>
+           <li>CSS:</li>
+           <ul>
+            <li>table com "position: relative"</li>
+            <li>thead > tr > th com as seguintes "configurações":</li>
+            <ul>
+                <li>Position: sticky;</li>
+                <li>top: -1px;</li>
+                <li>background-color: [da mesma cor que o th"]</li>
+            </ul>
+           </ul>
+        </ul>
+    </body>
+</html>

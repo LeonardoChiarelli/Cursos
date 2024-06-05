@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shorcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="style.css">
+        <title>DIV's</title>
+    </head>
+    <body>
+        <h1>Modelo de caixas</h1>
+        <ul type="disc">
+            <li>height - altura</li>
+            <li>width - largura</li>
+            <li>border - borda (linha em volta do conteúdo)</li>
+            <ul type="square">
+                <li>padding - acolchoamento ou preenchimento (espaço interno do 'border')</li>
+                <li>margin - margem (espaço externo do 'border')</li>
+                <ul type="circle">
+                    <li>outline - contorno ou traçado (dentro da margin)</li>
+                </ul>
+            </ul>
+            <li>Shorthand</li>
+            <ul type="square">
+                <li>border</li>
+                <ul type="circle">
+                    <li>Ordem</li>
+                    <ol>
+                        <li>width</li>
+                        <li>style</li>
+                        <li>color</li>
+                    </ol>
+                </ul>
+                <li>padding</li>
+                <ul type="circle">
+                    <li>Ordem</li>
+                    <ol>
+                        <li>top</li>
+                        <li>right</li>
+                        <li>bottom</li>
+                        <li>left</li>
+                    </ol>
+                </ul>
+                <li>margin</li>
+                <ul>
+                    <li>Ordem</li>
+                    <ol>
+                        <li>top</li>
+                        <li>right</li>
+                        <li>bottom</li>
+                        <li>left</li>
+                    </ol>
+                </ul>
+                <li>outline</li>
+                <ul type="circle">
+                    <li>Ordem</li>
+                    <ol>
+                        <li>width</li>
+                        <li>style</li>
+                        <li>color</li>
+                    </ol>
+                </ul>
+            </ul>
+        </ul>
+        <h1>Tipos de caixa</h1>
+        <ul>
+            <li>box-level</li>
+            <ul type="square">
+                <li class="li">Características</li>
+                <ul type="circle">
+                    <li>Sempre inicia em uma linha nova</li>
+                    <li>Sempre ocupa a largura total da tela</li>
+                    <li>Sempre pula para a próxima linha para continuar o conteúdo</li>
+                </ul>
+                <li>Exemplos de tag's</li>
+                <ul type="circle">
+                    <li class="special">&lt;div&gt;</li>
+                    <li class="special">&lt;h1&gt;-&lt;h6&gt;</li>
+                    <li class="special">&lt;p&gt;</li>
+                    <li class="special">&lt;main&gt;</li>
+                    <li class="special">&lt;header&gt;</li>
+                    <li class="special">&lt;nav&gt;</li>
+                    <li class="special">&lt;article&gt;</li>
+                    <li class="special">&lt;aside&gt;</li>
+                    <li class="special">&lt;footer&gt;</li>
+                    <li class="special">&lt;form&gt;</li>
+                    <li class="special">&lt;video&gt;</li>
+                </ul>
+                <h1>Exemplo de box-level</h1>
+                <p class="paragrafo">Parágrafos também são exemplos de box-level, mas os <a href="#">links</a> são exemplos de inline-level. Vamos ver como tudo isso funciona</p>
+            </ul>
+            <li>inline-level</li>
+            <ul type="square">
+                <li class="li">Características</li>
+                <ul type="circle">
+                    <li>Sempre vai continuar na mesma linha do conteúdo, se tiver espaço</li>
+                    <li>Exatamente do tamanho para conter o conteúdo da caixa</li>
+                    <li>Não pula para a próxima linha, continua o conteúdo na mesma linha, se tiver espaço</li>
+                </ul>
+                <li>Exemplos de tag's</li>
+                <ul type="circle">
+                    <li class="special">&lt;span&gt;</li>
+                    <li class="special">&lt;a&gt;</li>
+                    <li class="special">&lt;code&gt;</li>
+                    <li class="special">&lt;small&gt;</li>
+                    <li class="special">&lt;strong&gt;</li>
+                    <li class="special">&lt;em&gt;</li>
+                    <li class="special">&lt;sup&gt;-&lt;sub&gt;</li>
+                    <li class="special">&lt;label&gt;</li>
+                    <li class="special">&lt;button&gt;</li>
+                    <li class="special">&lt;input&gt;</li>
+                    <li class="special">&lt;select&gt;</li>
+                </ul>
+            </ul>
+        </ul>
+    </body>
+</html>

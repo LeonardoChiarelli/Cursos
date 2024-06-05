@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+    <head>
+        <meta charset="viewport">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.io.ico" type="image/x-icon">
+        <title>Citações e Códigos</title>
+        <style>
+            body {
+                background-color: antiquewhite;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Outras formatações</h1>
+        <h2><abbr title="Usando o comando &lt;code&gt;">Código-fonte</abbr> / <abbr title="Usar &lt;pre&gt; para considerar quebras de linha e espaços (arrumar o código com indentação)">Pré-formatação</abbr></h2>
+        <p>O comando <code>document.getElementById</code> ('teste') é escrito em linguagem JavaScript.</p> <!--Basicamente para que as letras ocupem o mesmo espaço-->
+        <!--Código abaixo em python-->
+        <p> Código em Python formatado:
+         <pre>
+             <code>
+    num = int<!--Indicando que é um número inteiro-->(input('Digite um número: '))
+    if num % 2 == 0
+        print(f'O número {num} é PAR')
+    else:
+        print(f'O número {num} é ÍMPAR')
+    print('Fim do programa')
+             </code>
+          </pre> 
+        </p>
+        <h2><abbr title="Usando a tag usando &lt;q&gt; para deixar o texto entre áspas.">Citações simples</abbr></h2>
+        <p>Como diria o pai de um amigo: <q>O computador é um burro muito rápido</q>.</p> <!--Prefirivel usar o código <q> do que colocar áspas manualmente, pois a tag dá sentido ao texto-->
+            <h2><abbr title="&lt;blockquote&gt; - usado para deixar a citação mais aparente visualmente.
+                parâmetro cite - usado apenas para a parte interna do site saber que esta citação é de algum lugar">Citações completas</abbr></h2>
+            <p>Segundo Antoine de Saint-Exupéry, em seu livro O Pequeno Principe:</p>
+            <blockquote cite="https://www.google.com.br/books/edition/O_Pequeno_Pr%C3%ADncipe/ZmNhCgAAQBAJ?hl=en&gbpv=0">
+                Tu te tornas eternamente responsável por aquilo que cativas
+            </blockquote> <!--<blockquote> - usado para deixar a citação mais aparente visualmente.
+                parâmetro cite - usado apenas para a parte intera do site saber que esta citação é de algum lugar-->
+        <h2><abbr title="Usar a tag &lt;abbr&gt; para adicionar o significado da abreviação ou texto">Abreviações</abbr></h2>
+        <p>Estou estudando <abbr title="HyperText Markup Language">HTML</abbr> e <abbr title="Cascading Style Sheets">CSS</abbr>. Estou adorando!</p>
+        <h2><abbr title="Usar a tag &lt;bdo dir=rtl&gt;">Texto invertido</abbr></h2>
+        <p><bdo dir="rtl">Estou aprendendo a desenvolver coisas em HTML</bdo></p>
+    </body>
+</html>

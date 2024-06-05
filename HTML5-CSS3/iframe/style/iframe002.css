@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+body{
+    font-family: Arial, verdana, helvetica, sans-serif;
+}
+
+iframe{
+    height: 400px;
+    width: 400px;
+    display: block;
+    margin: auto;
+}

@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+/* Demais midias */
+
+/* Typical Devices Breakpoints
+Pequenas telas: -600px
+Celular: 601px - 768px
+Tablet: 769px - 992px
+Desktop: 993px - 1200px
+Grandes telas: acima de 1200px */
+
+@media print{
+    *{
+        font-family: 'Courier New', Courier, monospace;
+    }
+    body{
+        background-image: url(../imagens/back-print.jpg);
+    }
+    main{
+        border: 2px solid black;
+        text-align: center;
+        width: 90vw;
+    }
+    main h1{
+        color: black;
+        text-shadow: none;
+    }
+    main::after{
+        content: 'Essa impressão foi feita através do site de um lindinho';
+        text-decoration: overline;
+    }
+    #print{
+        display: block;
+    }
+    #phone{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 992px){ /* Tablet */
+    body{
+        background-image: url(../imagens/back-tablet.jpg);
+    }
+    #tablet{
+        display: block;
+    }
+    #phone{
+        display: none
+    }
+}
+
+@media screen and (min-width: 993px) and (max-width: 1200px){ /* Desktop */
+    body{
+        background-image: url(../imagens/back-pc.jpg);
+    }
+    #pc{
+        display: block;
+    }
+    #phone{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1201px){ /* Grandes telas */
+    body{
+        background-image: url(../imagens/back-tv.jpg);
+    }
+    
+    #tv{
+        display: block;
+    }
+    #phone{
+        display: none;
+    }
+}

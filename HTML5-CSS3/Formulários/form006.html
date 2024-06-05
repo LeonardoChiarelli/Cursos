@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <title>Color, range e file</title>
+    </head>
+    <body>
+        <h1 style="text-align: center;">Formulários com color, range e file</h1>
+        <form action="cadastro.php" method="post" autocomplete="on">
+
+            <p>
+                <label for="icor">Cor: </label>
+                <input type="color" name="cor" id="icor" value="#00ff00">
+            </p>
+
+            <p>
+                <lable for="inivel">Nível de satisfação: </lable>
+                <input type="range" name="nivel" id="inivel" value="50"><br>
+                <label for="inivel2">Nível de satisfação</label>
+                <input type="range" name="nivel2" id="inivel2" min="1" max="10" value="5">
+            </p>
+
+            <p>
+                <label for="ifile">Adicione um arquivo</label>
+                <input type="file" name="file" id="ifile">
+            </p>
+
+            <p>
+                <input type="submit" value="Enviar">
+                <input type="reset" value="Limpar">
+            </p>
+        </form>
+        <ul>
+            <li>input:color:</li>
+            <ul type="square">
+                <li>Para adicionar uma cor inicial basta abrir o parâmetro "value" e colocar a cor em hexadecimal</li>
+            </ul>
+            <li>input:range:</li>
+            <ul type="square">
+                <li>Para fazer com que a barra fique em uma determinada posição, basta abrir o parâmetro "value" e colocar um número de 0-100</li>
+                <li>Para mudar o "grau de nível" basta abrir as tag "min" e "max" e colocar os valores</li>
+                <ul type="circle">
+                    <li>Neste caso, se quiser mudar o "value" inicial, coloque os valores de min e max</li>
+                </ul>
+            </ul>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="definitivo.css">
+        <title>Cores</title>
+    </head>
+    <body>
+        <main> <!--<main> :Conteúdo principal do corpo-->
+            <h1>Parâmetros em "<abbr title="caixa de texto">main</abbr>"</h1>
+            <h2>border-radius: Xpx</h2>
+            <p> Serve para "arredondar" a borda</p>
+            <h2>box-shadow: Xpx Xpx Xpx cor</h2>
+            <p>Serve para adicionar uma caixa de sombra</p>
+            <ol type="I">
+                <li>1º parâmetro: Quanto a sombra vai andar pro lado</li>
+                <li>2º parâmetro: Quanto a sombra vai andar pra baixo</li>
+                <li>3º parâmetro: Quanto a sombra vai espalhar</li>
+                <li>4º parâmetro: Cor.</li>
+            </ol>
+            <h2>width: Xpx</h2>
+            <p>Serve para ajustar a largura</p>
+            <h2><abbr title="Acolchoamento">padding</abbr>: Xpx</h2>
+            <h2>margin: auto</h2>
+            <p>Serve para centralizar algo automaticamente idependente do tamanho da tela</p>
+            <h1>Parâmetros em "h1"</h1>
+            <h2><abbr title="alinhamento de texto">text-align</abbr>: center</h2>
+            <h2>text-shadow: Xpx Xpx Xpx cor</h2>
+            <ol type="I">
+                <li>1º parâmetro: Quanto a sombra vai andar pro lado</li>
+                <li>2º parâmetro: Quanto a sombra vai andar pra baixo</li>
+                <li>3º parâmetro: Quanto a sombra vai espalhar</li>
+                <li>4º parâmetro: Cor.</li>
+            </ol>
+            <h1>Cores em CSS</h1>
+            <ol>
+                <li>Representação por nomes</li>
+                <li>Representação por hexadecimal:</li>
+                <ul type="disc">
+                    <li>Hexadecimal: 0 1 2 3 4 5 6 7 8 9 A B C D E F</li>
+                    <ul type="circle">
+                        <li>Onde 0 é o mínimo e F o máximo</li>
+                    </ul>
+                    <li>Usar o GIMP para consultar o códio em HTML</li>
+                </ul>
+                <li>Usando o proprio código rgb (Red, Green, Blue), onde 0 é o mínimo e 255 o máximo:</li>
+                <ul type="circle">
+                    <li>O próprio VS ja faz isso ao passar o cursor em cima da cor desejada e ajusta-la</li>
+                </ul>
+                <li>Usando características das cores hsl (Hue [matiz], Sturation [saturação] e Luminosity [luminosidade])</li>
+            </ol>
+            <ul>
+                <li>Podemos alterar o tipo de representação ao clicar na representação atual do ajustador de cores do VS</li>
+                <li>A barra ao lado da barra de cores representa a transparência do background, ou da color, ou entre outros</li>
+            </ul>
+            <h1>Gradiente</h1>
+        <h2>Tag's em CSS</h2>
+        <ul>
+            <li>Seletor Global</li>
+            <ul type="square">
+                <p><pre>
+                    <code>
+* {
+                    
+}
+                    </code>
+                </pre></p>
+            </ul>
+            <li>background-imagens</li>
+            <ul>
+                <li><abbr title="Para adicionar gradiente ao site (degradê)">Pra que serve?</abbr></li>
+                <li>Parâmetros:</li>
+                <ul>
+                    <li>linear-gradiente:</li>
+                    <ul type="disc">
+                        <li><abbr title="(direção [to right, to left, to top{necessário colocar background-attachment: fixed} ou to bottom], cores [entre vírgulas])">Estrutura</abbr></li>
+                        <li>"Dicas" - podemos colocar a <abbr title="(número + deg)">direção em graus</abbr></li>
+                    </ul>
+                    <li>linear-radial:</li>
+                    <ul type="disc">
+                        <li><abbr title="(circle, cores [entre vírgulas])">Estrutura</abbr></li>
+                    </ul>
+                </ul>
+                <li><abbr title="Para adicionarmos a % de tamanho de tela que cada cor irá ocupar, basta colocar a % desejada ao lado da cor    ">'Dicas'</abbr></li>
+            </ul>   
+            <li>background-attachment: fixed</li>
+            <ul>
+                <li><abbr title="Para fixar o fundo">Pra que serve?</abbr></li>
+            </ul>
+        </ul>
+        </main>
+    </body>
+</html>

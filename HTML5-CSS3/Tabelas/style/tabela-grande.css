@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1 {
+    font-family: serif;
+    text-align: center;
+}
+
+table {
+    width: 50vw;
+    border-collapse: collapse;
+}
+
+caption {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    background-color: rgba(128, 128, 128, 0.471);
+    border: 1px solid black;
+    border-bottom: none;
+    padding: 8px;
+}
+
+thead, tfoot {
+    background-color: rgba(128, 128, 128, 0.471);
+}
+
+td, th {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.num {
+    text-align: right;
+}
+
+.vazia {
+    background-color: white;
+}

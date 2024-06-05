@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="style.css">
+        <title>Fontes em CSS</title>
+    </head>
+    <body>
+        <main>
+            <h1>Trabalhando com fontes</h1>
+            <h2>Parâmetros</h2>
+            <ul type="disc">
+                <li>font-family</li>
+                <ul type="square">
+                    <li>Podemos colocar os seguintes parâmetros para que o navegador escolha qual usar:</li>
+                    <ul type="circle">
+                        <li>sans-serif - fontes sem serifa</li>
+                        <li>serif - fontes serifadas</li>
+                        <li>monospace - fontes mono espaçadas</li>
+                    </ul>
+                    <li><abbr title="Sempre terminar a 'save combination com um dos parâmetros acima">IMPORTANTE</abbr></li>
+                </ul>
+                <li>font-size</li>
+                <ul type="square">
+                    <li>Medidas absolutas</li>
+                    <ul type="circle">
+                        <li>cm - centímetros</li>
+                        <li>mm - milímetros</li>
+                        <li>in - polegadas (aporximadamente 2.54cm)</li>
+                        <li>px - pixels</li>
+                        <li>pt - ponto (usados para impressão em papel, geralemte 'aplicativos' como Word usam)</li>
+                        <li>pc - paica</li>
+                    </ul>
+                    <li>Medidas relativas</li>
+                    <ul type="circle">
+                        <li>em - tamanho relacionado à altura do M da fonte</li>
+                        <li>ex - tamanho relacionado à altura do x da fonte</li>
+                        <li>rem - tamanho relacionado à altura do M da fonte padrão</li>
+                        <li>vw - largura da tela</li>
+                        <li>vh - altura da tela</li>
+                        <li>%</li>
+                    </ul>
+                    <li><abbr title="Usar em sites 'em' e 'px'">RECOMENDAÇÃO DA W3C</abbr></li>
+                    <li>LEMBRETES</li>
+                    <ul type="circle">
+                        <li>16px geralmete = 1em</li>
+                        <li>16px geralemte é o tamanho padrão das fontes</li>
+                    </ul>
+                </ul>
+                <li>font-weigth</li>
+                <ul type="square">
+                    <li>Representação por nome:</li>
+                    <ul type="circle">
+                        <li>lighter - mais magrinha</li>
+                        <li>normal</li>
+                        <li>bold - negrito</li>
+                        <li>bolder - extra negrito [mais gordinha]</li>
+                    </ul>
+                    <li><abbr title="de 100 até 900">Representação por número</abbr></li>
+                </ul>
+                <li><abbr title="negrito, itálico, etc">font-style</abbr></li>
+                <li><abbr title="sublinhado, etc">text-decoration</abbr></li>
+                <li>SHORTHAND FONT</li>
+                <ul type="square">
+                    <li>usar o parâmetro "font: "- seguir os parâmetros abaixo na ordem e sem vírgula entre eles</li>
+                    <ol type="1">
+                        <li>font-style</li>
+                        <li>font-weight</li>
+                        <li>font-size</li>
+                        <li>font-family</li>
+                    </ol>
+                </ul>
+            </ul>
+            <h1 style="font-family: Lora, serif">Inserção de fontes externas <abbr title="Basta ir no site fonts.google.com pesquisar alguma fonte, importar a URL e colar na parte de regras do seu código CSS com o código (@import url ())">importadas</abbr></h1>
+            <h1 style="font-family: 'Love';">Inserção de fontes baixadas</h1>
+            <ul>
+                <p>Basta baixar um fonte, descompactar o arquivo, colocar o arquivo na pasta que esta sendo usada, inserir o código:</p>
+                <p><pre>
+                    <code style="font-size: 14.5px;">
+font-face {
+<abbr title="aqui você da o nome 
+que quiser pra fonte">font-family</abbr>: ;
+src: <abbr title="arquivo da fonte">url()</abbr> format()
+}
+                    </code>
+                </pre></p>
+                <li>Tipos de format()</li>
+                <ul>
+                    <li>opentype - otf</li>
+                    <li>truetype - ttf</li>
+                    <li>embedded-opentype</li>
+                    <li>truetype-aat (Apple Advanced Typography)</li>
+                    <li>svg</li>
+                </ul>
+            </ul>
+            <h1>Alinhamentos</h1>
+            <ul>
+                <li>Tipos de alinhamento:</li>
+                <ul>
+                    <li>
+                        <p style="text-align: left;">Left</p>
+                    </li>
+                    <li>
+                        <p style="text-align: center;">Center</p>
+                    </li>
+                    <li>
+                        <p style="text-align: right;">Right</p>
+                    </li>
+                    <li>
+                        <p style="text-align: justify;"><abbr title="alinhado dos dois lados">Justify</abbr></p>
+                    </li>
+                    <li>
+                        <p style="text-indent: 20px;"><abbr title="'Espaço do iníco do parágrafo [tamanho em px]'">text-indent</abbr></p>
+                    </li>
+                </ul>
+            </ul>
+        </main>
+    </body>
+</html>

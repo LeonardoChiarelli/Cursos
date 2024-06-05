@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+/* declarações gerais */
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: serif;
+    }
+
+    html, body {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    }
+
+    h1 {
+    color: white;
+    text-shadow: 1.1px 1.1px 0px gray;
+    padding: 10px;
+    }
+    /* declarações de retrato */
+    @media screen and (orientation: portrait){
+        body {
+        background-image: url(../imagens/IMG_8362.JPEG);
+        }
+    }
+
+
+    /* declarações de paisagem */
+    @media screen and (orientation: landscape){
+        body {
+        background-image: url(../imagens/IMG_8330.JPEG);
+        }
+    }

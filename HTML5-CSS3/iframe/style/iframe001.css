@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+body{
+    font-family: Aria, Verdana, Geneva, sans-serif;
+    line-height: 45px;
+}
+
+#google {
+    height: 500px;
+    width: 450px;
+}

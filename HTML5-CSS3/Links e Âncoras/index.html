@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.io.ico" type="image/x-icon">
+        <title>Links e Âncoras</title>
+        <style>
+            body {
+                background-color: antiquewhite;
+            }
+            mark {
+                background-color: greenyellow;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Usando links externos (HiperLink)</h1>
+        <p>Você pode acessar o <a href="https://gustavoguanabara.github.io/">repositório público do Guanabara no GitHub</a> - para colocar um hiperlink em alguma palavra ou frase basta utilizar a tag &lt;a&gt; e colocar o link de referência no <q>href="<small>(link de referência aqui)</small>"</q></p>
+        <p>Você pode acessar o meu <a href="https://instagram.com/leochiarelli">instagram</a></p>
+        <h2>Abrir link em outra aba - <em>Recomendado</em></h2>
+        <p>Para fazer com que o link seja aberto em outra aba (sem fechar o seu site) basta adicionar o parâmetro <strong><q>target="_blank" rel="external"</q></strong> dentro da tag &lt;a href="" <small>aqui no caso</small>&gt;. Exemplo: <br> Você pode acessar o <a href="https://instagram.com/gabilettiere" target="_blank" rel="external">instagram</a> da minha namorada</p>
+        <h1>Links Internos</h1>
+        <p>Fará a relação com outra página que está dentro do nosso servidor e diz respeito a nossa prórpia página. Exemplo: <br> Esta é a primeira página do site, se você quiser pode também acessar minha <a href="pag002.html" rel="next">segunda página</a></p>
+        <p>Quando o link é interno não precisamos digitar a URL inteira. <strong>O link das demais páginas devem estar dentro da pasta do index</strong></p>
+        <p><strong>Colocar rel="<em>next</em>" (<small>após &lt;a href="nome do arquivo"&gt;</small>) para páginas seguintes</strong></p>
+        <p><strong>Colocar rel="<em>prev</em>" (<small>após &lt;a href="nome do arquivo"&gt;</small>) para páginas antecedentes</strong></p>
+        <p>Você também pode acesar nossa <a href="noticias/pag003.html" rel="next">página de notícias</a></p>
+        <h1>Links para Download</h1>
+        <p>Para baixar links após a tag &lt;a href=<small>"nome do arquivo"</small>&gt; colocar <q>download=<small>"arquivo"</small> type=application/<small>"tipo de arquivo"</q></small></p>
+        <ul>
+            <li><a href="currículo/Currículo Leonardo Chiarelli 19.02.2024.pdf" download="Currículo Leonardo Chiarelli 19.02.2024.pdf" type="application/pdf">Baixar arquivo em PDF</a> - pdf está sendo reconhecido pelo chorme, por isso não está baixando</li>
+            <li><a href="currículo/Currículo Leonardo Chiarelli 19.02.2024.zip" download="Currículo Leonardo Chiarelli 19.02.2024.zip" type="application/zip">Arquivo compactado em ZIP</a></li>
+        </ul>
+    </body>
+</html>

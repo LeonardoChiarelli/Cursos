@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+body {
+    background-image: url('../imagens/pattern001.png');
+    background-size: 100px 100px;
+    background-repeat: repeat-y;
+}
+
+h1 {
+    text-align: center;
+}
+
+/* 
+- background-size: configura o tamanho da imagem de fundo
+- background-repeat: serve para repetir ou não repetir o bakcground
+*/

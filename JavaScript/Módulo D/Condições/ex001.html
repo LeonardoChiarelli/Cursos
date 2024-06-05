@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+        <title>Condições</title>
+        <style>
+            body{
+                background-color: antiquewhite;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            main{
+                text-align: justify;
+            }
+            h1{
+                text-align: center;
+                text-decoration: underline;
+                font-family: 'Times New Roman', Times, serif;
+            }
+            h2{
+                text-decoration: underline;
+                font-family: 'Times New Roman', Times, serif;
+            }
+            h3{
+                text-align: center;
+                text-decoration: overline;
+            }
+            .code{
+                font-size: 1.1em;
+                color: blue;
+                list-style-type: none;
+            }
+            .cond{
+                background-color: gray;
+                color: white;
+                font-weight: bold;
+                width: 56px;
+                padding: 3px;
+                text-align: center;
+                border-radius: 5px;
+            }
+            .switch{
+                background-color: gray;
+                width: 56px;
+                height: 5px;
+                padding: 3px;
+            }
+            .output{
+                color: green;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <section>
+                <h1>Condições Simples</h1>
+                <ul>
+                    <li class="code"><code>if(condição){ <p class="cond">'true'</p>
+                    }
+                </ul>
+                <h1>Condições Compostas</h1>
+                <ul>
+                    <li class="code"><code>if(condição){ <p class="cond">'true'</p>
+                    } else{<p class="cond">'false'</p>}
+                    </code></li>
+                </ul>
+            </section>
+            <section>
+                <h1>Condições Aninhadas</h1>
+                <ul>
+                    <li class="code">if(condição){ <p class="cond">'cond1'</p>} else if{<p class='cond'>'cond2'</p>} else{<p class='cond'>'cond3'</p>}
+                </ul>
+                <h1>Condições Multiplas</h1>
+                <ul>
+                    <li class="code">switch(expressão){<p>case valor 1: <p class="switch"></p> <strong>break</strong><p>case valor 2: <p class="switch"></p> <strong>break</strong></p> <p>case valor 3: <p class="switch"></p></p> <strong>break</strong><p>defautl: <p class="switch"></p><strong>break</strong></p>}</li>
+                </ul>
+            </section>
+            <section>
+                <h1>Exercícios</h1>
+                <ul>
+                    <li>
+                        <h2>Ex001:</h2>
+                        <h3>DETRAN</h3>
+                        <label for="ivel">Velocidade: </label>
+                        <input type="number" name="vel" id="ivel"> Km/h
+                        <input type="button" value="Verficar" onclick="verificar()">
+                        <div id="res">
+
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <h2>Ex002:</h2>
+                        <h3>PAÍS</h3>
+                        <label for="ipais">País de nascimento:</label>
+                        <input type="text" name="pais" id="ipais">
+                        <input type="button" value="Enviar" onclick="enviar()">
+                        <div id="res2">
+
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <h2>Ex003:</h2>
+                        <h3>IDADE</h3>
+                        <label for="iidade">Infome sua idade:</label>
+                        <input type="number" name="idade" id="iidade">
+                        <input type="button" value="Verificar" onclick="votar()">
+                        <div id="res3">
+                            
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <h2>Ex004</h2>
+                        <h3>CUMPRIMENTO</h3>
+                        <input type="button" value="Clique" onclick="hora()">
+                        <div id="res4">
+
+                        </div>
+                </ul>
+                <ul>
+                    <li>
+                        <h2>Ex005:</h2>
+                        <h3>DIA DA SEMANA</h3>
+                        <input type="button" value="Clique em mim" onclick="dia()">
+                        <div id="res5">
+
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </main>
+        <script>
+            function verificar(){
+                let velV = 110
+                let ivel = document.querySelector('#ivel')
+                let res = document.querySelector('#res')
+                let vel = Number(ivel.value)
+
+                res.innerHTML = `<p>A velocidade máxima da via é de <strong>${velV}km/h</strong></p>`
+                if(vel > 110){
+                    res.innerHTML += `<p>Você foi <strong>MULTADO</strong> devido ao excesso de velocidade!</p>`
+                } else{
+                    res.innerHTML += `Você estava dentro da velocidade máxima permitida pela via.`
+                }
+                res.innerHTML += `<p>Dirija sempre com sinto de segurança!</p>`
+            }
+
+            function enviar(){
+                let pais = document.querySelector('#ipais')
+                let res = document.querySelector('#res2')
+
+                if(pais == 'Brasil'){
+                    res.innerHTML = `<p>Você é Brasileiro!!</p>`
+                } else{
+                    res.innerHTML = `<p>Você é Estrangeiro!!</p>`
+                }
+
+            }
+            function votar(){
+                let iidade = document.querySelector('#iidade')
+                let res = document.querySelector('#res3')
+                let idade = Number(iidade.value)
+
+                res.innerHTML = `<p>A partir de <strong>16 anos</strong> o voto no Brasil é opcional, a partir de <strong>18 anos</strong> o voto é obirgatório e a partir de <strong>70 anos</strong> o voto volta a ser opcional, portanto</p>`
+                if(idade < 16){
+                    res.innerHTML += `Você ainda não pode votar</p>`
+                } else if (idade >= 16 && idade < 18 || idade >= 70){
+                    res.innerHTML += `<p>O seu voto é facultativo!!</p>` 
+                } else{
+                    res.innerHTML += `<p>O seu voto é <strong>obrigatório</strong>!!</p>`
+                }
+            }
+            function hora(){
+                let agora = new Date()
+                let hora = agora.getHours()
+                let res = document.querySelector('#res4')
+
+                res.innerHTML = `<p>Agora são exatamente ${hora} horas</p>`
+                if(hora >= 0 && hora < 6){
+                    res.innerHTML += 'Boa Madrugada!!'
+                } else if(hora >=6 && hora < 12){
+                    res.innerHTML += 'Bom Dia!!'
+                } else if(hora >= 12 && hora < 19){
+                    res.innerHTML += 'Boa Tarde!!'
+                } else {
+                    res.innerHTML = 'Boa Noite!!'
+                }
+            }
+            function dia(){
+                let agora = new Date()
+                let diaSem = agora.getDay()
+                let res = document.querySelector('#res5')
+
+                switch(diaSem){
+                    case 0:
+                        res.innerHTML = `Hoje é Domingo`
+                        break
+                    case 1:
+                        res.innerHTML = `Hoje é Segunda`
+                        break
+                    case 2:
+                        res.innerHTML = `Hoje é Terça`
+                        break
+                    case 3:
+                        res.innerHTML = `Hoje é Quarta`
+                        break
+                    case 4:
+                        res.innerHTML = `Hoje é Quinta`
+                        break 
+                    case 5:
+                        res.innerHTML = `Hoje é Sexta`
+                        break 
+                    case 6:
+                        res.innerHTML = `Hoje é Sábado`
+                        break    
+                    default: 
+                        res.innerHTML = `[ERRO] Dia inválido!!`
+                }
+            }    
+        </script>
+    </body>
+</html>

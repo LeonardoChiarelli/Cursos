@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+        <title>Template String</title>
+        <style>
+            body{
+                background-color: antiquewhite;
+            }
+            h1{
+                text-align: center;
+                text-decoration: underline;
+            }
+            main{
+                text-align: justify;
+            }
+
+            code{
+                font-size: 1.1em;
+            }
+
+            .codigo{
+                list-style-type: none;
+                color: blue;
+            }
+
+            .output{
+                color: green;
+                font-size: 1.1em;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Template String</h1>
+        <main>
+            <ul>
+                <li class="codigo"><code>
+                    let nome = 'Leonardo'<br>
+                    let idade = 18<br>
+                    let nota = 9.5<br>
+                    `O aluno ${nome} de ${idade} anos tirou nota ${nota} na prova de matemática`
+                </code></li>
+                <ul><li>Uso de crases (``) obrigatório nesse caso</li></ul>
+                <li>Output: <code class="output">O aluno Leonardo de 18 anos tirou nota 9.5 na prova de matemática</code></li>
+                <li>Atribuições de string</li>
+                <ul>
+                    <li>s.lenght - para saber quantos caracteres tem a string</li>
+                    <li>s.toUpperCase() - para transformar tudo em letras maiúsculas</li>
+                    <li>s.toLowerCase() - para transformar tudo em letras minúsculas</li>
+                </ul>
+                <li class="codigo"><code>
+                    let nome = 'Leonardo'<br>
+                    let sexo = 'masculino'<br>
+                    let idade = 18<br>
+                    let nota = 9.5<br>
+                    alert(`O aluno ${nome} do sexo ${sexo.toUpperCase()} e de ${idade} anos tirou nota ${nota} na prova de matemática`)
+                </code></li>
+                <li>Output: <code class="output">O aluno Leonardo do sexo MASCULINO e de 18 anos tirou nota 9.5 na prova de matemática</code></li>
+            </ul>
+        </main>
+        <script>
+            let nome = 'Leonardo'
+            let sexo = 'masculino'
+            let idade = 18
+            let nota = 9.5
+            alert(`O aluno ${nome} do sexo ${sexo.toUpperCase()} e de ${idade} anos tirou nota ${nota} na prova de matemática`)
+        </script>
+    </body>
+</html>

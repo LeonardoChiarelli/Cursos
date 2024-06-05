@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <title>Caixa de texto e de senha</title>
+    </head>
+    <body>
+        <h1>Criando caixas de texto e de senha</h1>
+        <form action="cadastro.php" method="post" autocomplete="on">
+            <p>
+                <label for="iuser">Usuario: </label>
+                <input type="text" name="user" id="iuser" required minlength="3" maxlength="15" size="15" placeholder="nome de usuário" autocomplete="username">
+            </p>
+            <p>
+                <label for="isenha">Senha: </label>
+                <input type="password" name="senha" id="isenha" required minlength="8" maxlength="20" size="20" placeholder="mínimo 8 caracteres" autocomplete="current-password">
+            </p>
+            <p>
+                <input type="submit" value="Enviar">
+                <input type="reset" value="Limpar">
+            </p>
+        </form>
+        <ul>
+            <li>input:reset - Para apagar tudo do formulário</li>
+            <ul>
+                <li>&lt;input type="reset" value""&gt; - Em "value" colocar o nome que você quer que apareça, no caso acima coloquei "limpar".</li>
+            </ul>
+            <li>required - para tornar o preenchimento de um campo obrigatório.</li>
+            <ul>
+                <li>&lt;input type="password" name="" id="" <strong>required</strong>&gt;</li>
+            </ul>
+            <li>minlength e maxlength - comprimento mínimo e máximo</li>
+            <ul>
+                <li>&lt;input type="password" name="" id="" required <strong>minlength="3" maxlength="15"</strong>&gt;</li>
+                <li><mark style="background-color: aquamarine;"><strong>Importante</strong> colocar um máximo de caracteres para as senhas, pois você terá que colocar esse máximo no banco de dados</mark></li>
+            </ul>
+            <li>size - para alterar o tamanho da caixa</li>
+            <ul>
+                <li>&lt;input type="password" name="" id="" required minlength="3" maxlength="15" <strong>size="15"</strong>&gt;</li>
+            </ul>
+            <li>placeholder - "dica" </li>
+            <ul>
+                <li>&lt;input type="password" name="" id="" required minlength="3" maxlength="15" size="15" <strong>placeholder="senha"</strong>&gt;</li>
+            </ul>
+            <li>autocomplete (dentro de input) - para ficar mais fácil do navegador sugerir senha, nome, sexo, entre outros parâmetros existentes.</li>
+            <ul>
+                <li><mark style="background-color: aquamarine;">a tag &lt;form&gt; deve estar com o "autocomplete="on"</mark></li>
+                <li>&lt;input type="password" name="" id="" required minlength="3" maxlength="15" size="15" placeholder="senha" <strong>autocomplete="current-password"</strong>&gt;</li>
+            </ul>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Comaptible" content="ie=edge">
+        <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+        <title>DOM</title>
+        <style>
+            body{
+                background-color: antiquewhite;
+            }
+            main{
+                text-align: justify;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            h1{
+                text-align: center;
+                text-decoration: underline;
+                font-family: 'Times New Roman', Times, serif;
+            }
+            h2{
+                text-decoration: underline;
+                font-family: 'Times New Roman', Times, serif;
+            }
+            ol{
+                list-style-type: upper-roman;
+            }
+            .ol{
+                list-style-type: upper-roman;
+            }
+            .code{
+                color: blue;
+                list-style-type: none;
+                font-size: 1.1em;
+            }
+            .output{
+                color: green;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h1>DOM - Document Object Model</h1>
+            <h2>Árvore DOM:</h2>
+            <ol>
+                <li>window</li>
+                <ol class="ol">
+                    <li>window > location - <strong>document</strong> - history</li>
+                    <ol>
+                        <li>document > html</li>
+                        <ol>
+                            <li>html > head - body</li>
+                            <ol>
+                                <li>head > meta - title</li>
+                                <li>body > h1 - p - <strong>p</strong> - div</li>
+                                <ol>
+                                    <li>p > strong</li>
+                                </ol>
+                            </ol>
+                        </ol>
+                    </ol>
+                </ol>
+            </ol>
+            <h2>Selecionando elementos por:</h2>
+            <ul>
+                <li>por Marca:</li>
+                <ul>
+                    <li class="code"><code>document.getElementsByTagName('tag desejada')</code></li>
+                </ul>
+                <li>por Id:</li>
+                <ul>
+                    <li class="code"><code>document.getElementById()</code></li>
+                </ul>
+                <li>por Nome:</li>
+                <ul>
+                    <li class="code"><code>document.getElementsByName()[]</code></li>
+                </ul>
+                <li>por Classe:</li>
+                <ul>
+                    <li class="code"><code>document.getElementsByClassName()[]</code></li>
+                </ul>
+                <li>por Seletor:</li>
+                <li class="code"><code>document.querySelector()</code></li>
+                <li class="code"><code>document.querySelectorAll()[]</code></li>
+            </ul>
+            <p>Aqui vai o resultado</p>
+            <p>Aprendendo a usar o <strong>DOM</strong></p>
+            <div id="msg">Clique em mim</div>
+            <div name="msj">Clique aqui</div>
+            <div id="js">Olá</div>
+            <div class="ju">Oi</div>
+        </main>
+        <script>
+            let corpo = document.body
+            let p1 = document.getElementsByTagName('p')[0] // indicando que é o primeiro parágrafo
+            let p2 = document.getElementsByTagName('p')[1]
+            let m = document.getElementById('msg')
+            let m2 = document.getElementsByName('msj')[0]
+            let d1 = document.querySelector('#js')
+            let d2 = document.querySelector('.ju')
+            corpo.style.background = 'white'
+            p1.style.color = 'red'
+            m.style.background = 'green'
+            m.innerText = 'Estou aguardando...'
+            m2.style.background = 'gray'
+            m2.innerText = 'Yes DADDY!!!!!!!!!!'
+            d1.style.background = 'yellow'
+            d2.style.color = 'red'
+            d1.innerText = 'Ain'
+            d2.innerText = 'AIIIIIIIIIN'
+            document.write(p1.innerText) // innerText   - dentro do texto
+            document.write(p2.innerHTML) // innerHTML - puxando o código completo
+        </script>
+    </body>
+</html>

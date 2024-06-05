@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+table{
+    border-collapse: collapse;
+    margin: auto;
+    width: 500px;
+    height: 350px;
+}
+
+thead th{
+    background-color: rgb(73, 73, 73);
+    color: white;
+}
+
+th, td {
+    border: 1px solid black;
+}
+
+th {
+    padding: 3px;
+}
+
+td {
+    padding: 3px;
+}
+
+.media {
+    border-right: none;
+    background-color: rgb(73, 73, 73);
+    color: white;
+    text-align: left;
+    padding: 4px;
+}
+
+#nota{
+    text-align: center;
+    border-right: 1px solid black;
+}
+
+.nota{
+    text-align: center;
+}

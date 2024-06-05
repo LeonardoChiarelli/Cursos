@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+        <title>Conversão de dados</title>
+        <style>
+            body{
+                background-color: antiquewhite;
+            }
+            h1{
+                text-align: center;
+                text-decoration: underline;
+            }
+            main{
+                text-align: justify;
+            }
+            mark{
+                background-color: yellowgreen;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Treinando comandos</h1>
+        <main>
+            <ul>
+                <li>Funções do '+'</li>
+                <ul>
+                    <li><code>(number + number) == adição</code></li>
+                    <li><code>(string + string) == concatenação</code></li>
+                </ul>
+                <li>Comando 'prompt'</li>
+                <ul>
+                    <li>Sempre retorna uma string</li>
+                </ul>
+                <li>Convertendo string em number</li>
+                <ul>
+                    <li><code>Number.parseInt(n)</code> - <abbr title="Pode ser escrito apenas por 'parseInt'">para números inteiros</abbr></li>
+                    <li><code>Number.parseFloat(n)</code>- <abbr title="Pode ser escrito apenas por 'parseFloat'">para números reais</abbr></li>
+                    <li><mark><code>Number(n) - o próprio software se vira para saber se é float ou int</code></mark></li>
+                </ul>
+                <li>Convertendo number em string</li>
+                <ul>
+                    <li><code>String(n)</code></li>
+                    <li>n.toString() - 'n' nesse caso indica valor</li>
+                </ul>
+            </ul>
+        </main>
+        <script>
+            let n1 = parseInt(prompt('Digite um número'))
+            let n2 = parseFloat(prompt('Digite mais um número'))
+            let n3 = Number(prompt('Digite outro número'))
+            let n4 = n1 + n2 + n3
+            alert('A soma dos dois números é = ' + String(n4))
+        </script>
+    </body>
+</html>

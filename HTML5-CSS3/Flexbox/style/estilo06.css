@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: antiquewhite;
+}
+
+main{
+    padding: 10px;
+    width: 300px;
+    height: 600px;
+    display: flex;
+    background-color: green;
+    flex-flow: row wrap;
+    align-content: space-around;
+}
+
+.filho{
+    width: 100px;
+    background-color: gray;
+    border: 1px solid black;
+    padding: 40px;
+    text-align: center;
+}
+
+section{
+    padding: 10px;
+}
+
+ul{
+    padding: 10px;
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <title>Formulários</title>
+        <style>
+            .importante{
+                background-color: greenyellow;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Meu primeiro formulário</h1>
+        <form action="cadastro.php" method="post" autocomplete="off">
+            <p><label for="inome">Nome:</label>
+                <input type="text" name="nome" id="inome"></p>
+            <p><label for="isobrenome">Sobrenome:</label>
+                <input type="text" name="sobrenome" id="isobrenome"></p>
+            <p><input type="submit" value="Enviar"></p>
+        </form>
+        <ul>
+            <li>Todo formulário deve estar dentro da tag &lt;form&gt;</li>
+            <li>Para criar um formulário de texto use a tag &lt;input type="text" name="" id=""&gt;</li>
+            <ul type="square">
+                <li><strong>"name"</strong> e <strong>"id"</strong> são obrigatórios</li>
+                <ul type="circle">
+                    <li>"Name" - Mais útil para HTML e PHP</li>
+                    <li>"Id" - Mais útil para JavaScript</li>
+                </ul>
+            </ul>
+            <li>Para criar um "botão" de enviar use a tag &lt;input type="submit" value=""&gt;</li>
+            <ul type="square">
+                <li>O parâmetro <strong>"value"</strong> será a o "nome" do seu botão de enviar</li>
+                <li>Exemplos:</li>
+                <ul type="circle">
+                    <li><input type="submit" value="Enviar"></li>
+                    <li><input type="submit" value="Encaminhar"></li>
+                    <li><input type="submit" value="Mandar"></li>
+                </ul>
+            </ul>
+            <li>Para desligar a sugestão dentro das caixas de texto, basta usar o parâmetro <strong>autocomplete="off"</strong> ao lado da tag &lt;form&gt;</li>
+            <ul>
+                <li><mark class="importante"><strong>Importante</strong> ressaltar que desligar a sugestão não é obrigatório, desligue caso esteja incomodando ou se não for a proposta do seu formulário</mark>
+                </li>
+            </ul>
+            <li>Para mandar os dados do cadastro ao clicar no botão de enviar (input:submit) temos que adicionar o parâmetro <strong>action="<small>nome do código</small>"</strong> ao lado da tag &lt;form&gt;</li>
+            <ul>
+                <li>Esse "lugar" que vamos enviar os dados colocados pelo usuário deve ser para outro código e esse código deverá ser feito em php, java servidor ou outra linguagem de programação da sua escolha, neste caso vamos usar php</li>
+            </ul>
+            <li>Para fazer a ligação entre o "Nome" e sua respectiva caixa de texto devemos usar as <strong>labels</strong>(etiquetas)</li>
+            <ul>
+                <li>Envelopar o <q>nome</q> da caixa de texto na tag &lt;label for=""&gt;, dentro de "for" colocar o id da caixa de texto</li>
+            </ul>
+            <li>Method (dentro de &lt;form&gt;):</li>
+            <ul>
+                <li>GET - Configuração padrão que deixa os dados enviados pelo usuário na URL.</li>
+                <ul>
+                    <li>Usar quando os dados não forem sensíveis, por exemplo, ao pedir nome, peso, coisas "fúteis" e quando quiser que a URL seja compartilhável</li>
+                    <li><strong>NÃO</strong> usar para formulários com envio de fotos ou qualquer outro tipo de arquivo</li>
+                    <li><mark style="background-color: aquamarine;">Ao enviar dados por GET você tem um limite de 3000 bytes</mark></li>
+                </ul>
+                <li>POST - Esconde os dados enviados pelo usuário na URL.</li>
+                <ul>
+                    <li>Para dados sensíveis, como senhas, dados de cartão, endereço, CEP, entre outros, para dados com mais de 3000 bytes, para fazer wenvio de arquivos</li>
+                    <li><mark style="background-color: aquamarine;">Os dados podem estar escondidos da URL, porem ainda conseguimos vê-los através das configurações do DevTools, ao entrar em Network e depois em Headers. Então os dados não estão 100% seguros e muito menos criptografados.</mark></li>
+                </ul>
+            </ul>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-color: antiquewhite;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: justify;
+    padding: 10px;
+}
+
+main{
+    padding: 10px;
+}
+
+h1, h2{
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    text-decoration: underline;
+    padding: 10px;
+}
+
+p{
+    text-align: center;
+    font-style: oblique;
+    padding: 10px;
+}
+
+h3{
+    text-align: left;
+    text-decoration: under;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.code{
+    color: blue;
+    font-size: 1.1em;
+    list-style-type: none;
+    margin-left: 50px;
+}
+
+.cond{
+    width: 80px;
+    height: 30px;
+    background-color: gray;
+    color: white;
+    font-family: monospace;
+    font-style: normal;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 31px;
+    padding: 0px;
+}
+
+.exe{
+    text-align: left;
+}

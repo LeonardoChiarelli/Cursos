@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.io.ico" type="image/x-icon">
+        <title>Listas OL e UL</title>
+        <style>
+            body {
+                background-color: antiquewhite;
+            }
+            mark {
+                background-color: aquamarine;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Trabalhando com listas</h1>
+        <h2>Listas Ordenadas ou Listas OL - onde a ordem faz diferença</h2>
+        <p>Usando a tag &lt;ol&gt; para criar uma lista ordenanda e colocando os itens da lista na tag &lt;li&gt; (obs: cada item em um &lt;li&gt; difrente)</p>
+        <ol>
+            <li>Acordar</li>
+            <li>Arrumar a cama</li>
+            <li>Tomar meu remédio</li>
+            <li>Tomar banho</li>
+            <li>Tomar café</li>
+            <li>Escovar os dentes</li>
+        </ol>
+        <p>Para mupo de lidar o tista basta adicionar o parâmetro <strong>type</strong> dentro de de &lt;ol&gt;</p>
+        <ol type="I">
+            <li>Acordar</li>
+            <li>Arrumar a cama</li>
+            <li>Tomar meu remédio</li>
+            <li>Tomar banho</li>
+            <li>Tomar café</li>
+            <li>Escovar os dentes</li>
+        </ol>
+        <p>Caso queira que a lista comece em um <q>número/algarismo/letra</q> diferente de <q>1/I/a</q> basta adicionar <strong>start</strong> ao lado de &lt;ol type=""&gt; - type é opcional</p> <!--Start é um parâmetro númerico, caso você queira que sua lista em "a" comece com a letra "e", você precisa contar em qual número do alfabeto a letra "e" esta e colocar no start. Exemplo: <ol type="a" start="5"> portanto sua lista começará na letra "e" -->
+        <ol type="1" start="5">
+            <li>Acordar</li>
+            <li>Arrumar a cama</li>
+            <li>Tomar meu remédio</li>
+            <li>Tomar banho</li>
+            <li>Tomar café</li>
+            <li>Escovar os dentes</li>
+        </ol>
+        <h2>Listas UL ou Listas não Ordenadas</h2>
+        <p>Usando a tag &lt;ul&gt; para criar uma lista não ordenada, onde obviamente a ordem dos itens não importa e colocando os itens da lista na tag &lt;li&gt; (obs: cada item em um &lt;li&gt; difrente)</p>
+        <ul>
+            <li>Rap-10</li>
+            <li>Peito de peru</li>
+            <li>Queijo</li>
+            <li>Requeijão</li>
+            <li>Alface</li>
+            <li>Molho Rose</li>
+            <li>Azeite</li>
+        </ul>
+        <p>Para mupo de lidar o tista basta adicionar o parâmetro <strong>type</strong> dentro de de &lt;ul&gt; <br> Há três tipos de tipos, tipo <q>circle</q>:
+        <ul type="circle">
+            <li>Rap-10</li>
+            <li>Peito de peru</li>
+            <li>Queijo</li>
+            <li>Requeijão</li>
+            <li>Alface</li>
+            <li>Molho Rose</li>
+            <li>Azeite</li>
+        </ul> <br> Tipo <q>square</q>:
+        <ul type="square">
+            <li>Rap-10</li>
+            <li>Peito de peru</li>
+            <li>Queijo</li>
+            <li>Requeijão</li>
+            <li>Alface</li>
+            <li>Molho Rose</li>
+            <li>Azeite</li>
+            </ul> <br> E o tipo <q>disc</q> (padrão) que é o tipo da primeira lista não ordenanda.</p>
+            <h2>Listas dentro de listas</h2>
+            <p>Para adicionar uma lista dentro de outra basta apenas colcoar um &lt;ol&gt; ou um &lt;ul&gt; embaixo de um (ou mais de um, se for o caso de mais listas dentro de outras) componete da lista (&lt;li&gt;) principal </p>
+            <h3>Meus exercícios favoritos:</h3>
+            <ol>
+                <li>Costas:</li>
+                <ol type="I">
+                    <li>Remada pronada com o peito apoiado</li>
+                    <li>Puxada articulada</li>
+                    <li>Remada articulada</li>
+                </ol>
+                <li>Peito:</li>
+                <ul type="square">
+                    <li>Supino inclinado</li>
+                    <ol>
+                        <li>Supino inclinado no Smith</li>
+                        <li>Supino inclinado com halter</li>
+                        <li>Supino inclinado na maquina</li>
+                        <li>Supino inclinado com barra</li>
+                    </ol>
+                    <li>Supino reto</li>
+                    <ol type="I">
+                        <li>Supino reto na maquina</li>
+                        <li>Supino reto no Smith</li>
+                        <li>Supino reto com halter</li>
+                        <li>Supino reto com barra</li>
+                    </ol>
+                    <li>Voador</li>
+                </ul>
+                <li>Perna:</li>
+                <ul type="square">
+                    <li>Agachamento</li>
+                    <ol type="I">
+                        <li>Agachamento no Smith</li>
+                        <li>Agachamento livre</li>
+                    </ol>
+                    <li>Stiff</li>
+                    <li>Leg-Press</li>
+                </ul>
+            </ol>
+            <h2>Lista de definições</h2>
+            <p>Usar a tag &lt;dl&gt; para criar a lista, &lt;dt&gt; para criar o termo e &lt;dd&gt; para a descrição do termo.</p>
+            <dl>
+                <dt>HTML:</dt>
+                <dd>Linguagem de <mark>marcação</mark> para a criação do <strong>conteúdo</strong> de um site.</dd>
+                <dt>CSS:</dt>
+                <dd>Linguagem de <mark>marcação</mark> para a criação do <strong>desing</strong> do site</dd>
+                <dt>JavaScript:</dt>
+                <dd>Linguagem de <strong>programação</strong> para a criação de <strong>interatividade</strong> de um site</dd>
+            </dl>
+    </body>
+</html>

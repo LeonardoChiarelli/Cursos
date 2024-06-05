@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <title>Elementos</title>
+    </head>
+    <body>
+        <h1>Elementos number, month, date e time em formulários</h1>
+        <form action="cadastro.php" method="post" autocomplete="on">
+            <p>
+                <label for="inome">Nome: </label>
+                <input type="text" name="nome" id="inome" required maxlength="30" placeholder="Nome completo" autocomplete="name">
+            </p>
+            <p>
+                <label for="imedia">Média: </label>
+                <input type="number" name="media" id="imedia" required placeholder="0-10" min="0" max="10" step="0.1">
+            </p>
+            <p>
+                <label for="imes">Período Letivo: </label>
+                <input type="month" name="mes" id="imes" required value="2024-04">
+            </p>
+            <p>
+                <label for="idia">Dia da Prova: </label>
+                <input type="date" name="dia" id="idia" required>
+            </p>
+            <p>
+                <label for="ihora">Hora da Prova: </label>
+                <input type="time" name="hora" id="ihora" required>
+            </p>
+            <p>
+                <input type="submit" value="Enviar">
+                <input type="reset" value="Limpar">
+            </p>
+        </form>
+        <ul>
+            <li>Para caixas numéricas usar min e max apenas:</li>
+            <ul>
+                <li>min - número mais baixo possível</li>
+                <li>max - número mais alto possível</li>
+                <li>&lt;input type="number" name="" id="" required <strong>min="0" max="10"</strong>&gt;</li>
+            </ul>
+            <li>step - para falar de quanto em quanto a nota aumenta ou diminui</li>
+            <ul>
+                <li>&lt;input type="number" name="" id="" required min="0" max="10" <strong>step="0.1"</strong>&gt;</li>
+            </ul>
+            <li>value (dentro de input) - para o navegador sugerir algum dado</li>
+            <ul>
+                <li>&lt;input type="<i>number</i>" name="" id="" required min="0" max="10" step="0.1" <strong>value="5"</strong>&gt;</li>
+                <li>&lt;input type="<i>month</i>" name="" id="" required <strong>value="2024-04"</strong>&gt;</li>
+            </ul>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale:1.0">
+        <link rel="shortcut icon" href="favicon.io.ico" type="image/x-icon">
+        <title>Mídias dinâmicas</title>
+        <style>
+            body {
+                background-color: antiquewhite;
+            }
+            mark {
+                background-color: greenyellow;
+            }
+        </style>
+    </head>
+    <body>
+        <h1><abbr title="Usar a tag &lt;picture&gt;, essa tag permite que você crie vários src ou source, ou seja várias fontes">Imagem Dinâmica</abbr></h1>
+        <p>Tente abrir esse site em vários dispositivos diferentes ou simplesmente aumente e diminua o tamanho do seu navegador.</p>
+        <picture>
+            <source media="(max-width:780px )" srcset="imagens/dengos-p.png" type="image/png">
+            <source media="(max-width:1080px )" srcset="imagens/dengos-m.png" type="image/png">
+            <img src="imagens/dengos-g.png" alt="Dengos">
+        </picture>
+        <h3><strong><abbr title="usar a tag &lt;source media=(max-width: [Prefirível trabalhar sempre com 50px a mais da maior foto]) srcset=(arquivo da foto opcional) type=image/png&gt; para adicinar um tamanho máximo de tela que cada foto pode ser carregada">Explicação</abbr></strong> &uarr;</h3>
+        <h3><strong><abbr title="Caso haja uma foto menor, colocar o &lt;source&gt; dessa foto acima de todos, ou seja, em primeiro.">Importante</abbr></strong> &excl;</h3>
+        <h3><abbr title="Para garantir acessibilidade do site, ou seja, para que as imagens do seu site carreguem de acordo com o tamanho dispositivo do usuário">Qual o uso disso?</abbr> &uarr;</h3>
+        <h1><abbr title="Usar a tag &lt;audio&gt;, adicionar um ou mais [para garantir compatibilidade com OGG e Wave] &lt;source&gt; src=(nome do arquivo type=(audio/tipo de audio))">Reproduzindo áudio</abbr></h1>
+        <p>Vamos aprender a reproduzir áudios em HTML5</p>
+        <audio preload="metadata" autoplay controls loop>
+            <source src="midia/floating-home.mp3" type="audio/mpeg"> <!--mp3-->
+            <source src="midia/floating-home.ogg" type="audio/ogg"> <!--ogg-->
+            <source src="midia/floating-home.wav" type="audio/wav"> <!--wave, evitar esses aruivos pois são muito pesados-->
+            <p>Infelizmente seu navegador não consegue reproduzir áudio, mas você pode <a href="midia/floating-home.mp3">baixar o arquivo MP3</a></p>
+        </audio>
+        <h3>Parâmetros utilizados em &lt;audio&gt;</h3>
+        <ul>
+            <li>preload</li>
+            <p>Temos as seguintes configurações:</p>
+            <ul type="circle">
+                <li>auto - onde o arquivo será carregado automaticamente</li>
+                <li>metadata - onde apenas a parte essêncial do arquivo é carregada</li>
+                <li>none - onde nada do arquivo é carregado até o usuário clicar</li>
+            </ul>
+            <li>autoplay - para tocar automaticamente</li>
+            <li>controls - para aparecer os botões para tocar o arquivo/música</li>
+        </ul>
+        <h1><abbr title="Abrir a tag &lt;video&gt; adicionar um ou mais [para garantir compatibilidade com todos os tipos] &lt;source&gt; src=(nome do arquivo type=(video/tipo de video))">Videos</abbr> <small>- usar o site Pexels para baixar vídeos sem direitos autoriais</small></h1>
+        <p>Este vídeo está hospedado no meu próprio servidor:</p>
+        <video width="500" poster="imagens/lamborghini.png" controls loop muted>
+            <source src="midia/lambo.m4v" type="video/mp4"> <!--tipo do m4v também é mp4-->
+            <source src="midia/lambo.mkv" type="video/mkv">
+            <source src="midia/lambo.webm" type="video/webm">
+            <source src="midia/lambo.mp4" type="videp/mp4">
+            <source src="midia/lambo.ogv" type="video/ogg"> <!--ogg é o padrão-->
+            <p>Seu navegador não tem compatibilidade com reprodução de vídeo, mas você pode <a href="midia/lambo.mp4">baixar o arquivo em MP4</a></p>
+        </video>
+         <h2><mark>Formato <q>m4v</q> é o mais recomendado</mark></h2> 
+        <h3>Parâmetros usados em &lt;video&gt;: <small>- <strong>nenhum é obrigatório e a maioria pode ser usado também para &lt;audio&gt;</strong></small></h3>
+        <ul>
+            <li>width - para ajustar o tamanho do vídeo</li>
+            <li>poster - para adicionar uma imagem como capa do vídeo</li>
+            <li>controls - para aparecer os botões para iniciar o vídeo</li>
+            <li>loop - para o recomeçar assim que acabar</li>
+            <li>muted - para o vídeo não reproduzir som</li>
+        </ul>
+        <h1><abbr title="Basta clicar em compartilhar, depois em incorporar (ou acessar direto, dependendo da plataforma), copiar o código e colar no seu código">Inserindo vídeo de outras plataformas</abbr> <small><strong>- Recomendado para reduzir custos</strong></small></h1>
+        <iframe width="500" height="315" src="https://www.youtube.com/embed/psxvVT31Ylg?si=xRQyEWEIpot2Va_R" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> <br>
+        <iframe src="https://player.vimeo.com/video/703560113?h=7f856b3e10" width="500" height="281" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <h2>Código:</h2>
+        <code>
+            &lt;iframe width=<small>"tamanho do arquivo"</small> height=<small>"peso do arquivo"</small> src=<small>"URL do arquivo"</small> title=<small>"título do arquivo"</small> frameborder=<small>"tamanho desejado"</small> allow=<small>permições que você queira (como autoplay, picture-in-picture, web-share, entre outros)</small> allowfullscreen&gt;&lt;/iframe&gt;
+        </code>
+        <h3>Dica:</h3>
+        <p>Como o youtube é do google, para os algoritimos darem maior abrangência para o seu site é recomendado subir o vídeo que você queira usar o no youtube e utilizar o método acima &uarr;</p>
+        <h3>Para que utilizar esse?</h3>
+        <p>Para reduzir custos quanto à hospedagem e trafego de dados, pois assim não vamos estar consumingo trafego de dados do nosso servidor, mas sim de um servidor de outra plataforma</p>
+    </body>
+</html>

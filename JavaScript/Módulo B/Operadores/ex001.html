@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+        <title>Operadores</title>
+        <style>
+            body{
+                background-color: antiquewhite;
+            }
+            main{
+                text-align: justify;
+            }
+            h1{
+                text-align: center;
+                text-decoration: underline;
+            }
+            code{
+                font-size: 1.1em;
+            }
+            .list ul{
+                line-height: 2em;
+            }
+            .output{
+                color: green;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <section class="list">
+                <h1>Aritméticos</h1>
+                <ul>
+                    <li>+</li>
+                    <ul>
+                        <li>5 + 2 = 7</li>
+                    </ul>
+                    <li>-</li>
+                    <ul>
+                        <li>5 - 2 = 3</li>
+                    </ul>
+                    <li>*</li>
+                    <ul>
+                        <li>5 * 2 = 10</li>
+                    </ul>
+                    <li>/</li>
+                    <ul>
+                        <li>5 / 2 = 2.5</li>
+                    </ul>
+                    <li>% - resto da divisão inteira</li>
+                    <ul>
+                        <li>5 % 2 = 1</li>
+                    </ul>
+                    <li>** - potenciação</li>
+                    <ul>
+                        <li>5 ** 2 = 25</li>
+                    </ul>
+                </ul>
+            </section>
+            <section class="list">
+                <h1>Atribuição</h1>
+                <ul style="list-style-type: none; color: blue;">
+                    <li><code>
+                        let n = 3<br>
+                        n = n + 7<br>
+                        n = n - 5<br>
+                        n = n * 4<br>
+                        n = n ** 4<br>
+                        n = n / 400<br>
+                        n = n%6<br>
+                        document.write(`${n}`)
+                    </code></li>
+                    <li class="output">Output: 4</li>
+                    <li style="list-style-type: disc; color: black;">Simplificação:</li>
+                    <ul>
+                        <li style="list-style: none;"><code>
+                        let x = 3<br>
+                        x += 7<br>
+                        x -= 5<br>
+                        x *= 4<br>
+                        x **= 4<br>
+                        x /= 400<br>
+                        x %= 6<br>
+                        document.write(`${x}`)
+                        </code></li>
+                        <li class="output" style="list-style-type: none;">Output: 4</li>
+                        <li style="color: black;">Incremento:</li>
+                        <ul>
+                            <li><code>
+                                let y = 5<br>
+                                y++<br>
+                                y--<br>
+                                document.write(`${y}`)
+                            </code></li>
+                            <li class="output" style="list-style-type: none;">Output: 5</li>
+                            <li style="color: black;">y++ - a soma será feita depois<br>
+                                ++y - a soma será feita antes <strong>(pre-incremento)</strong>
+                            </li>
+                            <li style="color: black;">
+                                y-- - a subtração será feita depois<br>
+                                --y - a subtração será feita antes <strong>(pre-decremento)</strong>
+                            </li>
+                        </ul>
+                    </ul>
+                </ul>
+            </section>
+        </main>
+        <script>
+            let n = 3
+            n = n + 7
+            n = n - 5
+            n = n * 4
+            n = n ** 4
+            n = n / 400
+            n = n%6
+            document.write(`${n}<br>`)
+            let x = 3
+            x += 7
+            x -= 5
+            x *= 4
+            x **= 4
+            x /= 400
+            x %= 6
+            document.write(`${x}<br>`)
+            let y = 5
+            y++
+            y--
+            document.write(`${y}`)
+        </script>
+    </body>
+</html>

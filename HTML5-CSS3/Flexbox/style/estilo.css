@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-color: antiquewhite;
+}
+
+h1{
+    padding: 10px;
+    text-align: center;
+    text-decoration: underline;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+section ul{
+    padding: 10px;
+    margin: 10px;
+}
+
+.container{
+    background-color: white;
+    display: flex;
+}
+
+.item{
+    background-color: gray;
+    padding: 10px;
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    flex: auto;
+}

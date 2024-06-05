@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: black url('../imagens/preview16.jpg') center center no-repeat fixed;
+    background-size: cover;
+}
+
+main {
+    background-color: white;
+    width: 50vw;
+    margin: auto;
+}
+
+h1{
+    font-family: serif;
+    text-align: center;
+}
+
+table {
+    width:50vw;
+    height: 50vh;
+    border-collapse: collapse; /* para colar as bordas */
+}
+
+th {
+    text-align: left;
+    padding-left: 8px;
+}
+
+td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left; /* Alinhamento horizontal */ 
+    vertical-align: center; /* Alinhamento vertical */ 
+}
+
+.linha {
+    background-image: linear-gradient(to right, yellow, red);
+}
+
+.dado {
+    background-image: linear-gradient(to left, red, yellow);
+}

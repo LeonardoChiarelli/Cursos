@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+body {
+    background-color: antiquewhite;
+    text-align: justify;
+    background-attachment: fixed;
+    font-size: 1.05em;
+}
+
+h1 {
+    text-align: center;
+    color: whitesmoke;
+    font-family: 'Times New Roman', Times, serif;
+    text-shadow: 1px 1px 3px black;
+}
+
+h1:hover {
+    color: black;
+    text-decoration: underline;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.special:hover {
+    color: red;
+    text-decoration: underline;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.paragrafo {
+    text-align: center;
+}
+
+.li:hover {
+    color: green;
+    text-decoration: underline;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: red;
+    font-family: 'Courier New', Courier, monospace;
+    text-decoration: underline;
+    font-family: 'Courier New', Courier, monospace; 
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <title>Interagindo com o usuário</title>
+    <style>
+        body{
+            background-color: antiquewhite;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        main{
+            text-align: justify;
+            list-style-type: none;
+        }
+        h1{
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+            text-decoration: underline;
+        }
+        h3{
+            text-decoration: underline;
+        }
+        #res{
+            padding-top: 10px;
+        }
+        .num{
+            margin-top: 20px;
+        }
+        .but{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Somando Valores</h1>
+        <div class="num">
+            <label for="num1">Número: </label>
+            <input type="number" name="number1" id="num1">
+        </div>
+        <div class="num">
+            <label for="num2">Número:</label>
+            <input type="number" name="number2" id="num2">
+        </div>
+        <div id="res">
+            Resultado:
+        </div>
+        <div class="but">
+            <input type="button" value="Somar" onclick="somar()">
+        </div>
+    </main>
+    <script>
+        function somar(){
+            let num1 = document.querySelector('#num1')
+            let num2 = document.querySelector('#num2')
+            let res = document.querySelector('#res')
+            let n1 = Number(num1.value)
+            let n2 = Number(num2.value)
+            let s = n2 + n1
+            res.innerHTML = `Resultado: ${s}`
+        }
+    </script>
+</body>
+</html>

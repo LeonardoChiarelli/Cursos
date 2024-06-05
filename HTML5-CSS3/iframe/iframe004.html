@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="style/iframe004.css">
+        <title>Segurança de iframe</title>
+    </head>
+    <body>
+        <h1>Meu site principal</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas possimus alias fugiat culpa accusamus? Ducimus porro sint recusandae eaque architecto aliquid, est excepturi voluptas odit deserunt quibusdam molestiae aliquam beatae?</p>
+        <iframe src="paginas-extras/pag004.html" frameborder="0" sandbox="sandbox" referrerpolicy="no-referrer"> <!-- Para bloquear que o site dentro do iframe cadastre ou armazene dados inseridos pelo usuário -->
+            <p><a href="paginas-extras/pag004.html" target="_blank">Cadastre-se</a></p>
+        </iframe>
+        <p>Voluptatem quas dolorem officia odit eos libero quasi ullam! Excepturi asperiores ab fugiat est ut earum quam assumenda dicta autem sit veritatis fuga ipsum dignissimos officiis magnam amet, sapiente pariatur.</p>
+        <iframe src="paginas-extras/pag004.html" frameborder="0" sandbox="allow-same-origin allow-forms allow-scripts" referrerpolicy="no-referrer"></iframe> <!-- Sandbox para permitir arquivos da mesma origem, para permitir formulários e scripts -->
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur quo perferendis aperiam at labore architecto atque expedita cumque dolore, vitae qui dolor ipsa blanditiis deleniti molestias commodi? Debitis, aspernatur quam!</p>
+        <iframe src="paginas-extras/pag005.html" frameborder="0">
+            <p><a href="paginas-extras/pag005.html"></a>Clique aqui</p>
+        </iframe>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, deserunt reiciendis? Non porro obcaecati amet doloremque illo quos laboriosam animi repudiandae eius esse, vitae deleniti nihil? Obcaecati aut magni officiis!</p>
+        <iframe src="paginas-extras/pag005.html" frameborder="0" referrerpolicy="no-referrer" sandbox="sandbox">
+            <p><a href="paginas-extras/pag005.html"></a>Clique aqui</p>
+        </iframe>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga maxime voluptate excepturi et fugit temporibus ut quibusdam fugiat corporis eum ipsam beatae obcaecati accusantium, tempore eaque pariatur odio possimus repudiandae.</p>
+        <iframe src="paginas-extras/pag005.html" frameborder="0" referrerpolicy="no-referrer" sandbox="allow-scripts">
+            <p><a href="paginas-extras/pag005.html"></a>Clique aqui</p>
+        </iframe>
+    </body>
+</html>

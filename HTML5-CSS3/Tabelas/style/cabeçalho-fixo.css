@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1 {
+    font-family: serif;
+    text-align: center;
+}
+
+table {
+    width: 50vw;
+    border-collapse: collapse;
+    position: relative;
+}
+
+caption {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    background-color: rgba(0, 0, 0, 0.334);
+    padding: 8px;
+}
+
+thead, tfoot {
+    background-color: rgba(0, 0, 0, 0.611);
+    color: white;
+    font-weight: lighter;
+}
+
+thead > tr > th {
+    position: sticky;
+    top: -1px;
+    background-color: rgba(0, 0, 0, 0.611);
+}
+
+tbody tr:nth-child(2n) { /* 2n == de duas em duas linhas */
+    background-color: lightgrey;
+}
+
+td, th {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.num {
+    text-align: right;
+}
+
+.vazia {
+    background-color: white;
+}

@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    height: auto;
+}
+
+body {
+    background-image: linear-gradient(to bottom, #CCAF9F, #9C867B, #63564f, #4a403b );
+    background-attachment: fixed;
+}
+
+main {
+    background-color: white;
+    border-radius: 10px; /* para "arredondar a borda */
+    box-shadow: 5px 5px 15px rgba(29, 34, 38, 0.641); /* 1º parâmetro: Quanto a sombra vai andar pro lado; 2º parâmetro: Quanto a sombra vai andar pra baixo; 3º parâmetro: Quanto a sombra vai espalhar; 4º parâmetro: Cor. */ /* Serve para adicionar sombra à caixa */
+    width: 600px; /* para ajustar a largura */
+    padding: 10px; /* acolchoamento */
+    margin: auto; /* para centralizar algo */
+}
+
+h1 {
+    color: #820B32;
+    text-align: center; /* alinhamento de texto */
+    text-shadow: 1px 1px 2px rgba(60, 5, 24, 0.715); /* para adicionar sombra ao texto */
+}
+
+h2 {
+    color: #1D0B1D;
+}
+
+p {
+    text-align: justify;
+}

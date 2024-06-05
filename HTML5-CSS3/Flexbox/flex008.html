@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="shortcut icon" href="../Formulários/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="style/estilo08.css">
+        <title>Comandos para os itens</title>
+    </head>
+    <body>
+        <h1>Alterando Itens</h1>
+        <main id="container">
+            <article class="itens" id="i1">A</article>
+            <article class="itens" id="i2">B</article>
+            <article class="itens" id="i3">C</article>
+        </main>
+        <p>.</p>
+        <main id="container2">
+            <article class="itens" id="i1">A</article>
+            <article class="itens" id="i2">B</article>
+            <article class="itens" id="i3">C</article>
+        </main>
+        <p>.</p>
+        <main id="container3">
+            <article class="itens" id="i1">A</article>
+            <article class="itens" id="i2">B</article>
+            <article class="itens" id="i3">C</article>
+        </main>
+        <section>
+            <ul>
+                <li>Flex-basis: </li>
+                <ul>
+                    <li>Usada a partir do cross-main</li>
+                    <li>Usado no lugar de 'width'</li>
+                    <li>flex-basis: auto; - o conteúdo do item que 'dita' o tamanho (valor padrão)</li>
+                    <li>flex-basis: Xpx; - você determina o tamanho máximo do espaço interno do item, porém isso não limita o tamanho da caixa</li>
+                </ul>
+                <li>Flex-shrink: </li>
+                <ul>
+                    <li>flex-shrink: 1; - significa que o item pode encolher (valor padrão)</li>
+                    <li>flex-shrink: 0; - significa que o item não pode encolher</li>
+                    <li>flex-shrink: &gt;1; - proporcional ao número (valor individual por item)</li>
+                </ul>
+                <li>Flex-grow: </li>
+                <ul>
+                    <li>flex-grow: 0; - significa que o item não pode aumentar (valor padrão)</li>
+                    <li>flex-grow: 1; - significa que o item pode encolher</li>
+                    <li>flex-grow: &gt;1; - proporcional ao número (valor individual por item)</li>
+                </ul>
+            </ul>
+        </section>
+    </body>
+</html>

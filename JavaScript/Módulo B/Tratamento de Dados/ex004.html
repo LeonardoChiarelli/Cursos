@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+        <title>Outros comandos</title>
+        <style>
+            body{
+                background-color: antiquewhite;
+            }
+            h1{
+                text-align: center;
+                text-decoration: underline;
+            }
+            main section{
+                text-align: justify;
+            }
+            mark{
+                background-color: yellowgreen;
+            }
+            .codigo{
+                list-style-type: none;
+                font-size: 1.1em;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <section>
+                <h1>document.write</h1>
+                <ul>
+                    <li class="codigo"><code>
+                        let nome = prompt('Qual seu nome?')<br>
+                        document.write(`Seu nome tem ${nome.length} letra(s)`)
+                    </code></li>
+                    <li><mark class="codigo">document.write</mark> - serve para o js escrever dentro do documento html, ou seja, no body</li>
+                    <ul>
+                        <li>Podemos colocar tag's html dentro das crases em document.write</li>
+                    </ul>
+                </ul>
+            </section>
+            <section>
+                <h1>Formatando números</h1>
+                <ul>
+                    <li>toFixed(n) - 'n' nesse caso seria quantos números depois do .</li>
+                    <li>n.toLocaleString('pt-BR', {'currency', currency: 'BRL'})</li>
+                </ul>
+            </section>
+        </main>
+        <script>
+            let nome = prompt('Qual seu nome?')
+            let salario = Number(prompt('Qual seu salário?'))
+            document.write(`Olá, ${nome}! Seu nome tem <strong>${nome.length}</strong> letra(s)<br>`)
+            document.write(`Seu nome em letras maiúsculas fica ${nome.toUpperCase()}<br>`)
+            if(salario <= 5000){
+                document.write(`Ganhando ${salario.toFixed(2)} você ainda não está rocando ${nome}`)
+            }else{
+                document.write(`Ganhando ${salario.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})} você ta rocando paizão`)
+            }
+        </script>
+    </body>
+</html>

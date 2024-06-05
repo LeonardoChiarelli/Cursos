@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <title>Email e telefone</title>
+        <style>
+            h1{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Formulários com telefone e email</h1>
+        <form action="cadastro.php" method="post" autocomplete="on">
+            <fieldset>
+                <legend>DADOS PESSOAIS</legend>
+                <p>
+                    <label for="inome">Nome</label>
+                    <input type="text" name="nome" id="inome" minlength="5" maxlength="20" required autocomplete="name">
+                </p>
+                <p>
+                    <label for="iemail">E-mail</label>
+                    <input type="email" name="email" id="iemail" autocomplete="email" required>
+                </p>
+                <!-- Estudar RegEx -->
+                <p>
+                    <label for="itelefone">Telefone</label>
+                    <input type="tel" name="telefone" id="itelefone" autocomplete="tel" required pattern="^\(\d{2}\)\d{4,5}-\d{4}$" placeholder="(xx)xxxxx-xxxx">
+                </p>
+                <!--^ - Inicio da regular expression
+                    $ - Fim da regular expression -->
+                <p>
+                    <input type="submit" value="Enviar">
+                    <input type="reset" value="Limpar">
+                </p>
+            </fieldset>
+        </form>
+        <ul>
+            <li>fieldset - Para agrupar dados</li>
+            <ul>
+                <li>legend - dentro de fieldset, para legendar os dados agrupados</li>
+            </ul>
+        </ul>
+    </body>
+</html>

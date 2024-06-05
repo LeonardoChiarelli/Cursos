@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+body {
+    background-image: url('../imagens/wallpaper001.jpg');
+}
+
+.quadrado {
+    border: 2px solid black;
+    display: inline-flex;
+    border-radius: 10px;
+    background-color: lightgrey;
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+#q1 {
+    background-color: skyblue;
+}
+
+#q2 {
+    background-image: linear-gradient(to top, yellow, red);
+}
+
+#q3 {
+    color: white;
+    background-image: url('../imagens/pattern001.png');
+}
+
+
+
+/* 
+
+- width e height são responsáveis por deixar as div em quadrados, retângulos, etc
+- display: usado para posicionar as caixas
+- justify-content: center; para centralizar horizontalmente algo dentro da div (funciona no display: flex)
+- align-items: center; usado para centralizar verticalmente algo dentro da div (funciona no display: flex)
+
+*/
