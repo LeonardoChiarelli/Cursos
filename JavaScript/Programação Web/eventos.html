@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <title>Eventos</title>
+    <style>
+        body{
+            background-color: antiquewhite;
+            text-align: center;
+        }
+        button{
+            padding: 3px;
+            margin: 5px;
+        }
+        div{
+            width: 100px;
+            background-color: gray;
+            padding: 30px;
+            margin: auto;
+            border-radius: 5px;
+        }
+        input{
+            padding: 10px;
+            margin: 10px;
+            font-size: 1.5em;
+        }
+        main{
+            margin: auto;
+            width: 80vw;
+
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.418);
+
+        }
+        ul{
+            list-style-position: inside;
+            columns: 2;
+            text-align: left;
+            padding: 5px;
+            margin: 5px;
+        }
+        li{
+            padding: 10px;
+            line-height: 20px;
+        }
+    </style>
+</head>
+<body onload="alert('Página carregou')" onresize="console.log('Houve um redimencionamento')">
+    <main>
+        <h2>Eventos</h2>
+        <ul>
+            <li>onclick - disparado quando recebe um clique</li>
+            <li>ondblclick - disparado quando recebe um clique duplo</li>
+            <li>onmouseover - disparado quando o mouse esta sobre</li>
+            <li>onmouseout - disparado quando o mouse é movido pra fora do elemento</li>
+            <li>onmousemove - disparado quando o mouse é movido no elemento</li>
+            <li>onmousedown - disparado quando o elemento for pressionado</li>
+            <li>onmouseup - disparado quando o elemento é 'liberado'</li>
+            <li>onfocus - disparado quando o elemento recebe o foco, válido para input, select</li>
+            <li>onchange - disparado quando recebe uma mudança de conteúdo. 'Ao mudar' válido para input</li>
+            <li>onblur - disparado quando o elemento perde o foco válido para input</li>
+            <li>onkeydown - disparado quando uma tecla é pressionada</li>
+            <li>onkeypress - disparado quando uma tecla é pressionada e solta</li>
+            <li>onkeyup - disparado quando uma tecla é solta sobre um elemento</li>
+            <li>onload - disparado quando a página termina de carregar. Body</li>
+            <li>onresize - disparado quando há um redimencionamento da janela</li>
+        </ul>
+    </main>
+    <button onclick="clicar()">Clique aqui</button>
+    <button ondblclick="clicar2()">Clique 2X</button>
+    <div onmouseover="mouseOver()" onmouseout="mouseOut()" id="div">Passe o mouse aqui</div> <br>
+    <div onmousemove="mouseMove()" id="div2"><p id="texto">Mova o mouse aqui dentro</p></div> <br>
+    <div onmousedown="mouseDown()" onmouseup="mouseUp()" id="div3">Clique e segure</div>
+    <input onfocus="limparTexto()" onblur="voltarTexto()" onkeydown="keyDown()" id="campoTexto" type="text" value="Foque para limpar o texto"> <br>
+
+<select onchange="mudou()" id="itens">
+    <option value="1">Valor 1</option>
+    <option value="2">Valor 2</option>
+    <option value="3">Valor 3</option>
+    <option value="4">Valor 4</option>
+</select>
+
+    <script src="script/eventos.js"></script>
+</body>
+</html>
