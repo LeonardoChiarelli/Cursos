@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <title>Métodos para Array</title>
+        <style>
+            body{
+                background-color: antiquewhite;
+                text-align: center;
+            }
+            main{
+                padding: 10px;
+                margin: auto;
+                background-color: white;
+                width: 85vw;
+                border-radius: 5px;
+                box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.252);
+            }
+            ul{
+                text-align: left;
+            }
+            li{
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Métodos para Array</h1>
+        <p id="texto"></p>
+
+        <main>
+            <h2>Métodos:</h2>
+            <ul>
+                <li>x.join("<small>oque você quiser entre os itens</small>") - para colocar 'algo a mais' entre cada item da matriz <button onclick="Join()">Testar</button></li>
+                <li>x.pop() - para remover o ultimo item do array <button onclick="remove()">Testar</button></li>
+                <li>x.push("<small>oque voce quiser adicionar</small>") - para adicionar itens ao final do array <button onclick="add()">Adicionar 'estudante'</button></li>
+                <li>x.shift() - para remover o primeiro item do array <button onclick="removeP()">Testar</button></li>
+                <li>x.unshift("<small>oque voce quiser adicionar</small>") - para adicionar itens no começo do array <button onclick="addP()">Adicionar 'lindo'</button></li>
+                <li>x.splice(<small>'índice do item', 'quantos valores serão removidos', "os valores")</small> - para adicionar ou remover valores em uma determinada posição <button onclick="Splice()">Teste</button></li>
+                <li>x.concat(y) - para concatenar <abbr title="Podem ser mais de uma, x.concat(y, z, w)">matrizes</abbr> <button onclick="verGabi()">Ver Gabi</button> <button onclick="concatenar()">Concatenar</button></li>
+                <li>x.slice(<small>índice da parte que será <abbr title="podemos cortar de uma parte a outra (2,6) por exemplo">cortada</abbr></small>) - para cortar um array <button onclick="mostrarJ()">Ver lista de jogadores</button> <button onclick="cortarJ()">Mostrar apenas os craques</button></li>
+            </ul>
+        </main>
+        <script src="script/metodoArray.js"></script>
+    </body>
+</html>
