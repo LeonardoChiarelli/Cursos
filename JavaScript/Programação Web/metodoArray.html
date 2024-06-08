@@ -25,6 +25,9 @@
             li{
                 padding: 10px;
             }
+            code{
+                font-size: 1.1em;
+            }
         </style>
     </head>
     <body>
@@ -34,14 +37,24 @@
         <main>
             <h2>Métodos:</h2>
             <ul>
-                <li>x.join("<small>oque você quiser entre os itens</small>") - para colocar 'algo a mais' entre cada item da matriz <button onclick="Join()">Testar</button></li>
-                <li>x.pop() - para remover o ultimo item do array <button onclick="remove()">Testar</button></li>
-                <li>x.push("<small>oque voce quiser adicionar</small>") - para adicionar itens ao final do array <button onclick="add()">Adicionar 'estudante'</button></li>
-                <li>x.shift() - para remover o primeiro item do array <button onclick="removeP()">Testar</button></li>
-                <li>x.unshift("<small>oque voce quiser adicionar</small>") - para adicionar itens no começo do array <button onclick="addP()">Adicionar 'lindo'</button></li>
-                <li>x.splice(<small>'índice do item', 'quantos valores serão removidos', "os valores")</small> - para adicionar ou remover valores em uma determinada posição <button onclick="Splice()">Teste</button></li>
-                <li>x.concat(y) - para concatenar <abbr title="Podem ser mais de uma, x.concat(y, z, w)">matrizes</abbr> <button onclick="verGabi()">Ver Gabi</button> <button onclick="concatenar()">Concatenar</button></li>
-                <li>x.slice(<small>índice da parte que será <abbr title="podemos cortar de uma parte a outra (2,6) por exemplo">cortada</abbr></small>) - para cortar um array <button onclick="mostrarJ()">Ver lista de jogadores</button> <button onclick="cortarJ()">Mostrar apenas os craques</button></li>
+                <li><code>x.join("<small>oque você quiser entre os itens</small>")</code> - para colocar 'algo a mais' entre cada item da matriz <button onclick="Join()">Testar</button></li>
+                <li><code>x.pop()</code> - para remover o ultimo item do array <button onclick="remove()">Testar</button></li>
+                <li><code>x.push("<small>oque voce quiser adicionar</small>")</code> - para adicionar itens ao final do array <button onclick="add()">Adicionar 'estudante'</button></li>
+                <li><code>x.shift()</code> - para remover o primeiro item do array <button onclick="removeP()">Testar</button></li>
+                <li><code>x.unshift("<small>oque voce quiser adicionar</small>")</code> - para adicionar itens no começo do array <button onclick="addP()">Adicionar 'lindo'</button></li>
+                <li><code>x.splice(<small>'índice do item', 'quantos valores serão removidos', "os valores")</code></small> - para adicionar ou remover valores em uma determinada posição <button onclick="Splice()">Teste</button></li>
+                <li><code>x.concat(y)</code> - para concatenar <abbr title="Podem ser mais de uma, x.concat(y, z, w)">matrizes</abbr> <button onclick="verGabi()">Ver Gabi</button> <button onclick="concatenar()">Concatenar</button></li>
+                <li><code>x.slice(<small>índice da parte que será <abbr title="podemos cortar de uma parte a outra (2,6) por exemplo">cortada</abbr></small>)</code> - para cortar um array <button onclick="mostrarJ()">Ver lista de jogadores</button> <button onclick="cortarJ()">Mostrar apenas os craques</button></li>
+                <li><abbr title="apenas com strings"><code>x.sort()</code></abbr> - parada deixar os itens em ordem alfabética <button onclick="ordem()">Testar</button> , caso queira em ordem 'desalfabética' basta colocar um x.reverse após o x.sort <button onclick="desordem()">Testar</button></li>
+                <ul>
+                    <li><code>x.sort(function(a,b){return a - b})</code> - para deixar números em ordem crescente<button onclick="mostrarNum()">Ver lista de números</button> <button onclick="ordemNum()">Ordenar</button></li>
+                    <li><code>x.sort(function(a,b){return b - a})</code> - para deixar números em ordem decrescente <button onclick="desordemNum()">Desordenar</button></li>
+                </ul>
+                <li><code>function maiorNum('array'){return Math.max.apply(null, 'array')}</code> - para pegar o maior número de um array <button onclick="mostrarMN()">Testar</button></li>
+                <ul>
+                    <li><code>function menorNum('array'){return Math.min.apply(null, 'array')}</code> - para pegar o maior número de um array <button onclick="mostrarMenorNum()">Testar</button></li>
+                </ul>
+                <li><code>const X = x.filter(Y()) <br> function Y(value, index, 'array'){ <br> return value>20 <br> }</code> <button onclick="mostrar20()">Testar</button></li>
             </ul>
         </main>
         <script src="script/metodoArray.js"></script>
