@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <title>Eventos de Tempo</title>
+        <style>
+            body{
+                background-color: antiquewhite;
+                text-align: center;
+            }
+            main{
+                padding: 10px;
+                width: 85vw;
+                margin: auto;
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.324);
+            }
+            h1,h2{
+                font-style: italic;
+            }
+            #teste1, #teste2{
+                font-size: 2em;
+            }
+            .start{
+                width: 200px;
+                height: 100px;
+                background-color: green;
+                color: white;
+                border: none;
+                border-radius: 50%;
+                font-size: 1.1em;
+                cursor: pointer;
+            }
+            .stop{
+                width: 200px;
+                height: 100px;
+                background-color: red;
+                color: white;
+                border: none;   
+                border-radius: 50%;
+                font-size: 1.1em;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Eventos de Tempo</h1>
+        <main>
+            <h2>setTimeout (function, <small>tempo em milissegundos</small>)</h2>
+            <p>Executa uma função depois de esperar um número especificado de milissegundos.</p>
+            <p id="teste1"></p>
+            <button onclick="startTimeout()" class="start">Ativar Contagem</button>
+            <button onclick="stopTimeout()" class="stop">Parar Contagem</button>
+            
+            <h2>setInterval (function, <small>milliseconds</small>)</h2>
+            <p>É o mesmo que setTimeout(), mas repete a execução da função continuamente</p>
+            <p id="teste2">0</p>
+            <button onclick="startInterval()" class="start">Ativar Contagem</button>
+            <button onclick="stopInterval()" class="stop">Parar Contagem</button>
+        </main>
+        <script src="script/eventosTempo.js"></script>
+    </body>
+</html>
