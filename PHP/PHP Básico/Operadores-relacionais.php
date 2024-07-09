@@ -27,7 +27,7 @@
             echo "<p>O maior valor é $maior <br> A soma dos dois valores é $soma</p>";
             echo "<p>A primeira nota do aluno foi $a e a segunda nota foi $b, o aluno ficou com média $m, portanto ele está <strong>$media</strong></p>";
             echo "<p>Os valores passados foram $num1 e $num2 e o resultado das suas escolhas foi " .($tipo == "s" ? $num1 + $num2 : $num1 * $num2) ."</p>"; # Podemos colocar a expressão diretamente no echo por concatenação, colocando toda a expressão entre (), sem a necessidade da criação de uma variável
-            echo "<p>Como você já tem $idade anos então seu $eleição "
+            echo "<p>Como você já tem $idade anos então seu $eleição</p>"
         ?>
         <ul>
             <li>Operador Unário:</li>
