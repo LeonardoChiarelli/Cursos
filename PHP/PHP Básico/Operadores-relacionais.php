@@ -30,7 +30,7 @@
             echo "<p>Como você já tem $idade anos então seu $eleição</p>"
         ?>
         <ul>
-            <li>Operador Unário:</li>
+            <li>Operador Ternário:</li>
                 <ul>
                     <li>(expressão) ? (valor para verdadeiro) : (valor para falso)</li>
                 </ul>
