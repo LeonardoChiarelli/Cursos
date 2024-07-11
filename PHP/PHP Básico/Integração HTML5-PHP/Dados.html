@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <title>Dados</title>
+    <style>
+        form{
+            padding: 10px;
+            margin: auto;
+            width: 80vw;
+            border: 1px solid black;
+        }
+        input{
+            margin: 5px;
+        }
+        fieldset{
+            width: 20vw;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <form action="dados.php" method="post">
+        
+        <label for="inome">Insira seu nome: </label>
+        <input type="text" name="nome" id="inome"> <br>
+        <label for="iaN">Insira o ano que você nasceu: </label>
+        <label for="inome">Insira seu nome: </label>
+        <input type="number" name="aN" id="iaN"> <br>
+        <fieldset>
+            <legend>Sexo: </legend>
+            <label for="masc">Masculino</label>
+            <input type="radio" name="sexo" id="masc" value="M"> <!-- Precisamos colocar o valor que vai ser enviado para o PHP --> <br>
+            <label for="fem">Feminino</label>
+            <input type="radio" name="sexo" id="fem" value="F">
+        </fieldset>
+        <input type="submit" value="Enviar">
+
+    </form>
+
+    <ul>
+        <li>isset(condição ou parâmetro) - se a condição ou parâmetro foi passado</li>
+    </ul>
+</body>
+</html>
