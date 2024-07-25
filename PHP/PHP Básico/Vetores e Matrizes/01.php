@@ -22,7 +22,7 @@
                 foreach($c as $valor){ # Para mostrar os valores do array na tela, para cada elemento de $c tratado como valor
                     echo "<pre>$valor</pre>";
                 }
-
+                
                 $n = [1=>"A", 3=>"B", 6=>"C", 10=>"D"]; # Chaves personalizadas
                 $n[] = "E";
                 unset($n[11]); # Para apagar um índice do array, caso seja vazio ele apagará o último
