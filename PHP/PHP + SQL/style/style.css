@@ -1,0 +1,312 @@
+@charset "UTF-8";
+
+body{
+    background-color: #ddd;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+#corpo{
+    width: 850px;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.242);
+}
+
+header nav{
+    font-size: 11px;
+    text-align: right;
+}
+
+#animacao{
+    font-family: monospace;
+    border-right: 4px solid;
+    white-space: nowrap;
+    width: 17ch;
+    overflow: hidden;
+    animation: animaTexto steps(17) 2s, animaMarcador 0.5s linear;
+}
+
+@keyframes animarMarcador{
+    50%{
+        border-right: transparent;
+    }
+}
+@keyframes animaTexto{
+    0%{
+        width: 0;
+    }
+}
+
+form#buscar{
+    text-align: right;
+    font-size: 12px;
+}
+
+form#buscar > input[type=text]{
+    height: 11.5px;
+}
+
+form#buscar > a{
+    font-size: 11px;
+    color: black;
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+form#buscar > a:hover{
+    font-size: 12.1px;
+    text-decoration: underline;
+    font-weight: bold;
+    transition: 0.4s;
+}
+
+form#buscar > input#lupa{
+    background-color: white;
+    padding: 0px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+form#buscar > input#lupa:hover{
+    transform: scale(1.2);
+    transition: 0.4s;
+}
+
+.listagem{
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+
+.listagem tr{
+    height: 50px;
+}
+
+.listagem tr:nth-child(even){
+    background-color: rgb(220, 220, 220);
+}
+
+
+.listagem th{
+    /* border: 1px dotted black; */
+    padding: 10px;
+}
+
+.listagem th:nth-child(1){
+    width: 50px;
+}
+
+.listagem th:nth-child(3){
+    width: 90px;
+}
+
+.detalhes{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.detalhes th{
+    vertical-align: top; /* Alinhar as imagens no top */
+    /* border: 1px dashed black; */
+}
+
+.nome{
+    text-decoration: underline;
+    transition: 0.4s;
+}
+
+.nome:hover{
+    font-size: 1.6em;
+    text-shadow: 2px 2px 2px rgb(132, 132, 132);
+    text-decoration: none;
+    transition: 0.4s;   
+}
+
+.nomeXnota{
+    text-align: left;
+    padding-left: 10px;
+    padding-bottom: 0px;
+}
+
+
+.desc{
+    text-align: left;
+    padding: 10px;
+    font-weight: normal;
+}
+
+.full{
+    height: 450px;
+}
+
+.back span:hover{
+    padding: 7px 14px;
+    transition: 0.4s;
+}
+
+.back span{
+    border-radius: 5px;
+    border: none;
+    padding: 5px 10px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    transition: 0.4s;
+    box-shadow: 2px 2px 2px rgb(132, 132, 132);
+}
+
+.botão{
+    text-align: left;
+}
+
+tr > th > p.nota{
+    margin-bottom: 0px;
+}
+
+.fotoMin{
+    width: 55px;
+}
+
+tr > th > .linkNome{
+    text-decoration: none;
+    color: black;
+    transition: 0.4s;
+}
+
+tr > th > .linkNome:hover{
+    text-decoration: underline;
+    font-size: 1.2em;
+    transition: 0.4s;
+}
+
+tr > th > div.genXprod{
+    font-size: 0.7em;
+    font-weight: bold;
+}
+
+footer{
+    text-align: center;
+    font-family: monospace;
+    font-size: 10px;
+}
+
+.sucesso{
+    background-color: rgba(0, 128, 0, 0.353);
+    border-radius: 15px;
+    font-family: monospace;
+    padding: 7px 15px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.aviso{
+    background-color: rgba(255, 255, 0, 0.353);
+    border-radius: 15px;
+    font-family: monospace;
+    padding: 7px 15px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.erro{
+    background-color: rgba(255, 0, 0, 0.353);
+    border-radius: 15px;
+    font-family: monospace;
+    padding: 7px 15px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+form#login, form#novoUser, form#altDados{
+    width: 400px;
+    margin: auto;
+}
+
+#login legend, #novoUser legend, #altDados legend{
+    font-size: 2em;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#login fieldset, #novoUser fieldset, #altDados fieldset{
+    border-radius: 10px;
+}
+
+#login label, #novoUser label, #altDados{
+    padding: 15px;
+    line-height: 35px;
+}
+
+#login input[type=submit], #novoUser input[type=submit], #altDados input[type=submit]{
+    width: 100%;
+    margin-top: 4px;
+    padding: 7px 10px;
+    background-color: rgba(0, 128, 0, 0.563);
+    border: none;
+    border-radius: 7px;
+    transition: 0.4s;
+}
+
+#login input[type=submit]:hover, #novoUser input[type=submit]:hover, #altDados input[type=submit]:hover{
+    background-color: green;
+    cursor: pointer;
+}
+
+.linkLoginLogout{
+    padding: 4px 5px;
+    text-decoration: none;
+    color: black;
+    font-family: monospace;
+    transition: 0.4s;
+}
+
+.linkLoginLogout:hover{
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: 0.4s;
+}
+
+.acesso{
+    font-weight: normal;
+    font-size: 0.9em;
+}
+
+.acesso > span{
+    font-weight: bold;
+    font-size: 1em;
+    margin: 2px;
+    background-color: rgba(128, 128, 128, 0.304);
+    padding: 4px;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+.acesso > span:hover{
+    transform: scale(1.2);
+    margin: 4px;
+    transition: 0.4s;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.256);
+}
+
+#editor{
+    text-align: right;
+}
+
+.linkHeader{
+    text-decoration: none;
+    color: black;
+    transition: 0.4s;
+}
+
+.linkHeader:hover{
+    text-decoration: underline;
+    font-weight: bold;
+    transition: 0.4s;
+}
+
