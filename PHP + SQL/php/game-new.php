@@ -13,11 +13,32 @@
         <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-        <title></title>
+        <title>Novo Jogo</title>
     </head>
     <body>
         <div id="corpo">
-            
+            <?php 
+                if(!is_admin()){
+                    echo msg_erro("Área apenas para administradores!");
+                } elseif (!isset($_REQUEST['usuário'])){
+                    require_once "../tools/includes/game-new-form.php";
+                } else{
+                    $nome = $_REQUEST['nome'] ?? null;
+                    $genero = $_REQUEST['genero'] ?? null;
+                    $produtora = $_REQUEST['produtora'] ?? null;
+                    $descricao = $_REQUEST['descricao'] ?? null;
+                    $nota = $_REQUEST['nota'] ?? null;
+                    $capa = $_REQUEST['capa'] ?? null;
+
+                    $query = "INSERT into jogos (cod, nome, gênero, produtora, descrição, capa) values (default, $nome, $genero, $produtora, $descricao, $nota, $capa)";
+                    if($banco->query($query)){
+                        echo msg_sucesso("O jogo <strong>$nome</strong> foi adicionado com sucesso");
+                    } else{
+                        echo msg_erro("Falha ao cadastrar o jogo <strong>$nome</strong>, repita o processo.");
+                    }
+                }
+                echo botao();
+            ?>
         </div>
         <?php 
             require_once "../tools/includes/footer.php";
