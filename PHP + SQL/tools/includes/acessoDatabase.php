@@ -28,4 +28,3 @@ $banco->query("SET character_set_results=utf8");
     $busca = $banco->query("select * from gênero");
 
 /* FIM */
-?>
