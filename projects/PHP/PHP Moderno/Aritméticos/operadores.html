@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <title>Calculadora</title>
+</head>
+<body>
+    <main>
+        <form action="operadores.php" method="get">
+            <fieldset>
+                <legend>Calculadora Simples</legend>
+                <label for="inum1">Número: </label>
+                <input type="number" name="num1" id="inum1"> <br>
+                <label for="1num2">Número: </label>
+                <input type="number" name="num2" id="inum2">
+                <select name="operador" id="ioperador">
+                    <option value="1">+ (adição)</option>
+                    <option value="2">- (subtração)</option>
+                    <option value="3">* (multiplicação)</option>
+                    <option value="4">/ (divisão)</option>
+                    <option value="5">% (módulo)</option>
+                    <option value="6">** (potenciação)</option>
+                </select>
+                <input type="submit" value="Calcular">
+            </fieldset>
+        </form>
+    </main>
+</body>
+</html>
