@@ -1,16 +1,18 @@
-package br.com.LeoChiarelli.screenMatch.modeloAPI.principal;
+package br.com.LeoChiarelli.screenMatch.modeloAPI.main;
 
-import br.com.LeoChiarelli.screenMatch.modeloAPI.calculos.CalculadoraTempo;
-import br.com.LeoChiarelli.screenMatch.modeloAPI.classificacao.Recomendacao;
-import br.com.LeoChiarelli.screenMatch.modeloAPI.modelos.Episodio;
-import br.com.LeoChiarelli.screenMatch.modeloAPI.modelos.Movie;
-import br.com.LeoChiarelli.screenMatch.modeloAPI.modelos.Serie;
-import br.com.LeoChiarelli.screenMatch.modeloAPI.modelos.Titulo;
+import br.com.LeoChiarelli.screenMatch.modeloAPI.calculations.TimeCalculator;
+import br.com.LeoChiarelli.screenMatch.modeloAPI.classification.Recomendation;
+import br.com.LeoChiarelli.screenMatch.modeloAPI.models.Episode;
+import br.com.LeoChiarelli.screenMatch.modeloAPI.models.Movie;
+import br.com.LeoChiarelli.screenMatch.modeloAPI.models.Serie;
+import br.com.LeoChiarelli.screenMatch.modeloAPI.models.Title;
 
 import java.util.ArrayList;
 
 public class Main{
     public static void main(String[] args) {
+        // INSTANCIAÇÃO
+
         // FILME
 
         Movie filme01 = new Movie("Top Gun: Maverick", 2022,  102, "Joseph Kosinski");
@@ -32,7 +34,7 @@ public class Main{
         filme02.avalia(6);
         // filme02.exibeFichaTecnica();
 
-        var filme03 = new Movie("Vingadores: Ultimato", 2022, 196, "Anthony e Joe Russo"); // 'var' - Inferência do tipo declarado
+        var filme03 = new Movie("Vingadores: Ultimato", 2022, 196, "Anthony e Joe Russo");
         filme03.setInclusoNoPlano(true);
 
         filme03.avalia(10);
@@ -54,7 +56,7 @@ public class Main{
         serie01.avalia(3.2);
         // serie01.exibeFichaTecnica();
 
-        Episodio episodio01Serie01 = new Episodio();
+        Episode episodio01Serie01 = new Episode();
         episodio01Serie01.setNumero(1);
         episodio01Serie01.setSerie(serie01);
         episodio01Serie01.setTotalVisualizacoes(101);
@@ -62,37 +64,28 @@ public class Main{
 
         // CALCULADORA TEMPO
 
-        CalculadoraTempo calcular = new CalculadoraTempo();
+        TimeCalculator calcular = new TimeCalculator();
         // calcular.inclui(filme01);
         // calcular.inclui(serie01);
         // System.out.println("O tempo total em minutos é de " + calcular.getTempoTotal());
 
 
         // FILTRO RECOMENDAÇÃO
-        Recomendacao filtro = new Recomendacao();
+        Recomendation filtro = new Recomendation();
         // filtro.filtraRecomendacao(filme01);
         // filtro.filtraRecomendacao(episodio01Serie01);
 
 
         // ArrayList de Titulos
-        ArrayList<Titulo> listaDeTitulos = new ArrayList<>();
+        ArrayList<Title> listaDeTitulos = new ArrayList<>();
         listaDeTitulos.add(filme01);
         listaDeTitulos.add(filme02);
         listaDeTitulos.add(filme03);
-        System.out.println("Tamanho da lista: " + listaDeTitulos.size());
+        System.out.println("Tamanho da lista: " + listaDeTitulos.size()); // Para saber quantos itens tem dentro da lista
         System.out.printf("""
                 %s
                 %s
                 %s
                 """, listaDeTitulos.get(0).toString(), listaDeTitulos.get(1).toString(), listaDeTitulos.get(2).toString());
-
     }
 }
-
-// API - Application Programming Interface
-// JSON - JavaScript Object Notation - composto por dois tipos de estrutura de dados: objetos e arrays
-    // Obejto - coleção de pares de chave-valor, onde as chaves são strings e os valores podems ser strings, números, booleanos, objetos ou arrays
-    // Array - coleção ordenada de valores, que podem ser strings, números, booleanos, objetos ou outros arrays
-// APIKey - chave de acesso da API
-// Postman - ferramenta
-

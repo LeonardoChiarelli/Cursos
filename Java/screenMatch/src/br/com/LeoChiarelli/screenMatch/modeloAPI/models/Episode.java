@@ -1,7 +1,7 @@
-package br.com.LeoChiarelli.screenMatch.modeloAPI.modelos;
-import br.com.LeoChiarelli.screenMatch.modeloAPI.classificacao.Classificacao;
+package br.com.LeoChiarelli.screenMatch.modeloAPI.models;
+import br.com.LeoChiarelli.screenMatch.modeloAPI.classification.Classification;
 
-public class Episodio extends Titulo implements Classificacao {
+public class Episode extends Title implements Classification {
     private int numero;
     private String nome;
     private Serie serie;

@@ -1,12 +1,12 @@
-package br.com.LeoChiarelli.screenMatch.modeloAPI.principal;
+package br.com.LeoChiarelli.screenMatch.modeloAPI.main;
 
-import br.com.LeoChiarelli.screenMatch.modeloAPI.modelos.Movie;
-import br.com.LeoChiarelli.screenMatch.modeloAPI.modelos.Serie;
-import br.com.LeoChiarelli.screenMatch.modeloAPI.modelos.Titulo;
+import br.com.LeoChiarelli.screenMatch.modeloAPI.models.Movie;
+import br.com.LeoChiarelli.screenMatch.modeloAPI.models.Serie;
+import br.com.LeoChiarelli.screenMatch.modeloAPI.models.Title;
 
 import java.util.*;
 
-public class Listagem {
+public class Listing {
     public static void main(String[] args) {
         // FILMES
         Movie filme01 = new Movie("Top Gun: Maverick", 2022,  102, "Joseph Kosinski");
@@ -20,7 +20,7 @@ public class Listagem {
         var filme03 = new Movie("Vingadores: Ultimato", 2022, 196, "Anthony e Joe Russo"); //
         filme03.setInclusoNoPlano(true);
         filme03.avalia(10);
-        Movie f1 = filme03;
+        Movie f1 = filme03; // Variável de referência (duas variáveis estão apontando para o mesmo objeto)
 
         Movie filme04 = new Movie("Invocação do Mal", 2013, 112, "James Wan");
         filme04.setInclusoNoPlano(true);
@@ -32,14 +32,14 @@ public class Listagem {
         serie01.setInclusoNoPlano(true);
 
         // LISTA
-        ArrayList<Titulo> lista = new ArrayList<>();
+        ArrayList<Title> lista = new ArrayList<>();
         lista.add(filme01);
         lista.add(filme02);
         lista.add(filme03);
         lista.add(filme04);
         lista.add(serie01);
 
-        for (Titulo item: lista){ // Para cada título da lista
+        for (Title item: lista){
             System.out.println(item);
             if (item instanceof Movie filme && filme.getClassificacao() > 2){
                 System.out.printf("Classificação: %d/5\n", filme.getClassificacao());
@@ -58,7 +58,7 @@ public class Listagem {
         Collections.sort(lista);
         System.out.println("Lista de títulos em ordem alfabética: " + lista);
 
-        lista.sort(Comparator.comparing(Titulo::getAnoDeLancamento));
+        lista.sort(Comparator.comparing(Title::getAnoDeLancamento));
         System.out.println("Lista de títulos em ordem de ano de lançamento: " + lista);
     }
 }

@@ -1,11 +1,11 @@
 // HERANÇA
 
-package br.com.LeoChiarelli.screenMatch.modeloAPI.modelos;
+package br.com.LeoChiarelli.screenMatch.modeloOO.models;
 
-public class Titulo implements Comparable<Titulo>{
+public class Title implements Comparable<Title>{
     // ABSTRAÇÃO
 
-    private String nome;
+    private String nome; // ENCAPSULAMENTO
     private int anoDeLancamento;
     private boolean inclusoNoPlano;
     private double somaDasAvaliacoes;
@@ -13,17 +13,17 @@ public class Titulo implements Comparable<Titulo>{
     private int duracaoEmMinutos;
 
     // CONSTRUCTOR
-    public Titulo(){
+    public Title(){ // constructor default - para corrigir o erro em 'Episodio' -
 
     }
 
-    public Titulo(String nome, int anoDeLancamento) {
+    public Title(String nome, int anoDeLancamento) {
         this.nome = nome;
         this.anoDeLancamento = anoDeLancamento;
     }
 
 
-    // GETTERS
+    // GETTERS - busca valores
 
     public String getNome(){
         return nome;
@@ -45,7 +45,7 @@ public class Titulo implements Comparable<Titulo>{
         return duracaoEmMinutos;
     }
 
-    // SETTERS
+    // SETTERS - modifica valores
 
     protected void setNome(String nome){ // Mudamos para 'protected' para deixar apenas as subclasses alterarem o nome do filme
         this.nome = nome;
@@ -65,7 +65,7 @@ public class Titulo implements Comparable<Titulo>{
 
     // METODO
 
-    public void exibeFichaTecnica(){
+    public void exibeFichaTecnica(){ // Em java caso a função não devolva nada para quem chamou ela, necessitamos colocar o 'void'
         System.out.printf("""
                 Nome: %s
                 Ano de Lançamento: %d
@@ -76,7 +76,7 @@ public class Titulo implements Comparable<Titulo>{
                 """, getNome(), getAnoDeLancamento(), this.isInclusoNoPlano(), this.fazMedia(), getTotalDeAvaliacoes(), getDuracaoEmMinutos());
     }
 
-    public void avalia(double nota){
+    public void avalia(double nota){ // Ao usar o package precisamos deixar explícito quais métodos são públicos, default, privados ou protegidos
         somaDasAvaliacoes += nota;
         totalDeAvaliacoes++;
     }
@@ -92,9 +92,16 @@ public class Titulo implements Comparable<Titulo>{
         }
     }
 
-    @Override
-    public int compareTo(Titulo outroTitulo) {
+    @Override // Metodo da interface 'Comparable'
+    public int compareTo(Title outroTitulo) {
         return this.getNome().compareTo(outroTitulo.getNome());
     }
 }
+
+// Pacotes são utilizados para organizar o código de acordo com a sua funcionalidade
+// São escritos de trás pra frente (domínio reverso) 'br.com.LeoChiarelli.sreenMatch'
+// Pacote raiz é o pacote principal
+// Import - mostrar de onde estamos usando as classes, métodos, entre outros
+// Em java e outras linguagens modernas que seguem os principios de OO, a herança só pode ser estabelicida a partir de uma Classe
+// Embora seja opcional, o construtor default é importante para que objetos da classe possam ser criados sem a necessidade de fornecer parâmetros, permitindo assim uma maior flexibilidade.
 

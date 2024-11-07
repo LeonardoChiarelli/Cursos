@@ -1,8 +1,8 @@
-package br.com.LeoChiarelli.screenMatch.modeloAPI.classificacao;
+package br.com.LeoChiarelli.screenMatch.modeloAPI.classification;
 
-public class Recomendacao{
+public class Recomendation{
 
-    public void filtraRecomendacao(Classificacao classificacao){
+    public void filtraRecomendacao(Classification classificacao){
         if (classificacao.getClassificacao() >= 4){
             System.out.println("Está entre os preferidos do momento!");
         } else if(classificacao.getClassificacao() >= 2){

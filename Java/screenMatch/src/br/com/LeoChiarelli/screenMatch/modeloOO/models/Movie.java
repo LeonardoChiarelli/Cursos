@@ -1,13 +1,12 @@
-package br.com.LeoChiarelli.screenMatch.modeloAPI.modelos;
+package br.com.LeoChiarelli.screenMatch.modeloOO.models;
+import br.com.LeoChiarelli.screenMatch.modeloOO.classification.Classification;
 
-import br.com.LeoChiarelli.screenMatch.modeloAPI.classificacao.Classificacao;
-
-public class Movie extends Titulo implements Classificacao {
+public class Movie extends Title implements Classification { // 'extends' - palavra reservada que aplica uma herança à uma classe
     private String diretor;
 
     // CONSTRUCTOR
     public Movie(String nome, int anoDeLancamento, int duracaoEmMinutos, String diretor){
-        super(nome, anoDeLancamento);
+        super(nome, anoDeLancamento); // chamando o construtor da classe-mãe
         this.setAnoDeLancamento(anoDeLancamento);
         this.setDuracaoEmMinutos(duracaoEmMinutos);
         this.setDiretor(diretor);
@@ -34,3 +33,5 @@ public class Movie extends Titulo implements Classificacao {
         return "Filme: '" + this.getNome() + "'(" + this.getAnoDeLancamento() + ")";
     }
 }
+
+// Usaremos a Classificação como 'interface' para poder usa-la em 'Movie'

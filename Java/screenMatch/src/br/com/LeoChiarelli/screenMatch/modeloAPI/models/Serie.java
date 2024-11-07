@@ -1,6 +1,6 @@
-package br.com.LeoChiarelli.screenMatch.modeloAPI.modelos;
+package br.com.LeoChiarelli.screenMatch.modeloAPI.models;
 
-public class Serie extends Titulo {
+public class Serie extends Title {
     private int temporadas;
     private int episodiosPorTemporada;
     private boolean ativa;
@@ -31,7 +31,7 @@ public class Serie extends Titulo {
         return minutosPorEpisodio;
     }
 
-    @Override
+    @Override // SOBRESCREVER UM METODO
     public int getDuracaoEmMinutos() {
         return temporadas * episodiosPorTemporada * minutosPorEpisodio;
     }
