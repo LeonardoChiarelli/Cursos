@@ -1,14 +1,16 @@
 package br.com.LeoChiarelli.screenMatch.modeloAPI.models;
 
+import br.com.LeoChiarelli.screenMatch.modeloAPI.exceptions.ErroDeConversaoException;
+import com.google.gson.annotations.SerializedName;
+
 public class Title implements Comparable<Title>{
-    private String nome; // ENCAPSULAMENTO
+    private String nome;
     private int anoDeLancamento;
     private boolean inclusoNoPlano;
     private double somaDasAvaliacoes;
     private int totalDeAvaliacoes;
     private int duracaoEmMinutos;
 
-    // CONSTRUCTOR
     public Title(){
 
     }
@@ -18,8 +20,16 @@ public class Title implements Comparable<Title>{
         this.anoDeLancamento = anoDeLancamento;
     }
 
+    public Title(TitleOMBD meuTituloOmbd) { // Constructor para receber um titleOmdb
+        this.nome = meuTituloOmbd.title();
 
-    // GETTERS
+        if(meuTituloOmbd.year().length() > 4){
+            throw new ErroDeConversaoException("Não consegui converter o ano, pois tem mais de 4 caracteres"); // podemos criar erros específicos
+        }
+        this.anoDeLancamento = Integer.valueOf(meuTituloOmbd.year()); // 'pegue o valor de year e tente converter em um inteiro'
+        this.duracaoEmMinutos = Integer.parseInt(meuTituloOmbd.runtime().substring(0,3)); // outra maneira de fazer a mesma coisa // 'substring' - metodo para retirar partes de uma string, primeiro número onde começa e último número até onde vai
+    }
+
 
     public String getNome(){
         return nome;
@@ -42,10 +52,6 @@ public class Title implements Comparable<Title>{
     }
 
     // SETTERS
-
-    protected void setNome(String nome){ // Mudamos para 'protected' para deixar apenas as subclasses alterarem o nome do filme
-        this.nome = nome;
-    }
 
     protected void setAnoDeLancamento(int anoDeLancamento){
         this.anoDeLancamento = anoDeLancamento;
@@ -86,6 +92,13 @@ public class Title implements Comparable<Title>{
         } else {
             return "Não";
         }
+    }
+
+    @Override
+    public String toString() {
+        return "(Nome: " + nome + "\n" +
+                "Ano de lançamento: " + anoDeLancamento + "\n" +
+                "Duração: " + duracaoEmMinutos + ")";
     }
 
     @Override

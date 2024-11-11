@@ -1,0 +1,18 @@
+[
+  {
+    "Nome": "Top Gun",
+    "AnoDeLancamento": 1986,
+    "InclusoNoPlano": false,
+    "SomaDasAvaliacoes": 0.0,
+    "TotalDeAvaliacoes": 0,
+    "DuracaoEmMinutos": 109
+  },
+  {
+    "Nome": "Dogville",
+    "AnoDeLancamento": 2003,
+    "InclusoNoPlano": false,
+    "SomaDasAvaliacoes": 0.0,
+    "TotalDeAvaliacoes": 0,
+    "DuracaoEmMinutos": 178
+  }
+]
