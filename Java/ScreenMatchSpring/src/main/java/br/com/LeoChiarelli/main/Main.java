@@ -1,16 +1,13 @@
 package br.com.LeoChiarelli.main;
 
-import br.com.LeoChiarelli.models.Episode;
-import br.com.LeoChiarelli.models.EpisodesData;
 import br.com.LeoChiarelli.models.SeasonsData;
 import br.com.LeoChiarelli.models.SeriesData;
 import br.com.LeoChiarelli.service.APIconsumption;
 import br.com.LeoChiarelli.service.ConvertsData;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     private final Scanner scan = new Scanner(System.in);
