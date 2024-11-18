@@ -1,22 +1,26 @@
 package br.com.LeoChiarelli.main;
 
 import br.com.LeoChiarelli.models.SeasonsData;
+import br.com.LeoChiarelli.models.Serie;
 import br.com.LeoChiarelli.models.SeriesData;
 import br.com.LeoChiarelli.service.APIconsumption;
 import br.com.LeoChiarelli.service.ConvertsData;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Main {
     private final Scanner scan = new Scanner(System.in);
     private final APIconsumption consumption = new APIconsumption();
     private final ConvertsData converter = new ConvertsData();
-    private final List<SeasonsData> SeasonsList = new ArrayList<>();
-
+    private final List<SeasonsData> seasonsList = new ArrayList<>();
     private final String URL = "https://www.omdbapi.com/?t="; // Constantes em upperCase
     private final String API_KEY = "&apikey=7c66c456";
+
+    private List<Serie> seriesList = new ArrayList<>();
     private List<SeriesData> listSeriesData = new ArrayList<>();
 
     public void displayMenu() {
@@ -70,17 +74,23 @@ public class Main {
         SeriesData seriesData = getSeriesData();
         List<SeasonsData> seasons = new ArrayList<>();
 
-        for (int i = 1; i <= seriesData.totalSeasons(); i++) {
+        for (int i = 1; i <= Integer.parseInt(seriesData.totalSeasons()); i++) {
             var json = consumption.getData(URL + seriesData.title().replace(" ", "+") + "&Season=" + i + API_KEY);
             SeasonsData seasonsData = converter.getData(json, SeasonsData.class);
-            SeasonsList.add(seasonsData);
+            seasonsList.add(seasonsData);
         }
-        SeasonsList.forEach(System.out::println);
+        seasonsList.forEach(System.out::println);
     }
 
     private void listSearchedSeries(){
-        listSeriesData.forEach(System.out::println);
+        seriesList = listSeriesData.stream()
+                .map(Serie::new)
+                .collect(Collectors.toList());
+        seriesList.stream()
+                .sorted(Comparator.comparing(Serie::getGenre))
+                .forEach(System.out::println);
     }
+
 }
 
 
