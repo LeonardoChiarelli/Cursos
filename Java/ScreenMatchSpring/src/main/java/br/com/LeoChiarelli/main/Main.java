@@ -3,6 +3,7 @@ package br.com.LeoChiarelli.main;
 import br.com.LeoChiarelli.models.SeasonsData;
 import br.com.LeoChiarelli.models.Serie;
 import br.com.LeoChiarelli.models.SeriesData;
+import br.com.LeoChiarelli.repository.SerieRepository;
 import br.com.LeoChiarelli.service.APIconsumption;
 import br.com.LeoChiarelli.service.ConvertsData;
 
@@ -10,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class Main {
     private final Scanner scan = new Scanner(System.in);
@@ -20,8 +20,14 @@ public class Main {
     private final String URL = "https://www.omdbapi.com/?t="; // Constantes em upperCase
     private final String API_KEY = "&apikey=7c66c456";
 
+    private SerieRepository repository;
     private List<Serie> seriesList = new ArrayList<>();
     private List<SeriesData> listSeriesData = new ArrayList<>();
+
+
+    public Main(SerieRepository repository) {
+        this.repository = repository;
+    }
 
     public void displayMenu() {
         var option = -1;
@@ -58,7 +64,8 @@ public class Main {
 
     private void searchWebSeries() {
         SeriesData data = getSeriesData();
-        listSeriesData.add(data);
+        Serie serie = new Serie(data);
+        repository.save(serie); // Injeção de dependências
         System.out.println(data);
     }
 
@@ -83,9 +90,7 @@ public class Main {
     }
 
     private void listSearchedSeries(){
-        seriesList = listSeriesData.stream()
-                .map(Serie::new)
-                .collect(Collectors.toList());
+        seriesList = repository.findAll();
         seriesList.stream()
                 .sorted(Comparator.comparing(Serie::getGenre))
                 .forEach(System.out::println);
