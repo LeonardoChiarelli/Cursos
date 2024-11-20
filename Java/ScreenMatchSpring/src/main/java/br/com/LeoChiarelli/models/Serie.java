@@ -43,7 +43,7 @@ public class Serie {
     @Column(name="Sinopse")
     private String synopsis;
 
-    @Transient
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER) // Para salvar no banco em cascada
     private List<Episode> episodes = new ArrayList<>();
 
     public Serie(){}
@@ -132,6 +132,7 @@ public class Serie {
         this.synopsis = synopsis;
     }
     public void setEpisodes(List<Episode> episodes) {
+        episodes.forEach(e -> e.setSerie(this));
         this.episodes = episodes;
     }
 
@@ -144,6 +145,7 @@ public class Serie {
                 "\nAno: " + this.getYear() +
                 "\nAtores: " + this.getActors() +
                 "\nAutor(a): " + this.getWriter() +
-                "\nSinopse: " + this.getSynopsis() + "}\n";
+                "\nSinopse: " + this.getSynopsis() +
+                "\nEpisódios: " + episodes + "}\n";
     }
 }

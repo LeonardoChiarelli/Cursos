@@ -1,5 +1,6 @@
 package br.com.LeoChiarelli.main;
 
+import br.com.LeoChiarelli.models.Episode;
 import br.com.LeoChiarelli.models.SeasonsData;
 import br.com.LeoChiarelli.models.Serie;
 import br.com.LeoChiarelli.models.SeriesData;
@@ -7,10 +8,8 @@ import br.com.LeoChiarelli.repository.SerieRepository;
 import br.com.LeoChiarelli.service.APIconsumption;
 import br.com.LeoChiarelli.service.ConvertsData;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     private final Scanner scan = new Scanner(System.in);
@@ -22,8 +21,6 @@ public class Main {
 
     private SerieRepository repository;
     private List<Serie> seriesList = new ArrayList<>();
-    private List<SeriesData> listSeriesData = new ArrayList<>();
-
 
     public Main(SerieRepository repository) {
         this.repository = repository;
@@ -78,15 +75,35 @@ public class Main {
     }
 
     private void searchEpisodeBySerie() {
-        SeriesData seriesData = getSeriesData();
-        List<SeasonsData> seasons = new ArrayList<>();
+        listSearchedSeries();
+        System.out.println("Qual série você deseja ver os episódios? ");
+        var serieName = scan.nextLine();
 
-        for (int i = 1; i <= Integer.parseInt(seriesData.totalSeasons()); i++) {
-            var json = consumption.getData(URL + seriesData.title().replace(" ", "+") + "&Season=" + i + API_KEY);
-            SeasonsData seasonsData = converter.getData(json, SeasonsData.class);
-            seasonsList.add(seasonsData);
+        Optional<Serie> serieOptional = seriesList.stream()
+                .filter(s -> s.getTitle().toUpperCase().contains(serieName.toUpperCase()))
+                .findFirst();
+
+        if(serieOptional.isPresent()) {
+
+            var foundSerie = serieOptional.get();
+            List<SeasonsData> seasons = new ArrayList<>();
+
+            for (int i = 1; i <= foundSerie.getTotalSeasons(); i++) {
+                var json = consumption.getData(URL + foundSerie.getTitle().replace(" ", "+") + "&Season=" + i + API_KEY);
+                SeasonsData seasonsData = converter.getData(json, SeasonsData.class);
+                seasons.add(seasonsData);
+            }
+            seasons.forEach(System.out::println);
+
+            List<Episode> episodes = seasons.stream()
+                    .flatMap(d -> d.episodes().stream()
+                            .map(e -> new Episode(d.season(), e)))
+                    .collect(Collectors.toList());
+            foundSerie.setEpisodes(episodes);
+            repository.save(foundSerie);
+        } else{
+            System.out.println("Série não encontrada.");
         }
-        seasonsList.forEach(System.out::println);
     }
 
     private void listSearchedSeries(){
