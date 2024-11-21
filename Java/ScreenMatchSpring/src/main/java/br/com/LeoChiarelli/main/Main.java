@@ -1,9 +1,6 @@
 package br.com.LeoChiarelli.main;
 
-import br.com.LeoChiarelli.models.Episode;
-import br.com.LeoChiarelli.models.SeasonsData;
-import br.com.LeoChiarelli.models.Serie;
-import br.com.LeoChiarelli.models.SeriesData;
+import br.com.LeoChiarelli.models.*;
 import br.com.LeoChiarelli.repository.SerieRepository;
 import br.com.LeoChiarelli.service.APIconsumption;
 import br.com.LeoChiarelli.service.ConvertsData;
@@ -33,6 +30,12 @@ public class Main {
                     1 - Buscar séries
                     2 - Buscar episódios
                     3 - Listar séries buscadas
+                    4 - Buscar série por título
+                    5 - Buscar série por ator
+                    6 - Buscar série por avaliação
+                    7 - Buscar série por categoria/gênero
+                    8 - Buscar série por temporada
+                    9 - Buscar episódio por trecho
                     
                     0 - Sair
                     """;
@@ -50,6 +53,24 @@ public class Main {
                 case 3:
                     listSearchedSeries();
                     break;
+                case 4:
+                    searchSerieByTitle();
+                    break;
+                case 5:
+                    searchSerieByActor();
+                    break;
+                case 6:
+                    searchSerieByRating();
+                    break;
+                case 7:
+                    searchSerieByGenre();
+                    break;
+                case 8:
+                    searchSerieByTotalSeasons();
+                    break;
+                case 9:
+                    searchEpisodeBySplit();
+                    break;
                 case 0:
                     System.out.println("Saindo...");
                     break;
@@ -58,6 +79,7 @@ public class Main {
             }
         }
     }
+
 
     private void searchWebSeries() {
         SeriesData data = getSeriesData();
@@ -79,13 +101,11 @@ public class Main {
         System.out.println("Qual série você deseja ver os episódios? ");
         var serieName = scan.nextLine();
 
-        Optional<Serie> serieOptional = seriesList.stream()
-                .filter(s -> s.getTitle().toUpperCase().contains(serieName.toUpperCase()))
-                .findFirst();
+        Optional<Serie> searchedSerie = repository.findByTitleContainingIgnoreCase(serieName);
 
-        if(serieOptional.isPresent()) {
+        if(searchedSerie.isPresent()) {
 
-            var foundSerie = serieOptional.get();
+            var foundSerie = searchedSerie.get();
             List<SeasonsData> seasons = new ArrayList<>();
 
             for (int i = 1; i <= foundSerie.getTotalSeasons(); i++) {
@@ -93,7 +113,7 @@ public class Main {
                 SeasonsData seasonsData = converter.getData(json, SeasonsData.class);
                 seasons.add(seasonsData);
             }
-            seasons.forEach(System.out::println);
+            // seasons.forEach(System.out::println);
 
             List<Episode> episodes = seasons.stream()
                     .flatMap(d -> d.episodes().stream()
@@ -110,11 +130,98 @@ public class Main {
         seriesList = repository.findAll();
         seriesList.stream()
                 .sorted(Comparator.comparing(Serie::getGenre))
-                .forEach(System.out::println);
+                .forEach(s ->
+                        System.out.printf("Título: '%s' \nAvaliação: %.1f/10 \nTemporadas: %s \nGênero: %s \nAno: %s \nAtores: %s \nEscritor(a): %s \nSinópse: %s", s.getTitle(), s.getRating(), s.getTotalSeasons(), s.getGenre(), s.getYear(), s.getActors(), s.getWriter(), s.getSynopsis()));
     }
 
-}
+    private void searchSerieByTitle() {
+        System.out.println("Escolha uma série pelo título: ");
+        var serieName = scan.nextLine();
 
+        Optional<Serie> searchedSerie = repository.findByTitleContainingIgnoreCase(serieName);
+
+        if (searchedSerie.isPresent()){
+            System.out.printf("""
+                        Dados da série:
+                        Título: '%s'
+                        Temporadas: %s
+                        Avaliação: %.1f/10
+                        Gênero: %s
+                        """, searchedSerie.get().getTitle(), searchedSerie.get().getTotalSeasons(), searchedSerie.get().getRating(), searchedSerie.get().getGenre());
+        } else {
+            System.out.println("Série não encontrada");
+        }
+    }
+
+    private void searchSerieByActor(){
+        System.out.println("Informe o(a) ator(a) que deseja: ");
+        var actorName = scan.nextLine();
+
+        List<Serie> searchedSerie = repository.findByActorsContainingIgnoreCase(actorName);
+
+        System.out.println("Séries nas quais o(a) ator(a) '" + actorName + "' se encontra: ");
+        searchedSerie.forEach(s -> System.out.println(s.getTitle()));
+    }
+
+    private void searchSerieByRating(){
+        System.out.println("Informe a nota que deseja usar como base: ");
+        var serieRating = scan.nextDouble();
+
+        List<Serie> searchedSerie = repository.findByRatingGreaterThanEqualOrderByRatingDesc(serieRating);
+        System.out.println("Séries nas quais as notas são maiores ou iguals a " + serieRating);
+        for (Serie serie: searchedSerie){
+            System.out.printf("""
+                    Título: %s
+                    Avalição: %.1f/10
+                    
+                    """, serie.getTitle(), serie.getRating());
+        }
+    }
+
+    private void searchSerieByGenre(){
+        System.out.println("Informe o gênero que deseja: ");
+        var serieGenre = scan.nextLine();
+        Category category = Category.fromPortuguese(serieGenre);
+
+        List<Serie> searchedSerie = repository.findByGenre(category);
+        System.out.println("Aqui estão as séries do gênero '" + serieGenre + "':");
+        for (Serie serie : searchedSerie){
+            System.out.printf("""
+                    Título: '%s'
+                    Avalição: %.1f/10
+                    
+                    """, serie.getTitle(), serie.getRating());
+        }
+    }
+
+    private void searchSerieByTotalSeasons(){
+        System.out.println("Informe o número máximo de temporadas que deseja: ");
+        var totalSeasons = scan.nextInt();
+        System.out.println("Informe a avaliação mínima: ");
+        var serieRating = scan.nextDouble();
+
+        List<Serie> searchedSerie = repository.seriesBySeasonsAndRating(totalSeasons, serieRating);
+        System.out.println("Aqui estão as séries com as características que você deseja: ");
+        for(Serie serie : searchedSerie){
+            System.out.printf("""
+                    Título: '%s'
+                    Total de Temporadas: %d
+                    Avaliação: %.1f/10
+                    
+                    """, serie.getTitle(), serie.getTotalSeasons(), serie.getRating());
+        }
+    }
+
+    private void searchEpisodeBySplit(){
+        System.out.println("Informe um trecho do episódio que deseja: ");
+        var splitOfEpisode = scan.nextLine();
+
+        List<Episode> searchedEpisode = repository.episodiesBySplit(splitOfEpisode);
+        System.out.println("Aqui estão os episódios encontrados: ");
+        searchedEpisode.forEach(e ->
+                System.out.printf("Série: %s \nTemporada: %d \nEpisódio: %s \nTítulo: '%s'", e.getSerie(), e.getTemporada(), e.getEpisode(), e.getTitle()));
+        }
+    }
 
 // '->' ou '::' - são lambdas, chamadas de funções anônimas - são uma maneira de definir funções que são frequentemente usadas uma única vez, direto no local onde elas serão usadas.
 // (argumentos) -> { corpo-da-função }
