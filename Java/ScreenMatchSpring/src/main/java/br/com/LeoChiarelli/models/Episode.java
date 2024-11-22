@@ -13,7 +13,7 @@ public class Episode {
     private Long id;
 
     @Column(name = "temporada")
-    private Integer temporada;
+    private Integer season;
 
     @Column(name = "titulo")
     private String title;
@@ -25,13 +25,13 @@ public class Episode {
     private Double rating;
 
     @Column(name = "data_de_lancamento")
-    private LocalDate dataLancamento;
+    private LocalDate dateOfRelease;
 
     @ManyToOne
     private Serie serie;
 
-    public Episode(Integer temporada, EpisodesData dadosEpisodio) {
-        this.temporada = temporada;
+    public Episode(Integer season, EpisodesData dadosEpisodio) {
+        this.season = season;
         this.title = dadosEpisodio.title();
         this.episode = dadosEpisodio.episode();
 
@@ -42,9 +42,9 @@ public class Episode {
         }
 
         try {
-            this.dataLancamento = LocalDate.parse(dadosEpisodio.dataLancamento());
+            this.dateOfRelease = LocalDate.parse(dadosEpisodio.dataLancamento());
         } catch (DateTimeParseException e){
-            this.dataLancamento = null;
+            this.dateOfRelease = null;
         }
 
     }
@@ -67,12 +67,12 @@ public class Episode {
         this.id = id;
     }
 
-    public Integer getTemporada() {
-        return temporada;
+    public Integer getSeason() {
+        return season;
     }
 
-    public void setTemporada(Integer temporada) {
-        this.temporada = temporada;
+    public void setSeason(Integer season) {
+        this.season = season;
     }
 
     public String getTitle() {
@@ -99,20 +99,20 @@ public class Episode {
         this.rating = rating;
     }
 
-    public LocalDate getDataLancamento() {
-        return dataLancamento;
+    public LocalDate getDateOfRelease() {
+        return dateOfRelease;
     }
 
-    public void setDataLancamento(LocalDate dataLancamento) {
-        this.dataLancamento = dataLancamento;
+    public void setDateOfRelease(LocalDate dateOfRelease) {
+        this.dateOfRelease = dateOfRelease;
     }
 
     @Override
     public String toString() {
-        return "{Temporada " + this.temporada +
+        return "{Temporada " + this.season +
                 "\nEpisódio: " + this.episode +
                 "\nTítulo: '" + this.title + "'" +
                 "\nAvaliação: " + this.rating +
-                "\nData de Lançamento: " + this.dataLancamento + "}\n";
+                "\nData de Lançamento: " + this.dateOfRelease + "}\n";
     }
 }

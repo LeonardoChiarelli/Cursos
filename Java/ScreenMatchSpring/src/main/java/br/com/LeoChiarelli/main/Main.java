@@ -18,6 +18,7 @@ public class Main {
 
     private SerieRepository repository;
     private List<Serie> seriesList = new ArrayList<>();
+    private Optional<Serie> searchedSerie;
 
     public Main(SerieRepository repository) {
         this.repository = repository;
@@ -36,6 +37,9 @@ public class Main {
                     7 - Buscar série por categoria/gênero
                     8 - Buscar série por temporada
                     9 - Buscar episódio por trecho
+                    10 - Buscar episódio por data de lançamento
+                    11 - Mostrar as top 5 séries
+                    12 - Mostrar os top 5 episódios
                     
                     0 - Sair
                     """;
@@ -71,6 +75,15 @@ public class Main {
                 case 9:
                     searchEpisodeBySplit();
                     break;
+                case 10:
+                    searchEpisodeByReleaseDate();
+                    break;
+                case 11:
+                    showTop5Series();
+                    break;
+                case 12:
+                    showTop5Episodes();
+                    break;
                 case 0:
                     System.out.println("Saindo...");
                     break;
@@ -97,7 +110,11 @@ public class Main {
     }
 
     private void searchEpisodeBySerie() {
-        listSearchedSeries();
+        seriesList = repository.findAll();
+        seriesList.stream()
+                .sorted(Comparator.comparing(Serie::getTitle))
+                .forEach(s ->
+                        System.out.printf("Série: '%s' \n", s.getTitle()));
         System.out.println("Qual série você deseja ver os episódios? ");
         var serieName = scan.nextLine();
 
@@ -138,7 +155,7 @@ public class Main {
         System.out.println("Escolha uma série pelo título: ");
         var serieName = scan.nextLine();
 
-        Optional<Serie> searchedSerie = repository.findByTitleContainingIgnoreCase(serieName);
+        searchedSerie = repository.findByTitleContainingIgnoreCase(serieName);
 
         if (searchedSerie.isPresent()){
             System.out.printf("""
@@ -147,7 +164,8 @@ public class Main {
                         Temporadas: %s
                         Avaliação: %.1f/10
                         Gênero: %s
-                        """, searchedSerie.get().getTitle(), searchedSerie.get().getTotalSeasons(), searchedSerie.get().getRating(), searchedSerie.get().getGenre());
+                        Ano: %s
+                        """, searchedSerie.get().getTitle(), searchedSerie.get().getTotalSeasons(), searchedSerie.get().getRating(), searchedSerie.get().getGenre(), searchedSerie.get().getYear());
         } else {
             System.out.println("Série não encontrada");
         }
@@ -216,12 +234,49 @@ public class Main {
         System.out.println("Informe um trecho do episódio que deseja: ");
         var splitOfEpisode = scan.nextLine();
 
-        List<Episode> searchedEpisode = repository.episodiesBySplit(splitOfEpisode);
+        List<Episode> searchedEpisode = repository.episodesBySplit(splitOfEpisode);
         System.out.println("Aqui estão os episódios encontrados: ");
         searchedEpisode.forEach(e ->
-                System.out.printf("Série: %s \nTemporada: %d \nEpisódio: %s \nTítulo: '%s'", e.getSerie(), e.getTemporada(), e.getEpisode(), e.getTitle()));
+                System.out.printf("Série: %s \nTemporada: %d \nEpisódio: %s \nTítulo: '%s'", e.getSerie(), e.getSeason(), e.getEpisode(), e.getTitle()));
+    }
+
+    private void searchEpisodeByReleaseDate(){
+        searchSerieByTitle();
+
+        if(searchedSerie.isPresent()){
+            Serie serie = searchedSerie.get();
+            System.out.println("Informe o ano limite de lançamento: ");
+            var yearOfRelease = scan.nextInt();
+            scan.nextLine();
+
+            List<Episode> episodes = repository.episodesByReleaseDate(serie, yearOfRelease);
+            episodes.forEach(e->
+                    System.out.printf("Temporada: %d \nEpisódio: %s \nTítulo: '%s' \nAno de Lançamento: %s \n", e.getSeason(), e.getEpisode(), e.getTitle(), e.getDateOfRelease()));
+        } else {
+            System.out.println("Série não encotrada.");
         }
     }
+
+    private void showTop5Series(){
+        List<Serie> top5Series = repository.top5Series();
+        System.out.println("Aqui estão as Top 5 séries: ");
+        top5Series.forEach(s ->
+                System.out.printf("Título: '%s' \nTemporadas: %d \nAvaliação: %.1f \nSinópse: %s \n", s.getTitle(), s.getTotalSeasons(), s.getRating(), s.getSynopsis()));
+    }
+
+    private void showTop5Episodes(){
+        searchSerieByTitle();
+
+        if(searchedSerie.isPresent()){
+            Serie serie = searchedSerie.get();
+            List<Episode> topEpisodes = repository.topEpisodesBySerie(serie);
+            topEpisodes.forEach(e ->
+                    System.out.printf("\nTemporada: %d \nEpisódio: %s \nTítulo: '%s' \nAvaliação: %.1f \n", e.getSeason(), e.getEpisode(), e.getTitle(), e.getRating()));
+        } else {
+            System.out.println("Série não encotrada.");
+        }
+    }
+}
 
 // '->' ou '::' - são lambdas, chamadas de funções anônimas - são uma maneira de definir funções que são frequentemente usadas uma única vez, direto no local onde elas serão usadas.
 // (argumentos) -> { corpo-da-função }
