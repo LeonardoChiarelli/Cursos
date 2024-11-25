@@ -4,6 +4,7 @@ import br.com.LeoChiarelli.screenSoundSpring.models.Artist;
 import br.com.LeoChiarelli.screenSoundSpring.models.ArtistCategory;
 import br.com.LeoChiarelli.screenSoundSpring.models.Music;
 import br.com.LeoChiarelli.screenSoundSpring.repository.IArtistRepository;
+import br.com.LeoChiarelli.screenSoundSpring.service.ChatgptQuery;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +13,7 @@ import java.util.Scanner;
 public class Main {
     Scanner scan = new Scanner(System.in);
     private final IArtistRepository repository;
+    private Optional<Artist> optionalArtist;
 
     public Main(IArtistRepository repository) {
         this.repository = repository;
@@ -25,7 +27,6 @@ public class Main {
                     2 - Cadastrar música
                     3 - Listar músicas
                     4 - Buscar música por artistas
-                    5 - Pesquisar dados sobre um artista
                     
                     0 - Sair
                     """;
@@ -95,20 +96,34 @@ public class Main {
     private void listSongs(){
         System.out.println("Informe o artista que deseja listar as músicas");
         var artistName = scan.nextLine();
-        Artist artist = new Artist();
 
-        Optional<Artist> optionalArtist = repository.findByNameContainingIgnoreCase(artistName);
+        optionalArtist = repository.findByNameContainingIgnoreCase(artistName);
         if(optionalArtist.isPresent()) {
-            artist.setName(artistName);
-            List<Music> music = repository.listOfSongs(artist);
+            Artist artist = optionalArtist.get();
+            List<Music> music = repository.listSongs(artist);
+            System.out.println("Músicas do artista '" + artist.getName() + "':");
             music.forEach(m ->
-                    System.out.printf("Artista: %s \nMúsica: '%s' \n", m.getArtist(), m.getTitle()));
+                    System.out.println(m.getTitle()));
         }
     }
     private void searchMusicByArtist(){
+        System.out.println("Informe o nome da música para para buscar o artista: ");
+        var musicName = scan.nextLine();
+
+        Optional<Music> optionalMusic = repository.searchMusic(musicName);
+        if (optionalMusic.isPresent()){
+            Music music = optionalMusic.get();
+            Artist artist = repository.findArtist(music.getTitle());
+            System.out.println("A música '" + music.getTitle() + "' é do artista: " + artist.getName());
+        } else {
+            System.out.println("Artista ou música não encontrados, tente cadastra-los!");
+        }
 
     }
     private void searchArtistData(){
-
+        System.out.println("Informe o nome do artista que deseja saber mais sobre: ");
+        var artistName = scan.nextLine();
+        var response = ChatgptQuery.getInfo(artistName);
+        System.out.println(response.trim());
     }
 }
