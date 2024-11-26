@@ -3,6 +3,7 @@ package br.com.LeoChiarelli.repository;
 import br.com.LeoChiarelli.models.Category;
 import br.com.LeoChiarelli.models.Episode;
 import br.com.LeoChiarelli.models.Serie;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -14,6 +15,7 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
     List<Serie> findByActorsContainingIgnoreCase(String actorName);
     List<Serie> findByRatingGreaterThanEqualOrderByRatingDesc(Double serieRating);
     List<Serie> findByGenre(Category category);
+    Optional<Serie> findById(Long id);
 
     @Query("SELECT s FROM Serie s WHERE s.totalSeasons <= :totalSeasons AND s.rating >= :serieRating") // trocando para atributos da classe e parâmetros // QUERY JPQL
     List<Serie> seriesBySeasonsAndRating(Integer totalSeasons, Double serieRating);
@@ -29,4 +31,7 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
 
     @Query("SELECT e FROM Serie s JOIN s.episodes e WHERE s = :serie AND YEAR(e.dateOfRelease) >= :yearOfRelease")
     List<Episode> episodesByReleaseDate(Serie serie, int yearOfRelease);
+
+    @Query("SELECT s FROM Serie s JOIN s.episodes e GROUP BY s ORDER BY MAX(e.dateOfRelease) DESC LIMIT 5")
+    List<Serie> findTheLatestEpisodes();
 }
