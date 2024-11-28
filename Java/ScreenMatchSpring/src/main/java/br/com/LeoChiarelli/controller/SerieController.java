@@ -1,6 +1,8 @@
 package br.com.LeoChiarelli.controller;
 
+import br.com.LeoChiarelli.dto.EpisodeDTO;
 import br.com.LeoChiarelli.dto.SerieDTO;
+import br.com.LeoChiarelli.models.Episode;
 import br.com.LeoChiarelli.service.SerieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,4 +38,20 @@ public class SerieController {
     public SerieDTO getById(@PathVariable Long id){
         return service.getById(id);
     }
+
+    @GetMapping("/{id}/temporadas/todas")
+    public List<EpisodeDTO> getAllSeasons(@PathVariable Long id){
+        return service.getAllSeasons(id);
+    }
+
+    @GetMapping("/{id}/temporadas/{numTemp}")
+    public List<EpisodeDTO> getSeasonsByNumber(@PathVariable Long id, @PathVariable Long numTemp){
+        return service.getSeasonByNumber(id, numTemp);
+    }
+
+    @GetMapping("/categoria/{genero}")
+    public List<SerieDTO> getSerieByGenre(@PathVariable String genero){
+        return service.getSerieByGenre(genero);
+    }
+
 }
