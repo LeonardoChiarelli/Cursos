@@ -1,0 +1,31 @@
+package br.com.LeoChiarelli.api.general.models;
+
+import br.com.LeoChiarelli.api.general.dto.AddressDTO;
+import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Embeddable
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Address {
+    private String logradouro;
+    private String bairro;
+    private String cep;
+    private String cidade;
+    private String uf;
+    private String numero;
+    private String complemento;
+
+    public Address(AddressDTO endereco) {
+        this.logradouro = endereco.logadouro();
+        this.bairro = endereco.bairro();
+        this.cep = endereco.cep();
+        this.cidade = endereco.cidade();
+        this.uf = endereco.uf();
+        this.numero = endereco.numero();
+        this.complemento = endereco.complemento();
+    }
+}
