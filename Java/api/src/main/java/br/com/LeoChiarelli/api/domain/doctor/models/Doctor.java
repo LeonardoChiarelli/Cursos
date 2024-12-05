@@ -1,8 +1,8 @@
-package br.com.LeoChiarelli.api.doctor.models;
+package br.com.LeoChiarelli.api.domain.doctor.models;
 
-import br.com.LeoChiarelli.api.doctor.dto.DoctorDTO;
-import br.com.LeoChiarelli.api.doctor.dto.UpdateDoctorDTO;
-import br.com.LeoChiarelli.api.general.models.Address;
+import br.com.LeoChiarelli.api.domain.doctor.dto.DoctorDTO;
+import br.com.LeoChiarelli.api.domain.doctor.dto.UpdateDoctorDTO;
+import br.com.LeoChiarelli.api.domain.address.models.Address;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

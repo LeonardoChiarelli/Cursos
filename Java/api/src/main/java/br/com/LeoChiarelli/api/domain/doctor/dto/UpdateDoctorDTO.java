@@ -1,6 +1,6 @@
-package br.com.LeoChiarelli.api.doctor.dto;
+package br.com.LeoChiarelli.api.domain.doctor.dto;
 
-import br.com.LeoChiarelli.api.general.dto.AddressDTO;
+import br.com.LeoChiarelli.api.domain.address.dto.AddressDTO;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 

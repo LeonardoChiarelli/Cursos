@@ -1,8 +1,8 @@
-package br.com.LeoChiarelli.api.patient.models;
+package br.com.LeoChiarelli.api.domain.patient.models;
 
-import br.com.LeoChiarelli.api.general.models.Address;
-import br.com.LeoChiarelli.api.patient.dto.PatientDTO;
-import br.com.LeoChiarelli.api.patient.dto.UpdatePatientDTO;
+import br.com.LeoChiarelli.api.domain.address.models.Address;
+import br.com.LeoChiarelli.api.domain.patient.dto.PatientDTO;
+import br.com.LeoChiarelli.api.domain.patient.dto.UpdatePatientDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

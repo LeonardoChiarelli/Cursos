@@ -1,4 +1,4 @@
-package br.com.LeoChiarelli.api.general.dto;
+package br.com.LeoChiarelli.api.domain.address.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

@@ -1,6 +1,6 @@
-package br.com.LeoChiarelli.api.general.models;
+package br.com.LeoChiarelli.api.domain.address.models;
 
-import br.com.LeoChiarelli.api.general.dto.AddressDTO;
+import br.com.LeoChiarelli.api.domain.address.dto.AddressDTO;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

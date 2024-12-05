@@ -1,7 +1,7 @@
-package br.com.LeoChiarelli.api.doctor.dto;
+package br.com.LeoChiarelli.api.domain.doctor.dto;
 
-import br.com.LeoChiarelli.api.doctor.models.Doctor;
-import br.com.LeoChiarelli.api.doctor.models.Specialty;
+import br.com.LeoChiarelli.api.domain.doctor.models.Doctor;
+import br.com.LeoChiarelli.api.domain.doctor.models.Specialty;
 
 public record ListDoctorDTO(
         Long id,

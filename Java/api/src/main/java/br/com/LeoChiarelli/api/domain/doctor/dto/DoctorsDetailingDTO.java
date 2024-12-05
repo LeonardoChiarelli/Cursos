@@ -1,8 +1,8 @@
-package br.com.LeoChiarelli.api.doctor.dto;
+package br.com.LeoChiarelli.api.domain.doctor.dto;
 
-import br.com.LeoChiarelli.api.doctor.models.Doctor;
-import br.com.LeoChiarelli.api.doctor.models.Specialty;
-import br.com.LeoChiarelli.api.general.models.Address;
+import br.com.LeoChiarelli.api.domain.doctor.models.Doctor;
+import br.com.LeoChiarelli.api.domain.doctor.models.Specialty;
+import br.com.LeoChiarelli.api.domain.address.models.Address;
 
 public record DoctorsDetailingDTO(Long id, String nome, String email, String crm, String telefone, Specialty especialidade, Address endereco) {
 

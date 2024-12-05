@@ -1,6 +1,6 @@
-package br.com.LeoChiarelli.api.patient.dto;
+package br.com.LeoChiarelli.api.domain.patient.dto;
 
-import br.com.LeoChiarelli.api.general.dto.AddressDTO;
+import br.com.LeoChiarelli.api.domain.address.dto.AddressDTO;
 import jakarta.validation.constraints.NotNull;
 
 public record UpdatePatientDTO(

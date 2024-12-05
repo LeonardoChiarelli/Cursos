@@ -1,11 +1,11 @@
-package br.com.LeoChiarelli.api.doctor.controller;
+package br.com.LeoChiarelli.api.domain.doctor.controller;
 
-import br.com.LeoChiarelli.api.doctor.dto.DoctorDTO;
-import br.com.LeoChiarelli.api.doctor.dto.DoctorsDetailingDTO;
-import br.com.LeoChiarelli.api.doctor.dto.ListDoctorDTO;
-import br.com.LeoChiarelli.api.doctor.dto.UpdateDoctorDTO;
-import br.com.LeoChiarelli.api.doctor.models.Doctor;
-import br.com.LeoChiarelli.api.doctor.repository.IDoctorRepository;
+import br.com.LeoChiarelli.api.domain.doctor.dto.DoctorDTO;
+import br.com.LeoChiarelli.api.domain.doctor.dto.DoctorsDetailingDTO;
+import br.com.LeoChiarelli.api.domain.doctor.dto.ListDoctorDTO;
+import br.com.LeoChiarelli.api.domain.doctor.dto.UpdateDoctorDTO;
+import br.com.LeoChiarelli.api.domain.doctor.models.Doctor;
+import br.com.LeoChiarelli.api.domain.doctor.repository.IDoctorRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

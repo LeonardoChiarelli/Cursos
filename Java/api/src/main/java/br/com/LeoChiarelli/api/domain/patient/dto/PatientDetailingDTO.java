@@ -1,7 +1,7 @@
-package br.com.LeoChiarelli.api.patient.dto;
+package br.com.LeoChiarelli.api.domain.patient.dto;
 
-import br.com.LeoChiarelli.api.general.models.Address;
-import br.com.LeoChiarelli.api.patient.models.Patient;
+import br.com.LeoChiarelli.api.domain.address.models.Address;
+import br.com.LeoChiarelli.api.domain.patient.models.Patient;
 
 public record PatientDetailingDTO(Long id, String nome, String email, String telefone, String cpf, Address endereco) {
 

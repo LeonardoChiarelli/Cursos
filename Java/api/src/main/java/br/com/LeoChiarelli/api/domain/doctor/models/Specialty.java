@@ -1,4 +1,4 @@
-package br.com.LeoChiarelli.api.doctor.models;
+package br.com.LeoChiarelli.api.domain.doctor.models;
 
 public enum Specialty {
 

@@ -1,7 +1,7 @@
-package br.com.LeoChiarelli.api.doctor.dto;
+package br.com.LeoChiarelli.api.domain.doctor.dto;
 
-import br.com.LeoChiarelli.api.general.dto.AddressDTO;
-import br.com.LeoChiarelli.api.doctor.models.Specialty;
+import br.com.LeoChiarelli.api.domain.address.dto.AddressDTO;
+import br.com.LeoChiarelli.api.domain.doctor.models.Specialty;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
