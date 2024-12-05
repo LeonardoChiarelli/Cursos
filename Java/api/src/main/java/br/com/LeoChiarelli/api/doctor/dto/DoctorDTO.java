@@ -19,6 +19,10 @@ public record DoctorDTO( // Usamos o 'Bean Validation' no DTO pois é onde os da
         String email,
 
         @NotBlank
+        @Pattern(regexp = "\\d{9,11}")
+        String telefone,
+
+        @NotBlank
         @Pattern(regexp = "\\d{4,6}") // '\\d' para indicar que é um dígito, '{4,6}' para indicar que são de 4 até 6 dígitos
         String crm,
 

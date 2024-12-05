@@ -1,8 +1,10 @@
 package br.com.LeoChiarelli.api.doctor.models;
 
 import br.com.LeoChiarelli.api.doctor.dto.DoctorDTO;
+import br.com.LeoChiarelli.api.doctor.dto.UpdateDoctorDTO;
 import br.com.LeoChiarelli.api.general.models.Address;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,10 +22,13 @@ public class Doctor {
     private Long id;
 
     @Column(name = "nome")
-    private String name;
+    private String nome;
 
     @Column(name = "email")
     private String email;
+
+    @Column(name = "telefone")
+    private String telefone;
 
     @Column (name = "crm")
     private String crm;
@@ -36,13 +41,33 @@ public class Doctor {
     @Column(name = "endereco")
     private Address address;
 
+    private boolean ativo;
+
 
     public Doctor(DoctorDTO data) {
+        this.ativo = true;
         this.id = null;
-        this.name = data.nome();
+        this.nome = data.nome();
         this.email = data.email();
+        this.telefone = data.telefone();
         this.crm = data.crm();
         this.specialty = data.especialidade();
         this.address = new Address(data.endereco());
+    }
+
+    public void updateInfo(@Valid UpdateDoctorDTO data) {
+        if(data.nome() != null){
+            this.nome = data.nome();
+        }
+        if (data.telefone() != null){
+            this.telefone = data.telefone();
+        }
+        if (data.endereco() != null){
+            this.address.updateInfo(data.endereco());
+        }
+    }
+
+    public void deactivate() {
+        this.ativo = false;
     }
 }

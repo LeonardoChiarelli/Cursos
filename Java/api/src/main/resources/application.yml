@@ -4,3 +4,8 @@ spring:
     url: jdbc:mysql://${DB_HOST_MYSQL}/${DB_NAME_MYSQL}
     username: ${DB_USER_MYSQL}
     password: ${DB_PASSWORD_MYSQL}
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
