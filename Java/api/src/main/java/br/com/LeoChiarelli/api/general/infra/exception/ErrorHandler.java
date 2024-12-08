@@ -1,4 +1,4 @@
-package br.com.LeoChiarelli.api.general.infra;
+package br.com.LeoChiarelli.api.general.infra.exception;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
