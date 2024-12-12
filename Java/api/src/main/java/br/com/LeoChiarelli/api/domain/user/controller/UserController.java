@@ -26,10 +26,15 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity login(@RequestBody @Valid UserDTO data){
-        var token = new UsernamePasswordAuthenticationToken(data.login(), data.senha());
-        var authentication = manager.authenticate(token);
+        try{
+            var token = new UsernamePasswordAuthenticationToken(data.login(), data.senha());
+            var authentication = manager.authenticate(token);
 
-        var tokenClient = tokenService.generateToken((User) authentication.getPrincipal());
-        return ResponseEntity.ok(new TokenJWTDataDTO(tokenClient));
+            var tokenClient = tokenService.generateToken((User) authentication.getPrincipal());
+            return ResponseEntity.ok(new TokenJWTDataDTO(tokenClient));
+        } catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }
