@@ -1,5 +1,6 @@
 package br.com.LeoChiarelli.api.domain.appointment.service;
 
+import br.com.LeoChiarelli.api.domain.appointment.dto.AppointmentCancelDTO;
 import br.com.LeoChiarelli.api.domain.appointment.dto.AppointmentDTO;
 import br.com.LeoChiarelli.api.domain.appointment.models.Appointment;
 import br.com.LeoChiarelli.api.domain.appointment.repository.IAppointmentRepository;
@@ -34,7 +35,7 @@ public class AppointmentSerivce {
         var medico = chooseDoctor(data);
         var paciente = patientRepository.getReferenceById(data.idPaciente());
 
-        var consulta = new Appointment(null, medico, paciente, data.data());
+        var consulta = new Appointment(null, medico, paciente, data.data(), null);
         repository.save(consulta);
     }
 
@@ -48,6 +49,15 @@ public class AppointmentSerivce {
         }
 
         return doctorRepository.chooseDoctor(data.especialidade(), data.data());
+    }
+
+    public void cancelar(AppointmentCancelDTO data){
+        if(!repository.existsById(data.idConsulta())){
+            throw new ValidationException("Id da consulta informado não existe!");
+        }
+
+        var consulta = repository.getReferenceById(data.idConsulta());
+        consulta.cancelar(data.motivo());
     }
 
 }

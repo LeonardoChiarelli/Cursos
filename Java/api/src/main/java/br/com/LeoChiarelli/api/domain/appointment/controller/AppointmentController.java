@@ -1,5 +1,6 @@
 package br.com.LeoChiarelli.api.domain.appointment.controller;
 
+import br.com.LeoChiarelli.api.domain.appointment.dto.AppointmentCancelDTO;
 import br.com.LeoChiarelli.api.domain.appointment.dto.AppointmentDTO;
 import br.com.LeoChiarelli.api.domain.appointment.dto.AppointmentDetailingDTO;
 import br.com.LeoChiarelli.api.domain.appointment.service.AppointmentSerivce;
@@ -7,10 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/consultas")
@@ -25,5 +23,12 @@ public class AppointmentController {
 
         serivce.schedule(data);
         return ResponseEntity.ok(new AppointmentDetailingDTO(null, null, null, null));
+    }
+
+    @DeleteMapping
+    @Transactional
+    public ResponseEntity cancel(@RequestBody @Valid AppointmentCancelDTO data){
+        serivce.cancelar(data);
+        return ResponseEntity.noContent().build();
     }
 }
