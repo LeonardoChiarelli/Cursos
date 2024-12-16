@@ -21,8 +21,8 @@ public class AppointmentController {
     @Transactional
     public ResponseEntity scheduleAnAppointment(@RequestBody @Valid AppointmentDTO data){
 
-        serivce.schedule(data);
-        return ResponseEntity.ok(new AppointmentDetailingDTO(null, null, null, null));
+        var dto = serivce.schedule(data);
+        return ResponseEntity.ok(dto);
     }
 
     @DeleteMapping

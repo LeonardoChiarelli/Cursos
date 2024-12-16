@@ -2,8 +2,10 @@ package br.com.LeoChiarelli.api.domain.appointment.service;
 
 import br.com.LeoChiarelli.api.domain.appointment.dto.AppointmentCancelDTO;
 import br.com.LeoChiarelli.api.domain.appointment.dto.AppointmentDTO;
+import br.com.LeoChiarelli.api.domain.appointment.dto.AppointmentDetailingDTO;
 import br.com.LeoChiarelli.api.domain.appointment.models.Appointment;
 import br.com.LeoChiarelli.api.domain.appointment.repository.IAppointmentRepository;
+import br.com.LeoChiarelli.api.domain.appointment.validation.IValidation;
 import br.com.LeoChiarelli.api.domain.doctor.models.Doctor;
 import br.com.LeoChiarelli.api.domain.doctor.repository.IDoctorRepository;
 import br.com.LeoChiarelli.api.domain.patient.repository.IPatientRepository;
@@ -11,19 +13,24 @@ import jakarta.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AppointmentSerivce {
 
     @Autowired
-    IAppointmentRepository repository;
+    protected IAppointmentRepository repository;
 
     @Autowired
-    IDoctorRepository doctorRepository;
+    protected IDoctorRepository doctorRepository;
 
     @Autowired
-    IPatientRepository patientRepository;
+    protected IPatientRepository patientRepository;
 
-    public void schedule(AppointmentDTO data){
+    @Autowired
+    protected List<IValidation> validators;
+
+    public AppointmentDetailingDTO schedule(AppointmentDTO data){
         if(!patientRepository.existsById(data.idPaciente())){
             throw new ValidationException("Id do paciente informado, não existe!");
         }
@@ -32,11 +39,18 @@ public class AppointmentSerivce {
             throw new ValidationException("Id do médico informado, não existe!");
         }
 
-        var medico = chooseDoctor(data);
+        validators.forEach(v -> v.validate(data));
+
         var paciente = patientRepository.getReferenceById(data.idPaciente());
+        var medico = chooseDoctor(data);
+        if(medico == null){
+            throw new RuntimeException("Não há medicos disponíveis nesta data!");
+        }
 
         var consulta = new Appointment(null, medico, paciente, data.data(), null);
         repository.save(consulta);
+
+        return new AppointmentDetailingDTO(consulta);
     }
 
     private Doctor chooseDoctor(AppointmentDTO data) {
@@ -48,7 +62,7 @@ public class AppointmentSerivce {
             throw new ValidationException("Especialidade é obrigatória quando o médico não for escolhido");
         }
 
-        return doctorRepository.chooseDoctor(data.especialidade(), data.data());
+        return repository.chooseDoctor(data.especialidade(), data.data());
     }
 
     public void cancelar(AppointmentCancelDTO data){
@@ -61,3 +75,10 @@ public class AppointmentSerivce {
     }
 
 }
+
+// SOLID -
+    // Single Responsibility Principle
+    // Open-Close Principle
+    // Liskov Substitution Principle
+    // Interface Segregation Principle
+    // Dependency Inversion Principle

@@ -1,15 +1,19 @@
 package br.com.LeoChiarelli.api.domain.appointment.validation;
 
 import br.com.LeoChiarelli.api.domain.appointment.dto.AppointmentDTO;
-import br.com.LeoChiarelli.api.domain.doctor.repository.IDoctorRepository;
+import br.com.LeoChiarelli.api.domain.appointment.repository.IAppointmentRepository;
 import jakarta.validation.ValidationException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-public class DoctorWithAnAppointmentAtTheSameTime {
+@Component
+public class DoctorWithAnAppointmentAtTheSameTime implements IValidation{
 
-    private IDoctorRepository repository;
+    @Autowired
+    private IAppointmentRepository repository;
 
     public void validate(AppointmentDTO data){
-        var doctorHasAnAppointmentAtTheSameTime = repository.existsByMedicoIdAndData(data.idMedico(), data.data());
+        var doctorHasAnAppointmentAtTheSameTime = repository.existsByIdAndData(data.idMedico(), data.data());
 
         if(doctorHasAnAppointmentAtTheSameTime){
             throw new ValidationException("Médico já possui outra consulta agendada neste horário");

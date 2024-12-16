@@ -3,9 +3,13 @@ package br.com.LeoChiarelli.api.domain.appointment.validation;
 import br.com.LeoChiarelli.api.domain.appointment.dto.AppointmentDTO;
 import br.com.LeoChiarelli.api.domain.appointment.repository.IAppointmentRepository;
 import jakarta.validation.ValidationException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-public class PatientWithoutAnAppointmentAtTheDay {
+@Component
+public class PatientWithoutAnAppointmentAtTheDay implements IValidation{
 
+    @Autowired
     private IAppointmentRepository repository;
 
     public void validate(AppointmentDTO data){

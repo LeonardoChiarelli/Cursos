@@ -2,10 +2,12 @@ package br.com.LeoChiarelli.api.domain.appointment.validation;
 
 import br.com.LeoChiarelli.api.domain.appointment.dto.AppointmentDTO;
 import jakarta.validation.ValidationException;
+import org.springframework.stereotype.Component;
 
 import java.time.DayOfWeek;
 
-public class HourAndDay {
+@Component
+public class HourAndDay implements IValidation{
 
     public void validate(AppointmentDTO data){
         var dataConsulta = data.data();
