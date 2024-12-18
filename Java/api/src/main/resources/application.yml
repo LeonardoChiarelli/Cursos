@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${DB_HOST_MYSQL}/${DB_NAME_MYSQL}
-    username: ${DB_USER_MYSQL}
-    password: ${DB_PASSWORD_MYSQL}
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
   jpa:
     show-sql: true
     properties:

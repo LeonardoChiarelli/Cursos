@@ -1,6 +1,6 @@
 package br.com.LeoChiarelli.api.general.infra.security;
 
-import br.com.LeoChiarelli.api.domain.user.repository.IUserRepository;
+import br.com.LeoChiarelli.api.domain.repository.IUserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

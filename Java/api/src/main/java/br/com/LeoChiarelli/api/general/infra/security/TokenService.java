@@ -1,6 +1,6 @@
 package br.com.LeoChiarelli.api.general.infra.security;
 
-import br.com.LeoChiarelli.api.domain.user.models.User;
+import br.com.LeoChiarelli.api.domain.models.User;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
