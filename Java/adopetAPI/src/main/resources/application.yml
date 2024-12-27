@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: ${DATASOURCE_URL_ADOPET}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+  mail:
+    host: smtp.example.com
+    port: 587
+    username: username
+    password: password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
