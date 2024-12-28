@@ -25,7 +25,7 @@ O projeto desse repositório é apenas a API Backend, mas existe um figma com o 
 
 As seguintes tecnologias foram utilizadas no desenvolvimento da API Rest do projeto:
 
-- **[Java 17](https://www.oracle.com/java)**
+- **[Java 23](https://www.oracle.com/java)**
 - **[Spring Boot 3](https://spring.io/projects/spring-boot)**
 - **[Maven](https://maven.apache.org)**
 - **[MySQL](https://www.mysql.com)**
