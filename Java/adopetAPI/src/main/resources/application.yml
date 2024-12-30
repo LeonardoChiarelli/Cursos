@@ -4,16 +4,15 @@ spring:
     username: ${DATASOURCE_USERNAME}
     password: ${DATASOURCE_PASSWORD}
   mail:
-    host: smtp.example.com
+    host: smtp.gmail.com
     port: 587
-    username: username
-    password: password
+    username: ${EMAIL}
+    password: ${SENHA_EMAIL}
+    protocol: smtp
     properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+      mail.smtp.starttls.required: true
   jpa:
     show-sql: true
     properties:

@@ -5,7 +5,6 @@ import br.com.LeoChiarelli.adopet.api.domain.dto.ReprovarAdocaoDTO;
 import br.com.LeoChiarelli.adopet.api.domain.dto.SolicitarAdocaoDTO;
 import br.com.LeoChiarelli.adopet.api.domain.email.SendEmail;
 import br.com.LeoChiarelli.adopet.api.domain.model.Adocao;
-import br.com.LeoChiarelli.adopet.api.domain.model.StatusAdocao;
 import br.com.LeoChiarelli.adopet.api.domain.repository.IAdocaoRepository;
 import br.com.LeoChiarelli.adopet.api.domain.repository.IPetRepository;
 import br.com.LeoChiarelli.adopet.api.domain.repository.ITutorRepository;
@@ -13,7 +12,6 @@ import br.com.LeoChiarelli.adopet.api.general.strategy.IStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -34,7 +32,6 @@ public class AdocaoService {
 
     @Autowired
     private List<IStrategy> validacoes;
-
 
     public void solicitar(SolicitarAdocaoDTO dto){
         var pet = petRepository.getReferenceById(dto.idPet());

@@ -78,4 +78,6 @@ public class Pet {
     public Abrigo getAbrigo() {
         return abrigo;
     }
+
+    public Float getPeso() { return peso;}
 }

@@ -42,6 +42,11 @@ public class Adocao {
         this.motivo = motivo;
     }
 
+    public Adocao(Tutor tutor, StatusAdocao statusAdocao) {
+        this.tutor = tutor;
+        this.status = statusAdocao;
+    }
+
     public void mudarStatusAprovado() {
         this.status = StatusAdocao.APROVADO;
     }
@@ -68,6 +73,14 @@ public class Adocao {
 
     public Pet getPet() {
         return pet;
+    }
+
+    public String getMotivo() {
+        return motivo;
+    }
+
+    public StatusAdocao getStatus() {
+        return status;
     }
 
     public String getJustificativaStatus() {
