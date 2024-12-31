@@ -34,6 +34,12 @@ public class Abrigo {
 
     public Abrigo(){}
 
+    public Abrigo(long id, String nome, String email) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+    }
+
     public Long getId() {
         return id;
     }

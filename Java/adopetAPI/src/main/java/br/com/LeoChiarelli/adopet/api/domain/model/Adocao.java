@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 
 @Entity(name = "Adocao")
 @Table(name = "adocoes")
-@NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Adocao {
@@ -46,6 +45,8 @@ public class Adocao {
         this.tutor = tutor;
         this.status = statusAdocao;
     }
+
+    public Adocao(){}
 
     public void mudarStatusAprovado() {
         this.status = StatusAdocao.APROVADO;

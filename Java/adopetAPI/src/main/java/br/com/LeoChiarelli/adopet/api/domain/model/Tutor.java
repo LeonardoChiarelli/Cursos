@@ -9,11 +9,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Objects;
 
 @Entity(name = "Tutor")
 @Table(name = "tutores")
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
 public class Tutor {
 
     @Getter
@@ -38,6 +38,25 @@ public class Tutor {
     }
 
     public Tutor(){}
+
+    public Tutor(long id, String nome, String email) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tutor tutor = (Tutor) o;
+        return Objects.equals(id, tutor.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
     public Long getId() {
         return id;
