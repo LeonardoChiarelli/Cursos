@@ -23,5 +23,7 @@ public class OperacaoSaque implements Runnable{
             System.out.println("Saldo atual: " +conta.getSaldo());
         }
         System.out.println("Finalizando operação de saque.");
+
+        System.out.println(Thread.currentThread().getName());
     }
 }

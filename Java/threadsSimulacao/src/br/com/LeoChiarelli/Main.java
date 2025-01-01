@@ -14,5 +14,7 @@ public class Main {
 
         saqueLeonardo.start();
         saqueMaria.start();
+
+        System.out.println(Thread.currentThread().getName());
     }
 }
