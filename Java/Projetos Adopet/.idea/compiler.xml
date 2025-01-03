@@ -8,15 +8,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="adopet-console" />
       </profile>
-      <profile name="Annotation profile for adopet-api" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
-        </processorPath>
-        <module name="adopet-api" />
-      </profile>
       <profile name="Annotation profile for demo" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -26,15 +17,22 @@
         </processorPath>
         <module name="exceptions" />
       </profile>
+      <profile name="Annotation profile for adopetThreads" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+        </processorPath>
+        <module name="adopetThreads" />
+        <module name="adopet-api" />
+      </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="adopet-store" target="21" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="adopet-api" options="-parameters" />
-      <module name="adopet-store" options="-parameters" />
+      <module name="adopetThreads" options="-parameters" />
       <module name="exceptions" options="-parameters" />
     </option>
   </component>

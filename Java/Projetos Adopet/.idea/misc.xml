@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/adopetAPI/pom.xml" />
         <option value="$PROJECT_DIR$/adopetThreads/adopet-store/pom.xml" />
         <option value="$PROJECT_DIR$/adopetExceptions/pom.xml" />
+        <option value="$PROJECT_DIR$/adopetThreads/pom.xml" />
       </list>
     </option>
   </component>
