@@ -7,7 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="adopet-console" />
-        <module name="adopet-store" />
       </profile>
       <profile name="Annotation profile for adopet-api" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -28,6 +27,9 @@
         <module name="exceptions" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="adopet-store" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
