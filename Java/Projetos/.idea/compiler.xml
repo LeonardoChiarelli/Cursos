@@ -7,14 +7,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="vehicles" />
-        <module name="reflections" />
         <module name="api" />
+        <module name="biblioteca" />
+        <module name="reflections" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api" options="-parameters" />
+      <module name="biblioteca" options="-parameters" />
       <module name="reflections" options="-parameters" />
       <module name="vehicles" options="-parameters" />
     </option>

@@ -1,5 +1,4 @@
 spring:
-  application.name: "adopetThreads"
   datasource:
     url: ${DATASOURCE_URL_ADOPET_STORE}
     username: ${DATASOURCE_USERNAME}
@@ -8,8 +7,8 @@ spring:
   mail:
     host: host
     port: 587
-    username: username
-    password: password
+    username: ${EMAIL}
+    password: ${SENHA_EMAIL}
     properties:
       mail:
         smtp:
@@ -20,4 +19,4 @@ spring:
 app:
   security:
     token:
-      secret: ${TOKEN_PASSWORD}
+      secret: ${TOKEN_PASSWORD:12345}

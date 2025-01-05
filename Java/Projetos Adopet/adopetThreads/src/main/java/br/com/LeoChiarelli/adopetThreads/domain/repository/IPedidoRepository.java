@@ -22,7 +22,7 @@ public interface IPedidoRepository extends JpaRepository<Pedido, Long> {
     BigDecimal faturamentoTotalDoDia(LocalDate data);
 
     @Query("""
-        SELECT NEW br.com.alura.adopetstore.dto.EstatisticasVenda(
+        SELECT NEW br.com.LeoChiarelli.adopetThreads.domain.dto.EstatisticasVenda(
             prod.categoria,
             SUM(i.quantidade),
             SUM(i.precoUnitario * i.quantidade)

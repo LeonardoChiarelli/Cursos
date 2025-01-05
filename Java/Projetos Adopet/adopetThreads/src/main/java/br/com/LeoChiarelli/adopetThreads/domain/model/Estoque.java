@@ -16,9 +16,14 @@ public class Estoque {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Integer quantidade;
+
     @OneToOne
     private Produto produto;
+
+    @Version // Para indicar à JPA que estamos criando um 'lock otimista (sem parâmetros)'
+    private Integer versao;
 
     public Estoque(Integer quantidade, Produto produto) {
         this.quantidade = quantidade;
