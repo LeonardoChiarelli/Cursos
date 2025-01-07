@@ -4,6 +4,9 @@ spring:
     username: ${DATASOURCE_USERNAME}
     password: ${DATASOURCE_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
+  server:
+    error:
+      include-stacktrace: never
   mail:
     host: host
     port: 587
