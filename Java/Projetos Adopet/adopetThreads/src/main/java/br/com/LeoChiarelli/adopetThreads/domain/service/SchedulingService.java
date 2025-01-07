@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 @Service
@@ -21,6 +22,8 @@ public class SchedulingService {
 
         var estoqueZerado = service.infoEstoque();
         var faturamento = service.faturamentoObtido();
+
+        CompletableFuture.allOf(estoqueZerado, faturamento).join(); // garantindo que o email só seja enviado após o carregamento de todos os dados
 
         try {
             relatorio.enviar(estoqueZerado.get(), faturamento.get());
