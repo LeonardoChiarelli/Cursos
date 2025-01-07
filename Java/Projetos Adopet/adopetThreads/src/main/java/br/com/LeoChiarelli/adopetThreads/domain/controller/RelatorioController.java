@@ -1,4 +1,4 @@
-package br.com.LeoChiarelli.adopetThreads.domain.controller;
+/* package br.com.LeoChiarelli.adopetThreads.domain.controller;
 
 import br.com.LeoChiarelli.adopetThreads.domain.dto.RelatorioEstoque;
 import br.com.LeoChiarelli.adopetThreads.domain.dto.RelatorioFaturamento;
@@ -27,3 +27,4 @@ public class RelatorioController {
         return ResponseEntity.ok(relatorio);
     }
 }
+ */
