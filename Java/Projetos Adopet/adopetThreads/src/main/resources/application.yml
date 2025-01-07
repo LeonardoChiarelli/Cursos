@@ -18,7 +18,9 @@ spring:
           auth: true
           starttls:
             enable: true
-
+  threads:
+    virtual:
+      enabled: true
 app:
   security:
     token:
