@@ -34,11 +34,10 @@ public class AdocaoService {
     private List<IStrategy> strategies;
 
     public List<AdocaoDTO> listarTodos(){
-
         return adocaoRepository.findAll().stream().map(AdocaoDTO::new).toList();
     }
-    public AdocaoDTO listar(Long id){
 
+    public AdocaoDTO listar(Long id){
         return adocaoRepository.findById(id).stream().findFirst().map(AdocaoDTO::new).orElse(null);
     }
 
