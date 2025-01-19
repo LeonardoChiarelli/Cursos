@@ -10,6 +10,7 @@
         <module name="api" />
         <module name="biblioteca" />
         <module name="reflections" />
+        <module name="produtos" />
       </profile>
     </annotationProcessing>
   </component>
@@ -17,6 +18,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api" options="-parameters" />
       <module name="biblioteca" options="-parameters" />
+      <module name="produtos" options="" />
       <module name="reflections" options="-parameters" />
       <module name="vehicles" options="-parameters" />
     </option>
