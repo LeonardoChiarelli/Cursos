@@ -3,7 +3,6 @@ package br.com.LeoChiarelli.adopet.api.domain.model;
 import br.com.LeoChiarelli.adopet.api.domain.dto.CadastrarPetDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 
 import java.util.Objects;
 

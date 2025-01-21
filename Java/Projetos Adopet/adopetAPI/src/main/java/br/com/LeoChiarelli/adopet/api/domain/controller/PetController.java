@@ -1,7 +1,6 @@
 package br.com.LeoChiarelli.adopet.api.domain.controller;
 
 import br.com.LeoChiarelli.adopet.api.domain.dto.PetDTO;
-import br.com.LeoChiarelli.adopet.api.domain.model.Pet;
 import br.com.LeoChiarelli.adopet.api.domain.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

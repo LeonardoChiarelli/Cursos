@@ -1,10 +1,7 @@
 package br.com.LeoChiarelli.adopet.api.domain.dto;
 
-import br.com.LeoChiarelli.adopet.api.domain.model.Abrigo;
-import br.com.LeoChiarelli.adopet.api.domain.model.Adocao;
 import br.com.LeoChiarelli.adopet.api.domain.model.Pet;
 import br.com.LeoChiarelli.adopet.api.domain.model.TipoPet;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 

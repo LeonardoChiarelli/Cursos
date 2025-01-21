@@ -1,5 +1,0 @@
-spring:
-  datasource:
-    url: ${DATASOURCE_URL_ADOPET}
-    username: ${DATASOURCE_USERNAME}
-    password: ${DATASOURCE_PASSWORD}

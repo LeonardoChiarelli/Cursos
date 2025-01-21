@@ -4,8 +4,6 @@ import br.com.LeoChiarelli.adopet.api.domain.dto.CadastrarAbrigoDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 

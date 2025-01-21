@@ -1,13 +1,9 @@
 package br.com.LeoChiarelli.adopet.api.domain.dto;
 
 import br.com.LeoChiarelli.adopet.api.domain.model.Abrigo;
-import br.com.LeoChiarelli.adopet.api.domain.model.Pet;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-
-import java.util.List;
 
 public record AbrigoDTO(
         @NotBlank

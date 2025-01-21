@@ -2,7 +2,6 @@ package br.com.LeoChiarelli.adopet.api.domain.service;
 
 import br.com.LeoChiarelli.adopet.api.domain.dto.AbrigoDTO;
 import br.com.LeoChiarelli.adopet.api.domain.dto.CadastrarAbrigoDTO;
-import br.com.LeoChiarelli.adopet.api.domain.dto.CadastrarPetDTO;
 import br.com.LeoChiarelli.adopet.api.domain.dto.PetDTO;
 import br.com.LeoChiarelli.adopet.api.domain.model.Abrigo;
 import br.com.LeoChiarelli.adopet.api.domain.repository.IAbrigoRepository;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service

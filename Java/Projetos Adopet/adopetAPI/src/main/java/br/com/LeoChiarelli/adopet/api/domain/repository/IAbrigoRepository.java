@@ -1,7 +1,6 @@
 package br.com.LeoChiarelli.adopet.api.domain.repository;
 
 import br.com.LeoChiarelli.adopet.api.domain.model.Abrigo;
-import br.com.LeoChiarelli.adopet.api.domain.model.Pet;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IAbrigoRepository extends JpaRepository<Abrigo, Long> {

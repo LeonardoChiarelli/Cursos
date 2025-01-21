@@ -4,8 +4,6 @@ import br.com.LeoChiarelli.adopet.api.domain.dto.AbrigoDTO;
 import br.com.LeoChiarelli.adopet.api.domain.dto.CadastrarAbrigoDTO;
 import br.com.LeoChiarelli.adopet.api.domain.dto.CadastrarPetDTO;
 import br.com.LeoChiarelli.adopet.api.domain.dto.PetDTO;
-import br.com.LeoChiarelli.adopet.api.domain.model.Abrigo;
-import br.com.LeoChiarelli.adopet.api.domain.model.Pet;
 import br.com.LeoChiarelli.adopet.api.domain.service.AbrigoService;
 import br.com.LeoChiarelli.adopet.api.domain.service.PetService;
 import jakarta.persistence.EntityNotFoundException;
