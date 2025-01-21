@@ -8,6 +8,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity(name = "Paciente")
 @Table(name = "pacientes")
 @Getter
@@ -27,6 +29,9 @@ public class Patient {
     @Embedded
     private Address endereco;
     private boolean ativo;
+
+    @Transient // pois não esta sendo salvo
+    private List<Appointment> consultas;
 
     public Patient(PatientDTO data){
         this.ativo = true;
@@ -52,4 +57,6 @@ public class Patient {
     public void delete(){
         this.ativo = false;
     }
+
+    public List<Appointment> consultas() { return consultas; }
 }
