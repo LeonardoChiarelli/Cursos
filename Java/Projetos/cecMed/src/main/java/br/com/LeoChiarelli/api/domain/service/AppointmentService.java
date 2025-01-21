@@ -11,6 +11,8 @@ import br.com.LeoChiarelli.api.domain.repository.IDoctorRepository;
 import br.com.LeoChiarelli.api.domain.repository.IPatientRepository;
 import jakarta.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -75,13 +77,8 @@ public class AppointmentService {
         consulta.cancelar(data.motivo());
     }
 
-    public List<AppointmentDetailingDTO> list() {
-        return repository.findAll().stream()
-                .map(a -> new AppointmentDetailingDTO(a.getId(),
-                        a.getMedico().getId(),
-                        a.getPaciente().getId(),
-                        a.getData()))
-                .collect(Collectors.toList());
+    public Page<AppointmentDetailingDTO> list(Pageable pageable) {
+        return repository.findAll(pageable).map(AppointmentDetailingDTO::new);
     }
 }
 
