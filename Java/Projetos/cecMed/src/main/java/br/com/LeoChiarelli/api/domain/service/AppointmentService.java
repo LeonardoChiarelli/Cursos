@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AppointmentService {
@@ -74,6 +75,14 @@ public class AppointmentService {
         consulta.cancelar(data.motivo());
     }
 
+    public List<AppointmentDetailingDTO> list() {
+        return repository.findAll().stream()
+                .map(a -> new AppointmentDetailingDTO(a.getId(),
+                        a.getMedico().getId(),
+                        a.getPaciente().getId(),
+                        a.getData()))
+                .collect(Collectors.toList());
+    }
 }
 
 // SOLID -
