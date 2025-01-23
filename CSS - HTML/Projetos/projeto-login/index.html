@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="style/style.css" media="all">
+        <link rel="stylesheet" href="style/media-query.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <title>Login</title>
+    </head>
+    <body>
+        <main>
+            <section id="login">
+                <div id="imagem">
+                    <!-- Imagem nas CSS -->
+                </div>
+                <div id="form">
+                    <fieldset id="field">
+                        <legend><strong>Login</strong></legend>
+                        <p>Seja bem-vindo(a) de volta! Preencha seus dados de login para acessar a sua conta e poder fazer as configurações no seu ambiente.</p>
+                        <form action="../../../Curso front-end/LeonardoChiarelli.github.io/HTML5-CSS3/Formulários/cadastro.php" method="post" autocomplete="on">
+                        <div id="usuario">
+                            <span class="material-icons">person</span>
+                            <input type="text" name="user" id="iuser" autocomplete="email" placeholder="Seu e-mail" required>
+                            <label for="iuser">Usuário</label>
+                        </div>
+                        <div id="senha">
+                            <span class="material-icons">key</span>
+                            <input type="password" name="password" id="ipass" placeholder="Sua senha" required>
+                            <label for="ipass">Senha</label>
+                        </div>
+                        <div id="botoes">
+                            <input type="submit" value="Entrar" id="submit">
+                            <button>Esqueci a senha <i class="material-icons">mail</i></button>
+                        </div>
+                        </form>
+                    </fieldset>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
