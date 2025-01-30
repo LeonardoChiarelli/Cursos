@@ -12,6 +12,15 @@
         <module name="biblioteca" />
         <module name="reflections" />
       </profile>
+      <profile name="Annotation profile for pagamentos" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
+        </processorPath>
+        <module name="pagamentos" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="produtos" target="23" />
@@ -21,6 +30,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api" options="-parameters" />
       <module name="biblioteca" options="-parameters" />
+      <module name="pagamentos" options="-parameters" />
       <module name="produtos" options="" />
       <module name="reflections" options="-parameters" />
       <module name="vehicles" options="-parameters" />
