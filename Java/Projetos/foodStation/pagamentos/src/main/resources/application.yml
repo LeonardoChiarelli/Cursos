@@ -2,5 +2,5 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: ${FOODSTATION_PAGAMENTOS_URL}
-    username: ${MYSQL_USER}
+    username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
