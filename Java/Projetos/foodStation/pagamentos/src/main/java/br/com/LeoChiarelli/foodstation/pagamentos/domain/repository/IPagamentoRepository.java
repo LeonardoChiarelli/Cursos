@@ -1,4 +1,4 @@
-package br.com.LeoChiarelli.foodstation.pagamentos.repository;
+package br.com.LeoChiarelli.foodstation.pagamentos.domain.repository;
 
 import br.com.LeoChiarelli.foodstation.pagamentos.domain.model.Pagamento;
 import jakarta.validation.constraints.NotNull;

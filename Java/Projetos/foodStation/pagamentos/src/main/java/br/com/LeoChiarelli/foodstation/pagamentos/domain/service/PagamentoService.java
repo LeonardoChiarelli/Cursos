@@ -4,7 +4,7 @@ import br.com.LeoChiarelli.foodstation.pagamentos.domain.dto.AtualizarStatusPaga
 import br.com.LeoChiarelli.foodstation.pagamentos.domain.dto.CadastrarPagamentoDTO;
 import br.com.LeoChiarelli.foodstation.pagamentos.domain.dto.DetalhesPagamentoDTO;
 import br.com.LeoChiarelli.foodstation.pagamentos.domain.model.Pagamento;
-import br.com.LeoChiarelli.foodstation.pagamentos.repository.IPagamentoRepository;
+import br.com.LeoChiarelli.foodstation.pagamentos.domain.repository.IPagamentoRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

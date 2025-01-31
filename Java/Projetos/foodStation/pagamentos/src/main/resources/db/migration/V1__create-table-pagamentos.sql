@@ -1,9 +1,9 @@
 create table pagamentos(
 
     id bigint not null auto_increment,
-    valor double not null,
+    valor decimal(19,2) not null,
     nome varchar(250) not null,
-    numero varchar(16) not null unique,
+    numero varchar(19) not null unique,
     expiracao date not null,
     codigo varchar(3) not null,
     status varchar(100) not null,
