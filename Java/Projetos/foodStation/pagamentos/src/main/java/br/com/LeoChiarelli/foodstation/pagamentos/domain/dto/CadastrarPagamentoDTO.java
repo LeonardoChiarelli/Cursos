@@ -24,7 +24,7 @@ public record CadastrarPagamentoDTO(
 
         @NotNull
         @Future
-        @JsonFormat(pattern = "MM/YY")
+        @JsonFormat(pattern = "dd/MM/yyyy")
         LocalDate expiracao,
 
         @NotBlank

@@ -30,10 +30,10 @@ public class PagamentoController {
         return ResponseEntity.created(uri).body(pagamento);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity<DetalhesPagamentoDTO> atualizarStatus(@RequestBody @Valid AtualizarStatusPagamentoDTO dto){
-        var pagamento = service.atualizar(dto);
+    public ResponseEntity<DetalhesPagamentoDTO> atualizarStatus(@PathVariable Long id){
+        var pagamento = service.atualizar(id);
 
         return ResponseEntity.ok(pagamento);
     }

@@ -9,6 +9,8 @@
         <option value="$PROJECT_DIR$/reflections/pom.xml" />
         <option value="$PROJECT_DIR$/bibliotecaThread/pom.xml" />
         <option value="$PROJECT_DIR$/foodStation/pagamentos/pom.xml" />
+        <option value="$PROJECT_DIR$/foodStation/server/pom.xml" />
+        <option value="$PROJECT_DIR$/foodStation/pedidos/pom.xml" />
       </list>
     </option>
   </component>

@@ -10,8 +10,5 @@ create table pagamentos(
     pedido_id bigint not null,
     forma_de_pagamento_id bigint not null,
 
-    primary key(id),
-
-    constraint fk_pagamento_pedido_id foreign key(pedido_id) references pedido(id),
-    constraint fk_pagamento_forma_de_pagamento_id foreign key(forma_de_pagamento_id) references forma_de_pagamento(id)
+    primary key(id)
 );

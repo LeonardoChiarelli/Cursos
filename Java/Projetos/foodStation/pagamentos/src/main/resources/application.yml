@@ -4,3 +4,13 @@ spring:
     url: ${FOODSTATION_PAGAMENTOS_URL}
     username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
+  application:
+    name: pagamentos-ms
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8081/eureka
+server:
+  port: 0

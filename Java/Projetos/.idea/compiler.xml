@@ -8,7 +8,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="vehicles" />
+        <module name="server" />
         <module name="api" />
+        <module name="pedidos" />
         <module name="biblioteca" />
         <module name="reflections" />
       </profile>
@@ -31,8 +33,10 @@
       <module name="api" options="-parameters" />
       <module name="biblioteca" options="-parameters" />
       <module name="pagamentos" options="-parameters" />
+      <module name="pedidos" options="-parameters" />
       <module name="produtos" options="" />
       <module name="reflections" options="-parameters" />
+      <module name="server" options="-parameters" />
       <module name="vehicles" options="-parameters" />
     </option>
   </component>

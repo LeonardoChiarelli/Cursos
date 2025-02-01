@@ -19,7 +19,7 @@ public class PagamentoService {
 
     public DetalhesPagamentoDTO cadastrarPagamento(CadastrarPagamentoDTO dto){
 
-        boolean jaCadastrado = repository.existsByIdPedido(dto.idPedido());
+        boolean jaCadastrado = repository.existsByPedidoId(dto.idPedido());
         if (jaCadastrado) { throw new RuntimeException("Pedido já cadastrado"); }
 
         var pagamento = new Pagamento(dto);
@@ -35,8 +35,8 @@ public class PagamentoService {
         return repository.findById(id).map(DetalhesPagamentoDTO::new).orElseThrow(() -> new RuntimeException("Pagamento não encontrado"));
     }
 
-    public DetalhesPagamentoDTO atualizar(@Valid AtualizarStatusPagamentoDTO dto) {
-        var pagamento = repository.getReferenceById(dto.id());
+    public DetalhesPagamentoDTO atualizar(Long id) {
+        var pagamento = repository.getReferenceById(id);
         pagamento.atualizarStatus();
         repository.save(pagamento);
 
