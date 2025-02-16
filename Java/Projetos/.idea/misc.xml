@@ -8,9 +8,10 @@
         <option value="$PROJECT_DIR$/vehicles/pom.xml" />
         <option value="$PROJECT_DIR$/reflections/pom.xml" />
         <option value="$PROJECT_DIR$/bibliotecaThread/pom.xml" />
-        <option value="$PROJECT_DIR$/foodStation/pagamentos/pom.xml" />
-        <option value="$PROJECT_DIR$/foodStation/server/pom.xml" />
-        <option value="$PROJECT_DIR$/foodStation/pedidos/pom.xml" />
+        <option value="$PROJECT_DIR$/MS - OpenFeign/gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/MS - OpenFeign/pagamentos/pom.xml" />
+        <option value="$PROJECT_DIR$/MS - OpenFeign/pedidos/pom.xml" />
+        <option value="$PROJECT_DIR$/MS - OpenFeign/server/pom.xml" />
       </list>
     </option>
   </component>

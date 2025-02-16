@@ -8,8 +8,9 @@
     <file url="file://$PROJECT_DIR$/reflections/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/threadsSimulacao/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vehicles/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/foodStation/pagamentos/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/foodStation/server/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/foodStation/pedidos/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MS - OpenFeign/pedidos/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MS - OpenFeign/gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MS - OpenFeign/pagamentos/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MS - OpenFeign/server/src/main/java" charset="UTF-8" />
   </component>
 </project>
