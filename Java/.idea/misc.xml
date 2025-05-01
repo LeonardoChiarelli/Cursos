@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/Projetos/cecMed/pom.xml" />
+        <option value="$PROJECT_DIR$/Projetos/vehicles/pom.xml" />
+        <option value="$PROJECT_DIR$/Projetos/reflections/pom.xml" />
+        <option value="$PROJECT_DIR$/Projetos/MS - OpenFeign/server/pom.xml" />
+        <option value="$PROJECT_DIR$/Projetos/MS - OpenFeign/gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/Projetos/MS - OpenFeign/pedidos/pom.xml" />
+        <option value="$PROJECT_DIR$/Projetos/MS - OpenFeign/pagamentos/pom.xml" />
+        <option value="$PROJECT_DIR$/Projetos/bibliotecaThread/pom.xml" />
+        <option value="$PROJECT_DIR$/Projetos Adopet/adopetAPI/pom.xml" />
+        <option value="$PROJECT_DIR$/Projetos Adopet/adopetThreads/pom.xml" />
+        <option value="$PROJECT_DIR$/Projetos Adopet/adopetExceptions/pom.xml" />
+        <option value="$PROJECT_DIR$/Projetos ScreenMatch/screenMatchSpring/pom.xml" />
+        <option value="$PROJECT_DIR$/Projetos ScreenMatch/screenSoundSpring/pom.xml" />
+        <option value="$PROJECT_DIR$/Projetos ScreenMatch/screenMatchPhrases/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="21" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

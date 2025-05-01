@@ -1,0 +1,162 @@
+						CURSO - Amazon EC2: alta disponibilidade e escalabilidade em uma aplicação
+
+Módulo 1 (Primeiros passos com EC2):
+	- Relembramos o que são instâncias EC2 (Elastic Compute Cloud) - serviço que nos permite ter VM rodando na AWS
+	- Relembramos os modelos de precificação dos serviços EC2
+	- Passamos novamente por todas as etapas de criação de uma instância
+	- Relembramos sobre SG (security groups) e como configurá-los - SG são como firewalls para nossas instâncias EC2
+
+Módulo 2 (Gerenciando instâncias):
+	- Regiões x Zonas de Disponibilidade:
+		- Cada região tem uma ou mais zonas de disponibilidade
+		- Nos permitem criar uma infraestrutura mais tolerante a falhas
+
+	- Podemos criar instâncias com AMIs diferentes das usuais, acessando o marketplace da AWS, no curso usamos a AMI do NGINX Open Source, da empresa Bitnami, o usuário para conectar-se à instância é 'bitnami'
+
+	- Podemos definir em qual zona de disponibilidade nossa instância será criada
+		- Na criação da instância, vamos até Configurações de rede -> Sub-rede -> escolhemos a zona
+
+Módulo 3 (Serviços Satélite):
+	- Ao selecionarmos qualquer instância -> Ações -> Imagem e modelos
+		- Criar imagem:
+			- Vamos criar uma configuração (uma imagem) para ter todo o software instalado, ou seja, configurações de rede, par de chaves, etc. Tudo será 'copiado'
+			- Ideal fazermos com a 'instância-mãe' desligada
+		- Criar modelo a partir da instância:
+			- Vamos criar um modelo do hardware da instância, ou seja, vamos criar um modelo para criar uma imagem com este mesmo hardware
+		- Executar mais como esta:
+			- Vamos basicamente duplicar/triplicar/quadruplicar tudo que temos na instância 
+
+	- Criamos uma imagem da instância NGINX
+		- Nome da imagem (my-nginx) -> Descrição(opcional) -> Volumes da instância(opcional) -> Criar imagem
+
+	- Utilizando esta imagem para a criação de outra instância:
+		- Instâncias ->  Executar instâncias -> Nome (...) -> Minhas AMIs -> selecionar nossa AMI criada -> config. Padrão
+	
+	- IP Dedicado:
+		- Para evitar trocas de IP e DNS a cada reinicialização da instância, alocamos um IP elástico.
+		- Menu da EC2 -> Rede e Segurança -> IPs elásticos -> Alocar endereço IP elástico
+			- Grupo de Borda de Rede: Onde o IP vai ser registrado
+			- Criar acelerador: Para registrar esse IP em vários lugares e diminuir a latência 
+		- Com o IP criado -> Clicamos em cima dele -> Associar endereço IP elástico (Aqui estamos dizendo que este IP vai apontar para tal instancia ou interface de rede)
+				- Selecionar a instância desejada -> Associar
+
+	- Banco com RDS (Relational Database Service):
+		- Poderíamos nos conectar a instância e instalar um banco de dados nela (MAS NÃO VAMOS FAZER!!!) :
+			- Para se conectar a instância: ssh -i "chave.pem" 'usuario'@ec2-IP_PUBLICO.'zona de disponibilidade'.compute.amazonaws.com
+			- Para instalar o banco de dados: 
+				- sudo apt update (atualizar a lista de pacotes)
+				- sudo apt upgrade -y
+				- sudo apt install -y postgresql
+
+		- Vamos criar o RDS ->
+			- Criação fácil: mais rápida porém menos 'flexível'
+			- Criação padrão: mais 'complexa' porém mais flexível
+		-> Selecionar o 'tipo' de DB -> Identificador da instância RDS -> Criar a senha do DB
+		
+		- Para conectarmos o RDS à nossa instância (Precisamos ter o banco de dados instalado na instância):
+			- Na instância EC2 -> Ações -> Segurança -> Alterar grupos de segurança -> adicionar o grupo 'default' da instância RDS -> Salvar
+			- Copiar o endpoint do RDS		
+			- psql -U 'usuário definido' -W -h 'endpoint do RDS'
+
+Módulo 4 (Escalabilidade):
+	- Load Balancing:
+		- Servidores podem estar em zonas de disponibilidade diferentes.
+		- Selecionar a instância principal -> Ações -> Imagens e Modelos -> Executar mais como esta
+			- Trocar o nome 'nome da instância principal'-2 -> Selecionar o mesmo par de chaves -> Selecionar uma zona de disponibilidade diferente
+		- Menu da EC2 -> Balanceamento de carga -> Load Balancers -> Criar Load Balancer
+			- ALB (Application Load Balancer):
+				- Foco: Aplicações Web (Camada 7 - HTTP/HTTPS)
+				- Entende URLs, cabeçalhos, cookies, etc.
+				- Ideal para:
+					- Roteamento por path (ex: /login, /produtos)
+					- Aplicações com APIs REST, sites e microsserviços
+			- NLB (Network Load Balancer):
+				- Foco: Alto desempenho em baixo nível (Camada 4 - TCP/UDP)
+				- Muito rápido, baixo delay.
+				- Ideal para:
+					- Tráfego TCP ou UDP puro (ex: bancos de dados, aplicações que não usam HTTP)
+					- Alta performance e escalabilidade
+			- GLB (Gateway Load Balancer):
+				- Foco: Integração com appliances de segurança (como firewalls)
+				- Trabalha na Camada 3 (IP), combina Load Balancing + NAT
+				- Ideal para:
+					- Distribuir tráfego para firewalls, IDS, IPS
+					- Inspeção de pacotes e segurança antes de chegar na aplicação
+		- Selecionar o ALB ->
+			- Nome
+			- Scheme: Internet-facing
+			- IP address type: IPv4
+			- VPC: Vamos selecionar as zonas de disponibilidade que nossas instâncias rodam
+			- SG: 'default' precisa estar habilitado, e vamos adicionar o acesso-web
+			- Listeners and routing: 
+				- Quando a requisição chegar ele vai mandar para um TG (Target Group)
+					- Create Target Group:
+						- Instances
+						- Nome
+						- Health check:
+							- São basicamente o que esse target group precisa ter como valido para ser considerado saudável
+					- Adicionar as duas instâncias EC2 aos target groups
+				- Selecionar o target group criado
+			- Testar Load Balancer:
+				- Copiar o DNS -> Colar em outra aba do navegador 
+				- Abrir as duas instâncias EC2 -> Conectar-se às duas via ssh
+					-Instância 1:
+						- Rodar o código: vim /opt/bitnami/nginx/html/index.html
+							- Logo após a tag 'body', adicionar o código:
+								- <h1> Serviço 1</h1>
+					-Instância 2:
+						- Rodar o código: vim /opt/bitnami/nginx/html/index.html
+							- Logo após a tag 'body', adicionar o código:
+								- <h1> Serviço 2</h1>
+
+	- DNS (Domain Name System):
+		- Copiar o DNS do LB para podermos adicionar apelidos ou alias ou CNAME 
+		- Em alguma plataforma de domínios como o Google Domains, configurar o apelido do domínio, colocar que ele é do tipo CNAME e colar a URL do LB 
+		- Dentro da AWS usamos o Route 53
+
+	- Auto Scaling:
+		- Menu da EC2 -> Auto Scaling -> Grupos de Auto Scaling:
+			- Nome
+			- Modelo de execução -> Criar modelo de execução:
+				- Nome
+				- Imagem: Nossa imagem já criada
+				- Tipo de instância: a mesma da instância principal
+				- Par de chaves: mesma da instância principal
+				- SG: acesso-ssh e default
+			- Criar modelo
+		- Selecionar modelo criado
+		- Selecionar as zonas de disponibilidade que nosso LB está mandando as requisições -> Próximo -> Anexar o AS ao nosso LB já existente  -> Pular para revisão
+		- Clicar no ASG criado -> Editar:
+			- Capacidade desejada: Queremos ter duas instâncias rodando
+			- Capacidade Mínima
+			- Capacidade Máxima
+		- Agora podemos apagar as instâncias que nós criamos primeiramente, tanto no menu de instâncias, quanto no target groups (deregister)
+	
+	- Políticas de escalabilidade:
+		- Menu da EC2 -> Auto Scaling -> Grupos de AS -> Nosso grupo -> Escalabilidade Automática -> Política de escalabilidade dinâmica -> Criar política 
+			- Tipos de política:
+				- Escalabilidade de monitoramento de objetivo
+				- Escalabilidade em etapas
+				- Escalabilidade simples
+			- Escalabilidade de monitoramento de objetivo ->
+				- Nome
+				- Tipo de métrica
+				- Valor de destino
+				- Desabilitar a redução (Opcional): Quer dizer que se passar do valor de destino novas instâncias serão criadas, caso estejam abaixo do valor ele começa a remover instâncias (isso com ela desabilitada)
+
+Módulo 5 (AWS CLI):
+	- Instalando AWS CLI:
+		- Pesquisar 'aws cli install'
+		- Console da AWS -> IAM -> Usuários -> Adicionar usuário -> Anexar políticas existentes de forma direta -> AdministratorAccess (em cenários reais, pesquisaríamos por acessos específicos)
+		- Rodas o comando no terminal: aws configure
+		- Fornecer a chave de acesso e a secret key
+	- CLI da EC2:
+		- Comandos:
+			'aws ec2 describe-instances': para mostrar todas as instâncias que nós temos
+			'aws ec2 describe-instances --query="Reservations[*].Instances"': para mostrar apenas a parte de instâncias
+			'aws ec2 describe-instances --filters="Name=instance-state-name,Values=running"': para mostrar apenas as instâncias que estão rodando
+			'aws ec2 describe-instances --filters="Name=instance-state-name,Values=running" --query="Reservations[*].Instances[*].InstanceId': para mostrar apenas o ID das instâncias que estão rodando 
+			'aws ec2 describe-instances --filters="Name=instance-state-name,Values=running" --query="Reservations[*].Instances[*].[InstanceId, State]': para mostrar apenas o ID e o estado das instâncias que estão rodando 
+			'aws ec2 stop-instances --instances-ids xxxxxxxxxxxx: para interromper a instância de ID tal
+			'aws ec2 describe-instances --filters="Name=instance-state-name,Values=running" --query="Reservations[*].Instances[*].InstanceId --output table': para mostrar apenas o ID das instâncias que estão rodando em uma tabela
+			'aws ec2 describe-instances --filters="Name=instance-state-name,Values=running" --query="Reservations[*].Instances[*].InstanceId --output yaml': para mostrar apenas o ID das instâncias que estão rodando em um yaml 

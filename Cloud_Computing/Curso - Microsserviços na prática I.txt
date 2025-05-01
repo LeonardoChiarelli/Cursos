@@ -1,0 +1,234 @@
+							Curso - Microsserviços na prática: IaC com CDK e deploy na AWS
+
+Módulo 1 (Projeto Inicial e containers):
+	- Utilizando Docker:
+		- Docker Desktop:
+			- Subimos um container com a imagem do MySQL e dentro da aplicação, em 'application.yml' trocamos a URL da conexão ao banco de dados pela URL fornecida pelo Docker Desktop
+		- Utilizando Linux:
+			- Para fazer o pull: 'sudo docker image pull mysql:5.7' (versão)
+			- Para rodar a imagem: 'sudo docker run -e MYSQL_ROOT_PASSWORD='root' -v C:\User\...\'volume':/var/lib/mysql -d mysql:5.7'
+				- MYSQL_ROOT_PASSWORD='senha do mysql' - Para passar a nossa senha via variável de ambiente
+				- MYSQL_ALLOW_EMPTY_PASSWORD=yes - Para permitir que a senha seja vazia
+				- MYSQL_RANDOM_ROOT_PASSWORD=yes - Para gerar uma senha aleatória
+			- Para conectar usando Linux: 
+				- 'sudo docker exec -it mysql-478d mysql -pmysqlpw'
+				- 'sudo docker exec -it 'id' bash'
+					-'mysql -u root -p 'senha definida'
+	- Gerando a imagem da aplicação:
+		- Criar o arquivo '.jar' da aplicação ->
+			-> No terminal do IntelliJ -> mvn clean package
+		- Abrir o editor de código (VSCode, IntelliJ) -> Criar um arquivo Dockerfile na raiz do projeto ->
+			-> FROM openjdk:21-alpine
+			   RUN addgroup -S spring && adduser -S spring -G spring
+			   USER spring:spring
+			   ARG  JAR_FILE=target/*.jar
+			   COPY ${JAR_FILE} app.jar
+			   ENTRYPOINT ["java", "-jar", "/app.jar"]
+		-> Build Image on 'Docker' -> Na imagem criada -> Edit Configuration -> Image tag -> 'Nome desejado'
+
+Módulo 2 (Partindo para o Cloud):
+	- DevOps e IaC:
+		- DevOps:
+			- Entende tanto a parte de código, deploy, etc (Dev), quanto a parte de infraestrutura, cloud, etc (Ops).
+			- AWS, GCP, Microsoft Azure, são as plataformas de cloud mais conhecidas e utilizadas.
+		- Opções para Iac (Infrastructure as Code):
+			- Opções para IaC:
+				- CloudFormation (serviço da AWS), arquivos em JSON ou YAML
+				- Terraform, multiplataforma
+				- SDK (Software Development Kit), não foi desenvolvido para ser usado como IaC
+				- CDK (Cloud Development Kit), um framework voltado para IaC
+	- Preparando o ambiente:
+		- Instalar o CDK via node -> 'npm install -g aws-cdk'
+		- Verificar a versão -> 'cdk --version'
+		- Fazer o bootstraping da conta ->
+			-> Precisaremos criar um novo usuário IAM no console de gerenciamento
+			-> Menu da AWS -> 'Seu usuário' -> “Credenciais de segurança.” -> Usuários -> Criar Usuário -> Anexar políticas diretamente -> AdministratorAccess -> Criar chave de acesso
+		- Conectar via terminal -> 'aws configure'
+	- Iniciando projeto com CDK:
+		- Criar um diretório do projeto -> Dentro do diretório, executar o código 'sudo cdk init app --language java'
+		- executar o código -> 'sudo cdk bootstrap'
+
+Módulo 3 (Complementando a infra):
+	- A VPC:
+		- Criar uma classe Java própria para a VPC ->
+			-> Criar um atributo Vpc -> private Vpc vpc; -> Criar um getter -> 
+				-> public Vpc getVpc(){
+					return this.vpc;
+				   }
+			->   vpc = Vpc.Builder.create(this, "MyVpc")
+                            .maxAzs(3)  // Default is all AZs in region
+                            .build();
+
+		- Ir na classe principal '*App' e chamar a classe VPC após a instanciação da classe App -> var vpcStack = new 'classeVPC'(app, "VPC");
+		- No diretório do projeto -> 'sudo cdk list' -> 'sudo cdk deploy '<StackVPC>'
+
+	- Cluster:
+		- Criar uma classe Java própria para o Cluster ->
+			-> public class *ClusterStack extends Stack {
+
+				private Cluster cluster;				
+
+				public *ClusterStack(final Construct scope, final String id, final StackProps props, final Vpc vpc{
+					this(scope, id, null, vpc);
+				}
+
+				public *ClusterStac(final Construct scope, final String id, final StackProps props, final Vpc vpc {
+					super(scope, id, props);
+
+					Cluster cluster = Cluster.Builder.create(this, "MyCluster")
+			                .vpc(vpc).build();
+				}
+	
+				public Cluster getCluster(){ return this.cluster; }
+		- Ir na classe principal '*App' e chamar a classe Cluster após a instanciação da classe VPC -> var clusterStack = new 'classeCluster'(app, "Cluster", vpcStack.getVpc());
+		- Ainda na classe principal, após a instanciação do Cluster -> 'classeCluster'.addDependency(vpcStack);
+
+	- Serviços e deploy:
+		- Criar uma classe Java própria para o Load Balancer ->
+			-> public class *LoadBalancerStack extends Stack {
+				public *LoadBalancerStack(final Construct scope, final String id, final StackProps props, final Cluster cluster{
+					this(scope, id, null, cluster);
+				}
+
+				public *LoadBalancerStack(final Construct scope, final String id, final StackProps props, final Cluster cluster) {
+					super(scope, id, props):
+					ApplicationLoadBalancerFargateService.Builder.create(this, "MyFargatService")
+						.serviceName("") //Opcional 
+						.cluster(cluster) // Require
+						.cpu(512) // Default is 256
+						.desiredCount(6) // Default is 1
+						.listenerPort(8080)
+						.assignPublicIp(true) // Deixar o IP público
+						.taskImageOptions(
+							ApplicationLoadBalancerTaskImageOptions.builder()
+								.image(ContainerImage.fromRegistry("amazon/amazon-ecs-sample"))
+								.containerPort(8080)
+								.containerName("") // Opcional
+								.build())
+						.memoryLimitMiB(2048) // Default is 512
+						.publicLoadBalancer(true) // Default is false
+						.build();
+				}
+			  }
+		- Ir na classe principal '*App' e instanciar a classe LoadBalancer após adicionar a dependência do Cluster (var ** = new *LoadBalancerStack(app, "Service", clusterStack.getCluster();)
+		- Ainda na classe principal, adicionar o cluster como dependência do LoadBalancer -> 'classeLoadBalancer'.addDependency(clusterStack);'
+		- Fazer o deploy -> No diretório do projeto -> 'sudo cdk list' -> "sudo deploy '<Stacks>'"
+
+
+Módulo 4 (Projeto no ar):
+	- Criando a instância do banco:
+		- CFN Parameter: Parâmetro do Cloud Formation, para você entrar com informações na hora de fazer o deploy
+			Duplicar a stack principal dos passos anteriores (*App) e mudar seu nome para '*RDS' -> 
+				public class *RDS extends Stack {
+					public class *RDS(final Construct scope, final String id, Vpc vpc) { this(scope, id, null, vpc); }
+	
+					public class *RDS(final Construct scope, final String id, final StackProps props, Vpc vpc) {
+						super(scope, id, props);
+							
+						// Criação do CFN
+						CfnParameter password = CfnParameter.Builder.create(this, "senha")
+							.type("String")
+							.description("Senha do database **")
+							.build();
+
+						// Criação do Security Group (Padrão da VPC)
+						ISecurityGroup iSecurityGroup = SecurityGroup.fromSecurityGroupId(this, id, vpc.getVpcDefaultSecurityGroup());
+						iSecurityGroup.addIngressRule(Peer.anyIpv4(), Port.tcp(3306));
+
+						// Criação do Database (Database Instance)
+						DatabaseInstance database = DatabaseInstance.Builder
+							.create(this, "**")
+							.instanceIdentifier("**")
+							.engine(DatabaseInstanceEngine.mysql(MysqlInstanceEngineProps.builder() // Tipo do banco
+								.version(MysqlEngineVersion.'versão')
+								.build()))
+							.vpc(vpc)
+							.credentials(Credentials.fromUsername("admin",
+								CredentialsFromUsernameOptions.builder()
+									.password(SecretValue.unsafePlainText(password.getValueAsString()))
+									.build()))
+							.instanceType(InstanceType.of(InstanceClass.BURSTABLE2, InstanceSize.MICRO))
+							.multiAz(false)
+							.allocatedStorage(10)
+							.securityGroups(Collections.singletonList(iSecurityGroup))
+							.vpcSubnets(SubnetSelection.builder()
+								.subnets(vpc.getPrivateSubnets())
+								.build())
+							.build();
+
+						//Endpoint e senhha do banco (CloudFormation Output)
+						CfnOutput.Builder.create(this, "**-endpoint")
+							.exportName("**-endpoint")
+							.value(database.getDbInstanceEndpointAddress())
+							.build();
+
+						CfnOutput.Builder.create(this, "**-senha")
+							.exportName("**-senha")
+							.value(password.getValueAsString())			
+							.build();
+					}
+				}
+		- Na aplicação principal (*App) criar uma instância para o RDS -> Após adicionar a vpc como dependência do Cluster -> var rdsStack = new *RDS(app, "Rds", vpcStack.getVpc());
+		- Ainda na aplicação principal, vamos adicionar a VPC como dependência do RDS -> rdsStack.addDependency(vpcStack);
+		- Fazer o deploy da aplicação -> No diretório do projeto -> "sudo cdk deploy --parameters '<Stack>':password=12345678 '<Stack>'"
+
+	- Configurando a aplicação:
+		- Na classe de serviço (LoadBalancer) -> Criar um hashMap ->
+			-> 	Map<String, String> autenticação = new HashMap<>();
+				autenticação.put("SPRING_DATASOURCE_URL", "jdbc:mysql://" + Fn.importValue("**-endpoint" + ":3306/'nomeDoBanco'?createDabaseIfNotExist=true"));
+				autenticação.put("SPRING_DATASOURCE_USERNAME", "admin");
+				autenticação.put("SPRING_DATASOURCE_PASSWORD", Fn.importValue("**-senha"));
+			-> Em 'ApplicationLaodBalanceTaskImageOptions' após o '.containerName("")' colocar -> 
+			-> .environment(autenticacao);
+		- Na aplicação principal (*App) vamos adicionar o banco como dependência da classe de serviço (LoadBalancer) -> *LoadBalancerStack.addDependency(*RDS);
+
+	- Testando a aplicação:
+		- Fazer o deploy da aplicação -> No diretório do projeto -> 'sudo cdk list' -> "sudo deploy '<Stacks>'"
+		- Faça requisições para os endpoints da sua aplicação
+
+Módulo 5 (Verificação e monitoramento):
+	- Docker Hub vs. ECR (Elastic Container Registry):
+		- Abrir o console da AWS -> ECR -> Get Stared ->
+			- General Settings:
+				- Visibillity settings -> private
+				- Repository name -> 
+			-> Create Reposiotry
+		- Clicar no repository criado -> View push commands -> executar todos os comandos via terminal Linux 
+			- Caso já tenha a imagem no docker Hub, não há necessidade de fazer o build da imagem
+			- Caso haja necessidade mudar o tag da imagem para o usuário do dockerHub, ex: 'leonardochiarelli/pedidos:latest'
+		- Para usar o ECR como IaC, vamos instanciar um objeto da classe IRepository ->
+				-> IRepository repository = Repository.fromRepositoryName(this, "'identificador'", "'nome do repositorio'");
+			-> Vamos até a classe de serviço (LoadBalancer) e mudar o 'ApplicationLoadBalacedTaskImageOptions' para ->
+				-> ApplicationLoadBalacedTaskImageOptions.builder()
+					.image(ContainerImage.fromEcrRepository(repository);
+				-> O resto continua igual
+		- Fazer o deploy novamente -> 'sudo cdk list' -> "sudo cdk deploy '<Stack>'"
+
+	- Monitoramento:
+		- Para adicionar alguns logs do CloudWatch no código, vamos até a aplicação de service (LoadBalancerStack) e após a tag '.environment' adicionar as tags ->
+			-> 	.logDrive(LogDriver.awsLogs(AwsLogsDriverProps.builder()
+					.logGroup(LogGroup.Builder.create(this, "'identificador'")
+						.logGroupName("**")
+						.removalPolicy(RemovalPolicy.DESTROY) // Apaga os logs automaticamente caso eu apague a Stack para recriar
+						.build())
+					.streamPrefix("**")
+					.build()))	
+	
+	- Auto Scaling:
+		- Introduzir o constructor da classe service (LoadBalancer) em uma variável, basta selecionar todo o código do constructor e apertar (Ctrl + Alt + V)
+		- Após a criação do *LoadBalancerStack insererir os códigos ->
+			-> 	ScalableTaskCount scalableTarget = 'nome da variável criada no passo anterior'.getService().autoScaleTaskCount(EnableScalingProps.buider()
+					.minCapacity(1)
+					.maxCapacity(3)
+					. build());
+				scalableTarget.scaleOnCpuutilization("CpuScaling", CpuUtilizationScalingProps.builder()
+					.targetUtilizationPercent(50)
+						.scaleInCoolDown(Duration.minutes(3)) // Quanto tempo a minha CPU tem que estar com o número máximo de utilização para subir uma nova instância
+						.scaleOutCoolDown(Duration.minutes(2)) // Quanto tempo a minha CPU tem que estar abaixo do número máximo de utilização para remover uma instância
+					.build());
+				scalableTarget.scaleOnMemoryUtilization("MemoryScaling", MemoryUtilizationProps.builder()
+					.targetUtilizationPercent(50)
+						.scaleInCoolDown(Duration.minutes(3))
+						.scaleOutCoolDown(Duration.minutes(2))
+					.build());
+		- Fazer o deploy novamente

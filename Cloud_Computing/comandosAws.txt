@@ -1,0 +1,36 @@
+1. Crie uma nova instância EC2 utilizando o Ubuntu como sistema operacional
+2. Crie um par de chaves ".pem" e o utilize na criação da instância.
+3. Conecte-se a instância via SSH: "ssh -i 'chave.pem' ec2-user@IP_DA_INSTÂNCIA"
+	3.1. Subsitua o IP_DA_INSTÂNCIA pelo IP ou DNS público da instância
+	3.2. O usuário pode variar:
+		- ec2-user -> Amazon Linux, Red Hat
+		- ubuntu -> Ubuntu
+		- admin -> Debian
+		- centos -> CentOS
+4. Se quiser transferir arquivos entre sua máquina e a isntância, use o SCP
+	4.1. Enviar arquivo para a instância
+		- scp -i "chave.pem" arquivo.txt ec2-user@IP_DA_ISNTÂNCIA:/home/ec2-user/
+	4.2. Baixar arquivo da instância
+		- scp -i "chave.pem" ec2-user@IP_DA_INSTÂNCIA:/home/ec2-user/arquivo.txt .
+5. Exponha a porta desejada da instância. Para isso vá para a lista das suas instâncias e selecione a instância
+6. No menu inferior, selecione a aba Segurança. Procure pelos grupos de segurança e clique no link para o grupo de segurança da instância.
+7. Clique no botão Editar regras de entrada e em seguida no botão Adicionar regra. Adicione uma nova regra com o protocolo TCP, tipo TCP personalizado, intervalo de portas 3000, tipo de origem Personalizado e origem 0.0.0.0/0.
+8. Ajuste as permissões da chave baixada na criação da instância com o comando: "chmod 600 DIRETÓRIO-DA-CHAVE/chave.pem".
+9. No diretório anterior ao diretório do projeto Adopet backend, compacte a pasta do projeto usando o comando: 
+	- zip -r arquivi.zip diretório/
+10. Envie a pasta compactada para a EC2 via scp executando o comando:
+	- scp -i DIRETÓRIO-DA-CHAVE/chave.pem arquivo.zip ubuntu@IP-PUBLICO:/home/ubuntu
+11. No terminal da instância, descompacte a pasta com o comando: unzip arquivo.zip
+
+12. Migrando os dados para o bastion-host, com a instância criada e conectada ao RDS, abra o terminal do seu computador e dê as permissões necessárias para a chave de acesso, com o comando:
+	- chmod 600 DIRETÓRIO-DA-CHAVE/bastion-host-key.pem
+13. Envie o arquivo de dump via SCP, utilizando o comando:
+	- scp -i DIRETÓRIO-DA-CHAVE/bastion-host-key.pem  dump.sql ubuntu@IP-PUBLICO:/home/ubuntu/
+14. Se conecte ao bastion host via ssh, usando o comando:
+	- ssh -i DIRETÓRIO-DA-CHAVE/bastion-host-key.pem ubuntu@IP-PUBLICO
+15. acesse o terminal do Postgres com o comando:
+	- psql -h RDS-ENDPOINT -U postgres
+16. Use o arquivo de dump para migrar os dados locais para a nuvem, executando o comando a seguir no terminal do Bastion Host:
+	- pg_restore -h RDS-ENDPOINT -U postgres -d mydatabase -v /home/ubuntu/dump.sql
+
+

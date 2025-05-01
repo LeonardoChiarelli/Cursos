@@ -1,0 +1,272 @@
+								CURSO - Amazon ECS: gerencie Docker na nuvem da AWS
+Módulo 1 (Conhecendo ECS [Elastic Container Service]):
+	- Entendendo o conceito:
+		- ECS é um serviço de orquestração de containers
+		- Infraestrutura baseada em containers em produção 
+	- Primeiros Passos:
+		-Definições:
+			- Container: Qual imagem o container vai utilizar, quais recursos ele vai poder utilizar, quais portas vão estar abertas 
+			- Task: Definição para um conjunto de containers, muito comum que uma tarefa tenha apenas um container, mas podemos ter vários containers dentro da mesma tarefa
+			- Service: Basicamente é o que controla nossas tarefas (tasks)
+			- Cluster: E onde todos os passos anteriores serão executados
+			- Fargate: Uma forma de simplificar seu cluster, delegando tudo para a AWS
+		- Console da AWS -> ECS -> Comece a usar 
+	- Parando uma tarefa:
+		- Menu do ECS -> Clusters -> 'Cluster criado' -> Tarefas -> Selecionar tarefa -> Parar selecionado(s)
+			- Ao pararmos uma tarefa, outra já vai ser criada por conta das definições do Service, onde há de ter pelo menos uma tarefa em execução (usa-se o AS)
+		- Caso queiramos para de fato uma tarefa:
+			- Menu do ECS -> Clusters -> 'Cluster criado' -> Serviços -> Selecionar serviço -> Editar -> Tarefas desejadas -> 0
+
+Módulo 2  (Imagens no ECR [Elastic Container Registry]):
+	- Revisando conceitos:
+		- Excluir serviço criado anteriormente e remover o Cluster
+		- Imagem é basicamente um modelo de execução para vários containers 
+			- Pegando como modelo a imagem do NGINX, acessamos o 'https://hub.docker.com/_/nginx'
+			- Para criamos uma imagem de produção de uma aplicação php/js por exemplo 
+				- Na hora da criação da imagem nós definimos que tal imagem vai ser a partir da imagem oficial do node ou a partir da imagem oficial do php 
+				- Vamos adicionar a essa imagem os arquivos da nossa aplicação, com o comando 'copy' ou o comando 'add'
+				- Em cima disso nós vamos instalar as dependências, por exemplo utilizando um 'npm install' para o js ou um 'composer install' para o php
+	- Registrando no ECR:
+		- Utilizado quando não queremos deixar nossa imagem em um repositório público
+		- Menu do ECR -> Repositories -> Criar repositório ->
+			- Privado
+			- Nome (sempre será o tipo de imagem que ele armazena)
+		- Visualizar comandos push -> Executar os comandos via Linux
+			- Tags servem para indicar versões
+	- Ciclo de vida das imagens:
+		- Menu do ECR -> Lifecycles Policy -> Criar regra ->
+			- Cada regra tem uma prioridade
+			- Descrição
+			- Status da imagem:
+				- Marcada (Com tag)
+				- Não marcada (Sem tag)
+				- Qualquer
+			- Prefixo de etiquetas (Tags começadas em '')
+			- Critérios de correspondência:
+				- Desde que a imagem foi enviada
+				- Contagem de imagem maior que
+		- Salvar
+
+Módulo 3 (Compreendendo as etapas):
+	- Criando um Cluster:
+		- Definição:
+			- Infraestrutura onde nossos serviços vão rodar
+		- Menu da ECS -> Clusters -> Criar Clusters ->
+			- Nome
+			- VPC (padrão)
+				- Sub-redes (selecionar aquelas onde as instâncias EC2 rodam ['a', 'b'])
+			- Infraestrutura
+				- Instância do Amazon EC2
+				- Utilizar um já existente ou criar um ASG novo
+				- Sistema operacional
+				- Tipo de instância
+				- Capacidade desejada (mín. máx.)
+				- Par de chaves SSH (via de regra, quando trabalhamos com ECS, não fazemos acesso ssh)
+			- Monitoramento (CloudWatch Agent) [opcional]
+			- Tags [opcional].
+	- Definição de tarefa (tarefa define os containers):	
+		- Menu da ECS -> Definições de tarefas -> Criar nova definição de tarefa ->
+			- Família de definição de tarefa (basicamente um nome, mas entende-se como várias versões da mesma tarefa)
+			- Container 
+				- Nome
+				- URI da imagem (nesse caso vai utilizar a imagem do NGINX, que registramos no ECR)
+				- Mapeamento de porta (basicamente o que fazemos com o '-p' no Docker)
+			- Ambiente
+				- Ambiente da aplicação
+					- Instância do EC2
+				- Sistema operacional/arquitetura
+				- Tamanho da tarefa
+					- Se rodarmos dentro do Fargate, será o tamanho que a AWS vai reservar no Fargate
+					- Ao usarmos dentro do EC2, é o limite dessa tarefa dentro da instância, neste caso o tamanho da tarefa deve ser menor que os recursos da instância
+						- CPU
+						- Memória
+				- Tamanho do container
+					- Vamos definir para caso o container ocupe mais do que esses recursos (mais CPU ou mais Memória), ele será interrompido
+				- Função de tarefa, modo de rede
+					- Função de tarefa: Selecionaríamos as 'roles' (os papéis) que estariam atrelados a esta tarefa
+					- Modo de rede:
+						- Bridge: modo de rede padrão do Docker (Aqui devemos especificar a porta do host na etapa de Container)
+						- Anterior -> Mapeamento de porta -> Porta do host (Porta da instância EC2 que vai rodar o container)
+		- Para executar essa tarefa dentro de um Cluster é muito comum criarmos um serviço, o serviço executa uma ou mais tarefas
+			- Clicamos em cima da Definição -> Selecionar a tarefa -> Implantar -> Criar serviço
+		- Para testarmos a tarefa
+			- Clicamos em cima da Definição -> Selecionar a tarefa -> Implantar -> Executar tarefa
+				- Selecionamos em qual cluster vamos executar 
+				- Opções de computação
+					- Estratégia do provedor de capacidade
+						- Provedor de capacidade: Selecionar nosso ASG
+					- Tipo de inicialização
+		- Para acessarmos a tarefa -> Clicamos nela -> Clicamos no Cluster dela -> Vemos em qual instância EC2 ela está executando -> Criamos um SG para liberar a porta 80 -> Implementamos à esta instância -> Clicamos no DNS da instância
+	- Criando um load balancer:
+		- Menu EC2 -> Balanceamento de Carga -> Load Balancers -> Criar Load Balancer -> ALB -> Criar ->
+			- Nome
+			- Schema
+				- Internet-facing
+			- IP Address type
+				- IPv4
+			- Network mapping
+				- VPC
+				- Mappings (Selecionar as sub-redes que criamos no Cluster ['a', 'b']
+			- Security Group
+				- Default
+				- Acesso-web
+			- Listeners and routing
+				- Criar um Target Group
+					- Instances
+					- Nome
+					- Nesse caso vamos criar um TG vazio, sem nenhuma instância 
+	- Configurando o serviço:
+		- Menu da ECS -> Definição de tarefa -> Clicar na definição -> Clicar na tarefa -> Criar nova revisão
+			- Container: 1 -> Porta do host -> deixar vazio (para ser atribuído aleatoriamente) -> Criar -> Desativar revisão 1
+		- Menu da ECS -> Clusters -> Clicar no nosso cluster -> Tarefa -> Tarefa que está em execução -> Parar
+		- Menu da ECS -> Clusters -> Clicar no nosso cluster -> Serviços -> Implantar ->
+			- Estratégia do provedor e capacidade
+				- Selecionar nosso ASG
+			- Tipo de aplicação
+				- Serviço
+				- Definição de tarefa
+					- Selecionar a tarefa criada anteriormente, na versão mais recente
+				- Nome do serviço
+				- Tarefas desejadas: 2
+			- Balanceamento de carga
+				- Selecionar nosso LB
+				- Escolher o container para balancear a carga 
+				- Listener
+					- Podemos criar um novo ou selecionar um já existente (80:HTTP)
+				- Grupo de destino
+					- Selecionar nosso target group criado anteriormente 
+
+Módulo 4 (Processo Completo):
+	- Gerando imagem com código
+		- Menu da ECS -> ECR -> Repositories -> Criar repositório (neste caso serão dois)
+			- Configuração padrão do outro ECR
+			- Nome: sistema1 / sistema2
+		- sistema1 -> Visualizar comando push -> Executar todos os comandos
+		- sistema2 -> Visualizar comando push -> Executar os comandos de 'build', 'tag' e 'push'
+
+		- Menu da ECS -> Clusters -> Nosso cluster criado -> Serviços -> Nosso serviço criado -> Editar serviço -> Tarefas desejadas:0 -> Excluir serviço
+		- Menu da ECS -> Definições de tarefa -> Criar nova definição de tarefa -> Mesmo padrão de criação da outra tarefa
+		- Menu da ECS -> Clusters -> Nosso cluster criado -> Serviços -> Implantar -> Criar serviço -> Mesmo padrão de criação do outro serviço até 'Path Pattern'
+			- /sistema1 : Evaluation order:1
+			- /sistema2 : Evaluation order:2
+		
+		- Menu EC2 -> Load Balancers -> Nosso LB -> Copiar o DNS público
+			- DNS/sistema1/'arquivo'
+			- DNS/sistema2/'arquivo'
+	- Atualizando o código
+		- Menu da ECS -> Clusters -> 'nosso cluster' -> abrir o 'sistema1' -> Abrir o LB e abrir o TG
+			- LB:
+				- Verificar as regras de direcionamento 
+					-> Listeners (Ouvindo apenas a porta 80) -> Visualizar/editar regras
+						-> Selecionar a regra que esta mandando as requisições para o TG que foi descontinuado
+							-> ENTAO -> Retorne a resposta fixa ->
+								Código da resposta: 404
+								Content-Type: application/json
+								Corpo da resposta: "Rota não encontrada"
+						-> Selecionar o caminho /sistema1
+							-> SE -> Caminho
+								-> usa /sistema1/*
+						-> Selecionar o caminho /sistema2
+							-> SE -> Caminho
+								-> usa /sistema2/*
+		- No Editor de código, renomear os arquivos 'data.json' para sistema1.json e sistema2.json -> No arquivo Dockerfile mudar o COPY para pegar os arquivos renomeados
+			-> ECR -> sistema1 -> Visualizar comandos push -> Comandos 'build', 'tag' e 'push'
+			-> ECR -> sistema2 -> Visualizar comandos push -> Comandos 'build', 'tag' e 'push'
+			-> Ir ao LB
+				-> Selecionar o caminho do sistema1/*
+					-> SE -> Caminho
+						-> usa /sistema1.json
+				-> Selecionar o caminho do sistema2/*
+					-> SE -> Caminho
+						-> usa /sistema2.json
+	- Recriando a tarefa
+		- Menu da ECS -> Clusters -> 'nosso cluster'
+			-> sistema1 -> Configuração e tarefas -> Acessar a tarefa que está em execução -> Parar
+			-> sistema2 -> Configuração e tarefas -> Acessar a tarefa que está em execução -> Parar
+
+Módulo 5 (GitHub Actions):
+	- Configurando uma Action		
+		- Em um repositório com o código 
+			-> Settings -> Security -> Secrets -> actions
+				-> Definir as variáveis:
+					- AWS_ACCESS_KEY_ID
+					- AWS_SECRET_ACCESS_KEY
+				-> Actions -> Set up a workflow yourself 
+					- 'repositório'/.github/workflows/'nome do arquivo'.yml
+					- Código:
+						name: Deploy to ECS
+						jobs:
+							deploy_to_ecs:
+								runs-on: ubuntu-latest
+								steps: 
+									- uses: actions/checkout@v3
+		
+									- name: Configure AWS credentials
+								     	uses: aws-actions/configure-aws-credentials@v1
+								     	with:
+        									aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        									aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        									aws-region: sa-east-1
+		
+								   	- name: Login to Amazon ECR
+      									id: login-ecr
+      									uses: aws-actions/amazon-ecr-login@v1
+		
+								    	- name: Build, tag, and push image to Amazon ECR
+      									id: build-image
+      									env:
+        									ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        									ECR_REPOSITORY: "my-ecr-repo"
+        									IMAGE_TAG: ${{ github.sha }}
+      									run: |
+        									docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+		        							docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        									echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+		
+									- name: Download task definition
+									run: |
+										aws ecs describe-task-definition --task-definition "my-task-definition-family" --query taskDefinition > task-definition.json
+		
+    									- name: Fill in the new image ID in the Amazon ECS task definition
+      									id: task-def
+      									uses: aws-actions/amazon-ecs-render-task-definition@v1
+      									with:
+        									task-definition: task-definition.json
+        									container-name: "my-container"
+        									image: ${{ steps.build-image.outputs.image }}
+	
+		    							- name: Deploy Amazon ECS task definition
+      									uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+      									with:
+        									task-definition: ${{ steps.task-def.outputs.task-definition }}
+        									service: "my-service"
+        									cluster: "my-cluster"
+        									wait-for-service-stability: true
+	- Publicando alteração
+		- Apenas vamos mudar um dado do arquivo, fazer o commit e o push e ver a action acontecendo
+	- AWS Secret Manager
+		- Menu da Amazon -> Pesquisar por Secrets Manager -> Armazenar um novo segredo -> Configurar o novo segredo
+			-> Copiar o ARN do segredo -> Abrir o ECS -> Definições de tarefas -> 'uma das nossas tasks' -> 'qualquer revisão da task' -> Função de execução de tarefas -> ecsTaskExecutionRole ->
+				-> Adicionar permissões -> Criar política em linha ->
+					-> Serviço: Secrets Manager
+					-> Ações: GetSecretValue
+					-> Recursos: Adicionar ARN -> Colar a ARN que foi copiada
+				-> Menu da AWS -> KMS -> Chaves gerenciadas pela AWS -> aws/secretmanager -> Copiar ARN
+				-> Adicionar permissão adicional ->
+					-> Serviço: KMS (Key Management Service)
+					-> Ações: Decrypt
+					-> Recursos: Adicionar ARN -> Colar a ARN que foi copiada
+			-> Voltar a revisão da task -> Copiar o JSON -> Ir ao editor de código e criar um arquivo task-definition.json -> Colar o JSON dentro do arquivo 
+				-> Ir ate o ecs.yml -> Remover o trecho do código onde estamos baixando a task-definition pois ela já vai estar dentro do nosso repositório
+					-> 	- name: Download task definition
+						run: |
+							aws ecs describe-task-definition --task-definition "my-task-definition-family" --query taskDefinition
+			-> Ir ao arquivo task-definition.json -> dentro de "containerDefinitions" -> Adicionar abaixo de "volumesFrom": [], -> 
+				-> "secrets": [
+						{
+							"name": "nome da variável de ambiente que será criado no nosso container" (Neste caso USUARIO),
+							"valueFrom": "arn do secret manager":'valor que foi criado' (Neste caso usuário)::	
+						}
+					]
+		-> Fazer o commit -> git add. -> git commit -m "message" -> git push
+		-> Conectar-se via SSH à nova instância que foi criada -> Rodar o comando 'docker ps' -> Copiar o Id do container -> executar o comando 'docker exec -it 'id do container'' -> dentro do container executar o comando 'echo $USUARIO 
