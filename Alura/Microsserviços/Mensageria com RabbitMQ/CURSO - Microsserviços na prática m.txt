@@ -1,0 +1,1 @@
+			CURSO - Microsserviços na prática: mensageria com RabbitMQ
