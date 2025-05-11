@@ -1,0 +1,151 @@
+			CURSO - DevOps: explorando conceitos, comandos e scripts no Linux CLI
+
+Módulo 1 (Linux e DevOps):
+	- Acesso via SSH:
+		- Para acessarmos uma VM (Virtual Machine) precisamos de seu 'ip'
+		- Precisamos ter uma placa física de rede
+		- Com a VM aberta -> Dispositivos -> Rede -> Configurações de Rede ->
+			-> Rede -> Adaptador 1 -> Conectado a Placa em modo Bridge -> Precisamos nos assegurar que a placa seja de fato física -> Ok
+		-> Rede -> Conectar  Placa de Rede
+		- Digitar o comando 'ip address' -> Olhar na interface 'enp' e copiar o endereço ip de 'inet'
+		- Para fazermos a conexão via SSH, vamos ao cmd e digitar o código -> "ssh 'nome do usuário da VM'@'ip da VM'
+		- Para vermos se estamos realmente conectados à VM, utilizamos o comando 'ls', como  a VM é nova, provavelmente o comando 'ls' não irá listar nada
+
+	- Hora da prática:
+		- Comando 'ls' -> Lista todos os arquivos e diretórios existentes dentro de um diretório
+		- Comando 'ls -a' -> Para exibir nos resultados da listagem os arquivos e pastas ocultas existentes no diretório
+		- Comando 'pwd' -> Retorna o caminho completo do diretório atual
+		- Comando 'cd /caminho/do/diretorio/desejado' -> Para percorrer diferentes diretórios dentro do Linux
+		- Comandos 'ls -l' -> Para obter uma listagem mais detalhada, incluindo permissões, proprietário, tamanho e data de modificação dos arquivos.
+
+Módulo 2 (Explorando o Linux Server):
+	- Navegando no Linux Server:
+		- O comando 'sudo apt update' é usado para verificar quais pacotes estão disponíveis para atualização
+		- O comando 'sudo apt list --upgradable' é usado para listar todos os pacotes que podem ser atualizados
+		- O comando 'sudo apt upgrade' é usado para atualizar todos os pacotes disponíveis
+		- O comando "mkdir 'nome do diretório'" é usado para criar um diretório
+		- O comando 'history' é usado para listar todos os comandos que foram executados
+
+	- Gerenciando arquivos:
+		- O comando "touch 'nome do arquivo'.*" é usado para criar um arquivo
+		- O comando "cat > 'nome do arquivo'.*" é usado para escrever dentro deste arquivo
+			- "Ctrl + D" para sair do ambiente 'cat'
+		- O comando "cat 'nome do arquivo'.*" é usado para verificar o conteúdo deste arquivo
+		- O comando "echo 'mensagem para ser exibida'" é utilizado para escrever comandos na tela/notificações
+			- O comando "echo 'mensagem para ser escrita' > 'nome do arquivo'" é utilizado para escrever dentro do arquivo desejado (Irá substituir todo o conteúdo já existente)
+		- Os Comandos "nano 'nome do arquivo'" e "vim 'nome do arquivo'" são como "editores de texto do Linux
+			- Para usá-los, precisamos instalar antes, com os comandos -> 'sudo apt install nano' e 'sudo apt install vim'
+			- Para criar um novo arquivo pelo 'nano' ou pelo 'vim' pasta apenas digitar os comandos ('nano' ou 'vim') no terminal
+		- O comando "tar -czf 'nome do arquivo.tar.gz' 'arquivo(s) que queremos compactar' " serve para compactar arquivos em um único arquivo 
+			- 'c' -> create
+			- 'z' -> zip
+			- 'f' -> field  
+		- O comando "mv 'arquivo desejado' '/caminho/do/diretório/desejado'
+		- O comando "rm 'aquivo(s) que queremos remover' é usado para remover arquivos
+		- O comando "rmdir 'diretório(s) que queremos remover' é usado para remover diretórios
+		- O comando "rmdir -r 'diretório(s) que queremos remover' é usado para remover um diretório e todos os seus arquivos e subdiretórios
+		- O comando 'mkdir -p' é usado para criar diretórios aninhados
+		- O comando 'ls arc*' lista arquivos iniciados por arc com qualquer sequência de caracteres adicionais
+		- O comando "cp -r 'diretório'/* 'diretorio'" é usado para copiar o conteúdo do primeiro diretório para o outro diretório
+		- O comando "mv 'diretório'/* 'diretorio'" é usado para mover o conteúdo do primeiro diretório para o outro diretório
+
+Módulo 3 (Shell scripting):
+	- Construindo scripts no shell:
+		- Vamos criar um novo arquivo usando o editor de texto com o comando -> 'nano backup.sh' e escrever os seguintes comandos ->
+			-> #! /bin/bash -> Primeira linha será responsável por indicar quem será o interpretador 
+			  diretorio_backup="/caminho/do/diretório" -> Criação de uma variável para armazenar o nome/caminho do diretório que se encontram os arquivos de dados críticos 
+			  nome arquivo="'nome do arquivo'_$(date +%Y%m%d_%H%M%S).tar.gz"-> Criação da variável para armazenar o nome do arquivo
+			  tar -czf "$nome_arquivo" "$diretorio_backup" -> Compactação dos arquivos
+			  echo "Backup concluído em $nome_arquivo" -> Informando ao usuário que o backup foi realizado com sucesso
+		- Agora vamos executar o código -> "sudo chmod +x 'nome do arquivo'"
+		- Para executar este script basta executar o código -> "sudo bash 'nome do arquivo'"
+	- Usando condições no script:
+		- if [ condição ]; then
+  			# Comandos a serem executados se a condição testada for verdadeira.
+		elif [ outra condição ]; then
+		 	# Comandos a serem executados se a primeira condição testada for falsa e a segunda condição testada for verdadeira.
+		else
+		  	# Comandos a serem executados se nenhuma das condições testadas for verdadeira.
+		fi
+		
+		- if [ "$string1" = "$string2" ]; then
+  			# Comandos a serem executados se as strings forem iguais.
+		fi
+
+		- if [ "$string1" != "$string2" ]; then
+  			# Comandos a serem executados se as strings forem distintas.
+		fi
+
+		- if [ "$numero1" -eq "$numero2" ]; then
+  			# Comandos a serem executados se os números forem iguais.
+		fi
+
+		- if [ "$numero1" -ne "$numero2" ]; then
+  			# Comandos a serem executados se os números forem distintos.
+		fi
+
+		- if [ "$numero1" -gt "$numero2" ]; then
+  			# Comandos a serem executados se o primeiro número for maior que o segundo.
+		fi
+
+		- if [ "$numero1" -lt "$numero2" ]; then
+  			# Comandos a serem executados se o primeiro número for menor que o segundo.
+		fi
+
+		- if [ "$numero1" -ge "$numero2" ]; then
+  			# Comandos a serem executados se o primeiro número for maior ou igual ao segundo.
+		fi
+
+		- if [  -e "/caminho/do/arquivo" ]; then
+  			# Comandos a serem executados caso seja constatada a existência do diretório ou arquivo.
+		fi
+
+	- Passagem de parâmetros:
+		- Abrir o editor de texto -> "nano compactador.sh" ->
+			-> #! /bin/bash
+
+			if [ "$#" -lt 2 ]; then -> Testando o número de parâmetros passados pelo usuário
+				echo "O programa $0 requer nome do arquivo e arquivos a serem compactados" -> Informando ao usuário a causa do erro
+				exit 1 -> Saída de erro
+			fi
+			arquivo_saida="$1" -> Colocando o primeiro parâmetro passado pelo usuário na variável 'arquivo_saida'
+			arquivos=("${@:2}")-> Variável que será um array que agrupara todos os arquivos a partir do segundo parâmetro que serão compactados
+			tar -czf "$arquivo_saida" "${arquivos[@]}" -> Compactando todos os arquivos dentro da variável arquivos
+			echo "Compactado com sucesso em $arquivo_saida"
+		- Modificar a permissão do arquivo com o comando -> 'sudo chmod +x compactador.sh
+		- Testando passando os parâmetros necessários -> "sudo bash compactador.sh 'arquivo de saída'.tar.gz 'path/dos/arquivos'
+		- Para descompactar os arquivos podemos usar o comando -> "tar -tf 'nome do arquivo' 
+		
+Módulo 4 (Automatização de tarefas):
+	- Executando múltiplas tarefas:
+		- Abrir o editor de texto -> 'nano' ->
+			-> #! /bin/bash
+			read -p "Entre com a operação desejada: 'compactar' ou 'descompactar'" 'nome da variável que irá armazenar o valor digitado pelo user' -> Perguntando ao usuário qual operação ele quer realizar e armazenando em uma variável
+			case "$operacao" in -> Estrutura de seleção que lembra o 'switch-case'
+				"compactar")
+					read -p "Informe o nome do arquivo final (.tar.gz) da compactação: " arquivo_final
+					read -p "Quais serão os arquivos que serão compactados, separados por espaço: " arquivos
+					tar -czf "$arquivo_final" $arquivos
+					echo "Arquivos compactados com sucesso em $arquivo_final"
+				;;
+				"descompactar")
+					read -p "Informe o nome do arquivo que deseja descompactar (.tar.gz): " arquivo_compactado
+					read -p "Informe o diretório de destino: " diretorio
+					tar -xzf "$arquivo_compactado" -C "$diretorio"
+					echo "Arquivos descompactados em $diretorio"
+				;; 
+				*)
+				echo "Operação inválida!"
+				echo "Selecione 'compactar' ou 'descompactar'
+				exit 1
+				;;
+			esac
+			
+	- Instalando um servidor web:
+		- Primeiro vamos atualizar os pacotes presentes no servidor -> 'sudo apt update -y' -> Agora vamos instalar um servidor NGINX -> 'sudo apt install nginx -y'
+		- Agora vamos verificar se o servidor está rodando -> 'sudo systemctl status nginx'
+		- O comando 'systemctl status' sem nenhum parâmetro vai mostrar o status de todas as unidades do servidor, muito útil para monitorar e diagnosticar erros
+
+Módulo 5 (Monitoramento e agendamento):
+	- Monitorando recursos:
+		- Com o comando
