@@ -148,4 +148,7 @@ Módulo 4 (Automatização de tarefas):
 
 Módulo 5 (Monitoramento e agendamento):
 	- Monitorando recursos:
-		- Com o comando
+		- Com o comando 'top' para verificar todos os processos que estão em execução no servidor
+			- Se digitarmos 'U' podemos verificar os processos em execução por usuário
+			- Se digitarmos 'F' vamos ter acesso à uma série de informações que podem ser listadas na nossa tabela
+			- Se digitarmos 'Q' vamos sair da tela do 'top'	
