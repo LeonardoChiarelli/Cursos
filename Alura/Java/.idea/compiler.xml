@@ -18,7 +18,7 @@
         <module name="ScreenMatchPhrases" />
         <module name="gateway" />
       </profile>
-      <profile name="Annotation profile for adopetExceptions" enabled="true">
+      <profile name="Annotation profile for adopetThreads" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
