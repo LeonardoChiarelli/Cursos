@@ -1,0 +1,28 @@
+				CURSO - Microsserviços na prática: IaC com CDK e deploy na AWS Microsserviços na prática: IaC com CDK e deploy na AWS
+
+Módulo 1 (Projeto inicial e container):
+	- Utilizando Docker:
+	- Gerando a imagem da aplicação:
+	
+Módulo 2 (Partindo para Cloud):
+	- DevOps e IaC (Infrastructure as Code):
+	- Preparando ambiente:
+	- Iniciando projeto com o CDK:
+
+Módulo 3 (Completando a infra):
+	- Stacks e recursos:
+	- A VPC (Virtual Private Cloud):
+	- Cluster:
+	- Serviços e Deploy:
+
+Módulo 4 (Projeto no ar):
+	- RDS (Relational DataBase Service):
+	- Criando a instância do banco:
+	- Configurando a aplicação:
+	- Testando a aplicação:
+
+Módulo 5: (Verificação e Monitoramento):
+	- Docker Hub vs. ECR:
+	- Monitoramento:
+	- Auto Scaling:
+

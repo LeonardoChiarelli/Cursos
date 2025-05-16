@@ -1,0 +1,158 @@
+			CURSO - Microsserviços na prática: mensageria com RabbitMQ
+
+Módulo 1 (Requisições assíncronas):
+	- Preparando o ambiente:
+		- O RabbitMQ atua em duas partes:
+			- Servidor: recebe as mensagens, processa-las, encaminha-las para as filas.
+			- Cliente: a parte que é usada na aplicação, usada para fazer a publicação e o consumo das mensagens
+		- Entrar na página oficial do RabbitMQ -> Get Started -> Download + Installation -> Escolher o modo de instalação (Vamos priorizar ou docker ou Linux)
+		- Acessar "localhost:15672" -> Caso não tenha configurado variáveis de ambiente (Username e password = guest)
+		- Comando:
+			-> docker run -it -d --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4-management
+
+Módulo 2 (Padrão Pub/Sub)
+	- Configurando o projeto:
+		- Incluir a dependência no pom.xml ->
+			-> <dependency>
+		      	   	<groupId>org.springframework.boot</groupId>
+			     	<artifactId>spring-boot-starter-amqp</artifactId>
+			   </dependency>
+			   <dependency>
+			      	<groupId>org.springframework.amqp</groupId>
+      				<artifactId>spring-rabbit-test</artifactId>
+      				<scope>test</scope>
+    			   </dependency>
+		-> Ir no arquivo 'application.yml' e adicionar as seguintes configurações ->
+			-> spring:
+			    rabbitmq:
+			     host: "localhost"
+			     port: 5672
+			     username: "admin"
+			     password: "secret"
+		-> Ir no microsserviço (package) que desejamos implementar o rabbitmq -> Criar um novo package chamado 'amqp' -> Criar uma classe '*AMQPConfiguration' ->
+			-> Anotar a classe com o @Configuration
+			-> Criar uma nova Queue (fila) -> 'public Queue criarFila(){ return new Queue('nome da fila', false); }'
+				-> Com a anotação @Bean no método
+				-> Primeiro parâmetro se referencia ao nome da fila
+				-> Segundo parâmetro (opcional) se referencia à se a fila é durável ou não
+			-> Para fazer operações administrativas, precisamos de um método que retorne um "RabbitAdmin" -> 'public RabbitAdmin criarRabbitAdmin(ConnectionFactory factory) { return new RabbitAdmin(factory); }'
+				-> Método com a anotação @Bean
+			-> Precisamos de uma forma de inicializar o Rabbit quando subirmos a aplicação -> Vamos usar uma interface chamada "ApplicationListener" -> 'public ApplicationListener<ApplicationReadyEvent> inicializarRabbitAdmin(RabbitAdmin admin){ return event -> admin.initialize(); }
+				-> Método com a anotação @Bean
+
+	- Publicando mensagens:
+		- Ir no 'Controller' da classe que desejamos adicionar a mensageria (fila) -> Usar a classe helper chamada "RabbitTemplate" ->
+			-> Declara-lo com '@Autowired private RabbitTemplate template'
+		  -> Vamos utilizar essa classe no(s) método(s) que têm a anotação '@PostMapping' -> Antes de darmos o 'return' dentro da classe vamos criar o envio para o RabbitMQ ->
+			-> 	var message = new Message("Pagamento criado com ID:" + pagamento.getId());
+				template.send('nome da fila criada anteriormente', message);
+		- Para testar, gere um novo pagamento e acesse o RabbitMQ (localhost:15672) -> Queues -> Verificar se a fila está sendo mostrada no painel
+
+	- Consumindo mensagens:
+		- Ir no módulo da aplicação que irá consumir as mensagens do RabbitMQ -> Incluir a dependência no pom.xml ->
+			-> <dependency>
+		      	   	<groupId>org.springframework.boot</groupId>
+			     	<artifactId>spring-boot-starter-amqp</artifactId>
+			   </dependency>
+			   <dependency>
+			      	<groupId>org.springframework.amqp</groupId>
+      				<artifactId>spring-rabbit-test</artifactId>
+      				<scope>test</scope>
+    			   </dependency>
+		-> Ir no 'application.yml' e adicionar as configurações do rabbiMQ ->
+			-> spring:
+			    rabbitmq:
+			     host: "localhost"
+			     port: 5672
+			     username: "admin"
+			     password: "secret"
+		-> Criar um novo package chamado 'amqp' -> Criar a classe "'nome do serviço que irá mandar as mensagens'Listener" ->
+			-> Anotar a classe com o @Component
+			-> Criar o método de receber mensagens -> 'public void receberMensagens(@Payload Message message){ System.out.println("Mensagem recebida: " + message.toString()); }
+				-> Adicionar a anotação @RabbitListener(queues = 'nome da fila que irá enviar a mensagem')
+
+Módulo 3 (Aprimorando as mensagens):
+	- Transferindo representações:
+		- RabbitTemplate por padrão usa a classe 'SimpleMessageConverter' para converter mensagens
+			- Vamos usar uma biblioteca chamada 'Jackson2JsonMessageConverter' já inclusa no AMQP -> Ir na classe de configurações ('*AMQPConfigurations') -> 
+				-> Criar o método para indicar que não vamos usar o conversor de mensagens padrão -> 'public Jackson2JsonMessageConverter converterMensagem() { return new Jackson2JsonMessageConverter; }'
+					-> Anotar o método com '@Bean'
+				-> Criar o método para indicar quem será o conversor padrão -> 'public RabbitTemplate rabbitTemplate(ConnectionFactory factory, Jackson2JsonMessageConverter converter){ var rabbitTemplate = new RabbitTemplate(factory);
+		rabbitTemplate.setMessageConverter(converter);
+		return rabbitTemplate;
+	}
+					-> Anotar o método com '@Bean'
+		- Ir no Controller do serviço que manda as mensagens -> Fazer as seguintes trocas -> 
+		-> Trocar o trecho do código que envia as mensagens (template.send('nome da fila criada anteriormente', message);) para ->
+			-> 'template.convertsAndSend('nome da fila criada anteriormente', 'dto que envia as informações detalhadas');'
+		-> Excluir a variável que armazenada a 'message'
+
+	- Manipulando os dados recebidos:
+		- Ir no módulo que recebe os dados -> Criar um DTO para receber os dados do módulo que manda com os mesmos campos que foram enviados
+		- Ir no pacote 'amqp' do módulo que recebe os dados e criar um package de configurações '*AMQPConfiguration' (Anotar com @Configuration) -> Adicionar os seguintes métodos ->
+			-> public Jackson2JsonMessageConverter converter(){ return new Jackson2JsonMessageConverter(); }
+				- Instanciando o conversor que vamos usar
+				- Anotar o método com @Bean
+			-> public RabbitTemplate rabbitTemplate(ConnectionFactory factory, Jackson2JsonMessageConverter converter){
+				var rabbitTemplate = new RabbitTemplate(factory);
+				rabbitTemplate.setMessageConverter(converter);
+				return rabbitTemplate;
+			}
+				- Para indicar ao RabbitTemplate qual conversor vamos usar	
+				- Anotar o método com @Bean
+		- Ir na classe 'Listener' do módulo que recebe os dados e modificar o método que recebe as mensagens ->
+			-> 'public void receberMessage(@Payload 'DTO que criamos anteriormente' dto){
+				String message = """
+					``Dados importantes``
+					""".format(dto.get...());
+				System.out.printl("Recebi a mensagem: " + message);
+			}
+		- Subir a aplicação, gerar novas requisições post, acessar o painel do rabbtimq (localhost:15672), acessar a parte de 'Queues'
+
+	- Fanout Exchange:
+		- Vamos no módulo que manda as mensagens -> Na classe de configurações ('*AMQPConfigurations') -> Apagar o método de criação de filas -> Criar a exchange ->
+			-> 
+				@Bean
+				public FanoutExchange fanoutExchange() {
+					 return new FanoutEchange('nome da exchange'); 	
+				}
+		- Dentro do módulo que manda as mensagens -> Classe Controller -> Modificar no método @PostMapping (criação) o trecho que manda as mensagens ->
+			-> rabbitTemplate.convertAndSend('nome da exchange criada', "", 'dto de conversão');
+		- Subir a aplicação, criar uma nova requisição post, abrir o painel do rabbitmq (localhost:15672), acessar a parte de "Exchanges" e verificar se a exchange foi realmente criada
+		- Vamos no módulo que recebe as mensagens -> Na classe de configurações ('*AMQPConfigurations) -> Criar o método de criação da fila ->
+			->
+				@Bean
+				public Queue 'nome da fila'(){
+					return new QueuBuilder
+						.nonDurable('nome da fila')
+						.build();	
+				}
+		- Ainda na classe de configurações do módulo que recebe as mensagens, vamos criar a exchange para fazer o binding ->
+			->
+				@Bean
+				public FanoutExchange fanoutExchange(){
+					return ExchangeBuilder
+						.fanoutExchange('nome da exchange');
+						.build();
+				}
+		- Agora vamos fazer o binding (ligar a fila à exchange) ->
+			->
+				@Bean
+				public Binding "binding'seriço que manda mensagem''serviço que recebe mensagem'(FanoutExchange exchange){
+					return BindingBuilder
+						.bind('método de criação da queue')
+						.to(exchange)
+						.build();
+				}
+		- Como vamos criar a fila pelo módulo que recebe as mensagens, dentro da classe de configurações vamos criar o método para criar o RabbitAdmin e ApplicationListener ->
+			->
+				@Bean
+				public RabbitAdmin criarRabbitAdmin(ConnectionFactory factory){
+					return new RabbitAdmin(factory);
+				}
+
+				@Bean
+				public ApplicationListener<ApplicationReadyEvent> iniciarAdmin(RabbitAdmin admin){
+					return event -> admin.initialize();
+		- Agora vamos ainda dentro do módulo que recebe as mensagens -> Na classe 'nome do serviço que manda as mensagens'Listener -> Modificar o parâmetro do @RabbitListener para o nome da fila que criamos nos passos anteriores 
+		- Subir a aplicação, criar uma nova requisição post, abrir o painel do rabbitmq (localhost:15672), acessar a parte 'Queues' e ver se o vínculo (Binding) entre a fila e a exchange foi criado
