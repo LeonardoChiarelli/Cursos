@@ -1,6 +1,13 @@
 import os
+from time import sleep
 
 restaurantes = ["Cozinha da Villa", "Belisco", "Rabo de Galo", "Tia da Pinga"] # Indica a criação de uma nova lista
+
+# Criação de um dicionário ≥ [] indica a criação de uma lista ≥ {} vão ser todas as informações referentes a um restaurante
+restaurantes_dicionario = [{"nome":"Cozinha da villa", "categoria":"Bar", "ativo":True},
+                            {"nome":"Belisco", "categoria":"Restaurante", "ativo":False},
+                            {"nome":"Rabo de Galo", "categoria":"Bar", "ativo":False},
+                            {"nome":"Tia da Pinga", "categoria":"Boteco", "ativo":False}]
 
 def exibir_nome_do_programa():
     print("Sabor Express \n") # Comando "def 'nome da função'(): -> Para criar funções
@@ -13,7 +20,7 @@ def exibir_linha_final(texto):
     try:
         opcao = int(input(texto))
         if opcao == 1:
-            main()
+            exibir_opcoes()
         elif opcao == 2:
             cadastrar_restaurante()
         elif opcao == 3:
@@ -42,8 +49,10 @@ Digite 2 para cadastrar outro restaurante: """)
 def listar_restaurantes():
     limpar_a_tela_e_exibir_subtitulo("Lista de Restaurantes:")
 
-    for item in restaurantes: # Para cada 'item' na lista 'restaurantes'
-        print(f"- {item}")
+    for item in restaurantes_dicionario: # Para cada 'item' na lista 'restaurantes'
+        if item["ativo"]: status = "Ativo"
+        else: status = "Inativo"
+        print(f"- {item["nome"]} | {item["categoria"]} | {status}")
 
     exibir_linha_final("""Digite 1 para voltar ao menu de opções
 Digite 3 para finalizar o programa: """)
@@ -54,6 +63,8 @@ def ativar_restaurante():
 def finalizar_o_programa():
     exibir_linha_final("Finalizando...")
     # os.system("clear") -> Para MacOS
+    sleep(1.5)
+    exit()
 
 def opcao_invalida():
     print("Opção inválida!\n")
@@ -73,7 +84,8 @@ def escolher_opcao():
             finalizar_o_programa()
         else:
             opcao_invalida()
-    except ValueError:
+    except Exception as e:
+        print(e)
         opcao_invalida()
 
 def escolher_opcao_match(): # switch-case do python
@@ -103,7 +115,7 @@ def main(): # Dentro desta função vamos definir todos os passos para que a nos
 if __name__ == "__main__":
     main()
 
-# resposta_usuario = input("Qual ação você deseja?: ") -> Variável como string
+# resposta_usuario = ‘input’("Qual ação você deseja?: ") ≥ Variável como string
 # resposta_usuario = int(resposta_usuario) -> Outra maneira de se converter string para int
 
 # print(f"Tipo da variável resposta_usuario: {type(resposta_usuario)}") -> Para verificar o tipo da variável, função 'type()'
