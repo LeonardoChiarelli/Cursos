@@ -152,3 +152,36 @@ Módulo 5 (Monitoramento e agendamento):
 			- Se digitarmos 'U' podemos verificar os processos em execução por usuário
 			- Se digitarmos 'F' vamos ter acesso à uma série de informações que podem ser listadas na nossa tabela
 			- Se digitarmos 'Q' vamos sair da tela do 'top'	
+		- Com o comando 'ps' vamos ter uma lista breve dos processos gerais que estão no nosso sistema
+		- O comando 'ps aux' vamos ver uma lista mais detalhada dos processos em execução no sistema
+			- 'ps aux | grep nginx' vamos usar um encadeamento de comandos para filtrar (grep) os processos que o nginx está executando
+			- 'os aux | grep -v grep | grep nginx' estamos "invertendo" o grep, basicamente pesquisando e os resultados que contiverem 'grep' vamos tirar da lista
+				- 'pgrep nginx' faz a mesma coisa que o comando anterior, mas sem a necessidade de encadeamento, mas lista apenas o PID do processo
+				- 'pgrep nginx > /dev/null' podemos encaminhar os resultados deste comando para um local (neste caso uma espécie de lixeira)
+					- Se digitarmos o comando errado por exemplo 'psgrip nginx &> /dev/null' e utilizarmos o '&' antes do '>' vamos estar encaminhando tanto o valor válido (Caso o comando estivesse correto) quanto o erro (No caso do comando errado) para este local (neste caso a 'lixeira')
+		- Vamos construir um scrip que verifica o status do Nginx para verificar se ele está de fato em execução ou não e exibir uma mensagem para o usuário ->
+			-> nano .sh
+			-> 	#! /bin/bash
+
+				if pgrep nginx &> /dev/null
+				then
+			        	echo "O nginx está operando $( date +"%Y-%m-%d%H:%M:%S")"
+				else
+				        echo "O nginx está fora de operação $( date +"%Y-%m-%d%H:%M:%S")"
+				fi
+
+	- Agendando de tarefas:
+		- O comando 'crontab' nos permite agendar a execução de tareafas (Caso o comando 'crontab -e' não funcione de primeira será necessário instala-lo -> sudo apt-get cron -y)
+		- Vamos executar o comando 'crontab -e' e inserir uma linha no arquivo que irá abrir ->
+			-> * * * * * /mnt/c/Users/lrchi/Documents/'[R] Cursos'/Alura/DevOps/'DevOps explorando conceitos'/verificaNginx.sh >> /mnt/c/Users/lrchi/Documents/'[R] Cursos'/Alura/DevOps/'DevOps explorando conceitos'/saida_nginx.txt -> Estamos indicando que queremos executar o script minuto a minuto // minute hour dayOfMonth month dayOfWeek
+				- Caso quisermos que o comando seja executado a cada 30 minutos por exemplo ->  */30 * * * * 
+					- A cada 1 hora por exemplo ->  * */1 * * * 
+
+
+Atividades
+
+Crie um script que utiliza comandos como ps e grep para monitorar os processos que estão utilizando uma porcentagem significativa da CPU.
+Desenvolva um script que utiliza comandos como ps e sort para exibir os processos que estão consumindo mais memória.
+Crie um script que verifica se um processo específico está em execução e exibe seu status.
+Elabore um script para analisar os logs do sistema em busca de mensagens de erro relacionadas a processos.
+Crie um script para monitorar as mensagens de erro no log do sistema em intervalos regulares usando cron jobs. O script deve registrar em um arquivo as últimas 5 linhas de mensagens de erro, possibilitando uma visão periódica da atividade do sistema. 
