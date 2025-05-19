@@ -10,9 +10,15 @@ estabelecimentos_dicionario = [{"nome":"Cozinha da Villa", "categoria":"Bar", "a
                             {"nome":"Tia da Pinga", "categoria":"Boteco", "ativo":False}]
 
 def exibir_nome_do_programa():
+    """ Esta função é responsável por exibir o nome do programa """
     print("Sabor Express \n") # Comando "def 'nome da função'(): -> Para criar funções
 
 def limpar_a_tela_e_exibir_subtitulo(subtitulo):
+    """ Esta função é responsável por limpar a tela e exibir o subtitulo
+
+    Parâmetros:
+        - subtítulo: subtítulo do programa
+    """
     os.system('cls')
     linha = "*" * (len(subtitulo) + 4) # Colocando * para a quantidade de letras no parametro passado + 4
     print(linha)
@@ -20,6 +26,13 @@ def limpar_a_tela_e_exibir_subtitulo(subtitulo):
     print(linha, "\n")
 
 def exibir_linha_final(texto):
+    """ Esta função é responsável por exibir a linha final do código
+
+    Parâmetros:
+        - texto: texto que será exibido
+    ‘Input’:
+        - Opção
+    """
     try:
         opcao = int(input(texto))
         if opcao == 1:
@@ -36,12 +49,23 @@ def exibir_linha_final(texto):
         opcao_invalida()
 
 def exibir_opcoes():
+    """ Esta função é responsável por exibir as opções do programa """
     print("1. Cadastrar Estabelecimento")
     print("2. Listar Estabelecimentos")
     print("3. Ativar/Desativar Estabelecimento")
     print("4. Sair\n")
 
 def cadastrar_estabelecimento():
+    """ Esta função é responsável por cadastrar um novo estabelecimento 
+    
+    'Inputs':
+        - Nome do estabelecimento
+        - Categoria do estabelecimento
+    
+    'Output':
+        - Adiciona o novo estabelecimento a lista de estabelecimentos
+    
+    """ # Docstring ≥ Geralmente usada na primeira linha do código
     limpar_a_tela_e_exibir_subtitulo("Cadastro de novos estabelecimentos")
 
     nome_estabelecimento = input("Insira o nome do estabelecimento: ")
@@ -59,6 +83,7 @@ def cadastrar_estabelecimento():
 Digite 2 para cadastrar outro estabelecimento: """)
 
 def listar_estabelecimento():
+    """ Esta função é responsável por listar os estabelecimentos cadastrados """
     limpar_a_tela_e_exibir_subtitulo("Lista de Estabelecimentos:")
     tamanho = 40
 
@@ -71,6 +96,14 @@ def listar_estabelecimento():
 Digite 3 para finalizar o programa: """)
 
 def ativar_desativar_estabelecimento():
+    """ Esta função é responsável por ativar ou desativar um estabelecimento
+
+    'Inputs':
+        - Nome estabelecimento
+
+    'Output':
+        - Troca o status do estabelecimento conforme o seu status atual
+    """
     limpar_a_tela_e_exibir_subtitulo("Ativar/Desativar Estabelecimento")
     nome_estabelecimento = input("Insira o nome do estabelecimento que deseja ativar/desativar: ")
 
@@ -93,17 +126,28 @@ Digite 3 para finalizar o programa
 -> """)
 
 def finalizar_o_programa():
+    """ Esta função é responsável por finalizar o programa """
     print("Finalizando...")
     # os.system("clear") -> Para MacOS
     sleep(0.5)
     exit()
 
 def opcao_invalida():
+    """ Esta função é responsável por indicar que a opção digitada é inválida
+
+    'Input':
+        - Tecla para voltar ao menu de opções
+    """
     print("Opção inválida!\n")
     input("Digite uma tecla para voltar ao menu de opções: ")
     main()
 
 def escolher_opcao():
+    """ Esta função é responsável por verificar a escolha do usuário
+
+    'Input':
+        - Número da opção
+    """
     try:
         resposta_usuario = int(input("Qual ação você deseja?: ")) # Variável como int
         if resposta_usuario == 1:
@@ -120,6 +164,7 @@ def escolher_opcao():
         opcao_invalida()
 
 def escolher_opcao_match(): # switch-case do python
+    """ Versão com match-case da função anterior """
     try:
         resposta_usuario = int(input("Qual ação você deseja?: "))  # Variável como int
         match resposta_usuario:
@@ -136,8 +181,8 @@ def escolher_opcao_match(): # switch-case do python
     except ValueError:
         opcao_invalida()
 
-
 def main(): # Dentro desta função vamos definir todos os passos para que a nossa aplicação funcione, o programa vai seguir a ordem em que as funções aparecem
+    """ Esta função é responsável por definir os passos da aplicação"""
     os.system("cls")
     exibir_nome_do_programa()
     exibir_opcoes()
