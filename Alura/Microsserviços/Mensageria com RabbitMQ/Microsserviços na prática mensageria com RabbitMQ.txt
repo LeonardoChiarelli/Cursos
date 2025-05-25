@@ -138,10 +138,10 @@ Módulo 3 (Aprimorando as mensagens):
 		- Agora vamos fazer o binding (ligar a fila à exchange) ->
 			->
 				@Bean
-				public Binding "binding'seriço que manda mensagem''serviço que recebe mensagem'(FanoutExchange exchange){
+				public Binding "binding'seriço que manda mensagem''serviço que recebe mensagem'(){
 					return BindingBuilder
 						.bind('método de criação da queue')
-						.to(exchange)
+						.to('método de criação da exchange')
 						.build();
 				}
 		- Como vamos criar a fila pelo módulo que recebe as mensagens, dentro da classe de configurações vamos criar o método para criar o RabbitAdmin e ApplicationListener ->
@@ -156,3 +156,101 @@ Módulo 3 (Aprimorando as mensagens):
 					return event -> admin.initialize();
 		- Agora vamos ainda dentro do módulo que recebe as mensagens -> Na classe 'nome do serviço que manda as mensagens'Listener -> Modificar o parâmetro do @RabbitListener para o nome da fila que criamos nos passos anteriores 
 		- Subir a aplicação, criar uma nova requisição post, abrir o painel do rabbitmq (localhost:15672), acessar a parte 'Queues' e ver se o vínculo (Binding) entre a fila e a exchange foi criado
+
+Módulo 4 (Falhas e resiliência):
+	- Lidando com falhas:
+		- Vamos em um módulo que recebe mensagens -> Inserir uma validação que lance um erro ( - ISSO DEIXARÁ O CÓDIGO EM UM LOOP DE ERRO E AS DEMAIS MENSAGENS TRAVADAS - ) -> Vamos para as correções ->
+			-> Vamos no application.yml e manipular algumas propriedades ->
+				-> Vamos habilitar o recurso de retry (tentar novamente), definir o número máximo de tentativas (4) e configurar o tempo que ele tentará processar cada mensagem
+				-> Ele tentará executar o processamento e caso falhe, passará para a próxima mensagem
+				-> spring:
+				    rabbitmq:
+				     listener:
+				      simple:
+				       retry:
+					enabled: true
+					max-attempts: 4
+					initial-interval: 5000 // ms
+					multiplier: 2 // A cada nova tentativa, vamos pegar este 'initial-interval' e multiplicar por 2
+					max-interval: 300000 // ms
+
+	- DLQs [Dead Letter Queues] e DLXs [Dead Letter Exchanges] / Contornando o problema::
+		- Terminando de resolver os problemas da aula anterior (Desaparecimento da mensagem com erro no painel do rabbitmq) -> 
+			-> Podemos criar uma fila auxiliar dedicada à erros (DLQ [Dead Letter Queues] ) com o sufixo 'dlq'
+				- Quais são os critérios para mandar uma mensagem para uma DLQ:
+					- Comprimento da fila excedido
+					- Mensagem expirada (TTL [Time To Live] )
+					- Mensagem com o tamanho excedido
+					- Erros diversos
+					- Outros
+			-> Nunca podemos jogar uma mensagem diretamente na fila, neste caso ela passará por uma DLX (Dead Letter Exchange) para assim, ser direcionada para a DLQ
+			-> Vamos implementar no código ->
+				-> Vamos no código onde estamos lançando o erro e criar '*AMQPConfiguration'->
+					-> 	@Bean
+						public fanoutExchange deadLetterExchange(){
+							return ExchangeBuilder
+								.fanoutExchange("'nome da exchange'.dlx")
+								.build();
+						}
+						
+						@Bean
+						public Queue deadLetterQueue(){
+							return QueueBuilder
+								.nonDurable("'nome da fila'-dlq")
+								.build();
+						}
+
+						@Bean
+						public Binding bindDlqDlx(){
+							return BindingBuilder
+								.bind("'nome da fila'-dlq")
+								.to("'nome da exchange'.dlx");
+						}
+				-> Vamos no código de criação da fila principal e após o parâmetro "nonDurable()", vamos adicionar ->
+					.deadLetterExchange("'nome da exchange'.dlx") // Indicando que quando ocorrer um erro na fila principal, este erro será mandado para a dlx
+			-> Agora para testar, teremos que apagar a fila e reecria-la (Assim que a aplicação subir, ela será recriada) -> No painel do rabbitmq (localhost:15672) -> Queues -> Clicar em cima da queue -> Rolar até o final da página -> Delete queue
+
+Módulo 5 (Alta disponibilidade):
+	- Movendo mensagens da DLQ:
+		- Há inúmeras coisas a se fazer com a mensagem de erro:
+			- Podemos persisti-la em um banco de dados
+			- Redirecionar para outra fila
+			- Loga-la numa aplicação de logs para análise futura
+		- Mas vamos usar o dashboard do próprio rabbit
+			- Caso tratemos o erro da mensagem podemos redireciona-la para a fila principal, neste caso precisarímos habilitar dois plugins (RabbitMQ Shovel e RabbitMQ Shovel Management)
+				- Neste caso, precisamos abrir o terminal do container (docker exec -it <nome_do_container> /bin/bash) e excutar o seguinte código 'sudo rabbitmq-plugins enable rabbit_shovel rabbit_shovel_management'
+			- Precisamos dar um 'refresh' no painel do rabbitmq e assim estará disponibilizado a sessão 'Move Message' e precisaremos indicar a 'Destination queue'
+			- Precisamos parar a aplicação para poder mover a mensagem, senão ela baterá no erro e será enviada novamente para a dlq
+
+	- Criando um Cluster:
+		- Abrindo o terminal, vamos criar uma rede no docker para que todos os containers fiquem nessa rede e possam se comunicar ->
+			-> sudo docker network create 'nome da rede'
+			-> docker run -d --rm --net 'nome da rede' --hostname rabbitmq1 --name rabbitmq1 -p 8085:15672 -e RABBITMQ_ERLANG_COOKIE='nome' rabbitmq:4-management 
+				- RABBITMQ_ERLANG_COOKIE -> Variável de ambiente, para funcionar em um cluster, precisamos que esse COOKIE seja igual em todas as instâncias (Ideal o uso de um arquivo)
+			-> docker run -d --rm --net 'nome da rede' --hostname rabbitmq2 --name rabbitmq2 -p 8086:15672 -e RABBITMQ_ERLANG_COOKIE='nome' rabbitmq:4-management
+			-> docker run -d --rm --net 'nome da rede' --hostname rabbitmq3 --name rabbitmq3 -p 8087:15672 -e RABBITMQ_ERLANG_COOKIE='nome' rabbitmq:4-management
+		- Verificar a criação dos container com um 'docker ps'
+		- Abrir o painel do rabbitmq de todos os containers (localhost:<porta_do_container>)
+		- Para colocar os containers em um cluster, precisamos para a aplicação, resetar as configurações e excutar o seguinte comando ->
+			-> 'sudo docker exec -it rabbitmq2 rabbitmqctl stop_app'
+			-> 'sudo docker exec -it rabbitmq2 rabbitmqctl reset'
+			-> 'sudo docker exec -it rabbitmq2 rabbitmqctl join_cluster rabbitmq1@rabbitmq1' -> Caso dê erro, verifique no painel do rabbit o nome antes do @
+			-> 'sudo docker exec -it rabbitmq2 rabbitmqctl start_app'
+
+			-> 'sudo docker exec -it rabbitmq3 rabbitmqctl stop_app'
+			-> 'sudo docker exec -it rabbitmq3 rabbitmqctl reset'
+			-> 'sudo docker exec -it rabbitmq3 rabbitmqctl join_cluster rabbitmq1@rabbitmq1' -> Caso dê erro, verifique no painel do rabbit o nome antes do @
+			-> 'sudo docker exec -it rabbitmq3 rabbitmqctl start_app'
+
+		- Para testar, vamos criar uma fila dentro do 'rabbitmq2', dentro do próprio painel do rabbitmq (Node: rabbitmq2@rabbitmq2)
+		- Agora vamos criar uma mensagem dentro desta fila.
+			- Vamos parar o rabbitmq2 para testar o funcionamento do cluster -> 'sudo docker exec -it rabbitmq2 rabbitmqctl stop_app' -> 'sudo docker exec -it rabbitmq2 rabbitmqctl start_app'
+			- Ele voltará com a fila, porém a mensagem irá sumir
+
+	- Replicando mensagens:
+		- Resolvendo o erro da aula anterior -> Vamos configurar uma política -> Painel do rabbitmq -> Admin -> Policies -> Add / update a policy ->
+			Name:
+			Pattern: .*
+			Apply to: Exchanges and queues
+			Definition: ha-mode	= all
+		- Add / Update policy
