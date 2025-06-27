@@ -70,4 +70,15 @@ public class User { // Entity inside Clean Architecture is some class that has a
     public void setAddress(Address address) {
         this.address = address;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "ssn='" + ssn + '\'' +
+                ", name='" + name + '\'' +
+                ", birth=" + birth +
+                ", email='" + email + '\'' +
+                ", address=" + address +
+                '}';
+    }
 }

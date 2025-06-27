@@ -25,7 +25,28 @@ public class UserRepositoryJPA implements RepositoryOfUser {
 
     @Override
     public List<User> listAll() {
-        // return repository.findAll();
-        return null;
+        return repository.findAll().stream()
+                .map(mapper::toDomain)
+                .toList();
+    }
+
+    @Override
+    public User updateUser(String ssn, String email) {
+        var userEntity = repository.existsBySsn(ssn);
+        if (!userEntity) { throw new IllegalArgumentException("User not found"); }
+
+        var entity = repository.findBySsn(ssn);
+        entity.setEmail(email);
+        repository.save(entity);
+        return mapper.toDomain(entity);
+    }
+
+    @Override
+    public void deleteUser(String ssn) {
+        var userEntity = repository.existsBySsn(ssn);
+        if (!userEntity) { throw new IllegalArgumentException("User not found"); }
+
+        var entity = repository.findBySsn(ssn);
+        repository.deleteById(entity.getId());
     }
 }

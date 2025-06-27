@@ -2,7 +2,7 @@ package br.com.LeoChiarelli.codechella.infrastructure.dto;
 
 import java.time.LocalDate;
 
-public record UserRequestDTO(
+public record UserRegistryRequestDTO(
 
         String ssn,
         String name,
