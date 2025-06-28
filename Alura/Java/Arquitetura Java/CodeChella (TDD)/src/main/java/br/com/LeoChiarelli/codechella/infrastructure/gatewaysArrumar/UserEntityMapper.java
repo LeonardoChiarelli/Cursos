@@ -1,4 +1,4 @@
-package br.com.LeoChiarelli.codechella.infrastructure.gateways;
+package br.com.LeoChiarelli.codechella.infrastructure.gatewaysArrumar;
 
 import br.com.LeoChiarelli.codechella.domain.entities.user.User;
 import br.com.LeoChiarelli.codechella.infrastructure.persistence.UserEntity;

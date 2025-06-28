@@ -3,7 +3,7 @@
 
 # CodeChella
 
-App de simulação de um site para venda de ingressos de eventos diversos
+App de simulação de um site para saleEntity de ticketEntities de eventEntities diversos
 
 ## 🔨 Objetivos do projeto
 

@@ -5,8 +5,8 @@ import br.com.LeoChiarelli.codechella.application.useCases.DeleteUserImplementat
 import br.com.LeoChiarelli.codechella.application.useCases.ListUsersImplementation;
 import br.com.LeoChiarelli.codechella.application.useCases.RegistryUserImplementation;
 import br.com.LeoChiarelli.codechella.application.useCases.UpdateUserImplementation;
-import br.com.LeoChiarelli.codechella.infrastructure.gateways.UserEntityMapper;
-import br.com.LeoChiarelli.codechella.infrastructure.gateways.UserRepositoryJPA;
+import br.com.LeoChiarelli.codechella.infrastructure.gatewaysArrumar.UserEntityMapper;
+import br.com.LeoChiarelli.codechella.infrastructure.gatewaysArrumar.UserRepositoryJPA;
 import br.com.LeoChiarelli.codechella.infrastructure.persistence.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

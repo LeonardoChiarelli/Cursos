@@ -1,4 +1,4 @@
-package br.com.LeoChiarelli.codechella.infrastructure.gateways;
+package br.com.LeoChiarelli.codechella.infrastructure.gatewaysArrumar;
 
 import br.com.LeoChiarelli.codechella.infrastructure.persistence.UserRepository;
 import br.com.LeoChiarelli.codechella.application.gateways.RepositoryOfUser;

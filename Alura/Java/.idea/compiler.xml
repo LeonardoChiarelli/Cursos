@@ -11,10 +11,12 @@
         <module name="biblioteca" />
         <module name="reflections" />
         <module name="pagamentos" />
+        <module name="codechella (DDD)" />
         <module name="vehicles" />
         <module name="pedidos" />
         <module name="Spring" />
         <module name="codechella (TDD)" />
+        <module name="CodeChella (DDD)" />
         <module name="api" />
         <module name="screenSoundSpring" />
         <module name="ScreenMatchPhrases" />
@@ -35,11 +37,13 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="codechella (DDD)" target="21" />
       <module name="codechella (TDD)" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="CodeChella (DDD)" options="-parameters" />
       <module name="CodeChella (TDD)" options="-parameters" />
       <module name="ScreenMatchPhrases" options="-parameters" />
       <module name="Spring" options="-parameters" />
@@ -47,6 +51,7 @@
       <module name="adopetThreads" options="-parameters" />
       <module name="api" options="-parameters" />
       <module name="biblioteca" options="-parameters" />
+      <module name="codechella (DDD)" options="-parameters" />
       <module name="codechella (TDD)" options="-parameters" />
       <module name="exceptions" options="-parameters" />
       <module name="gateway" options="-parameters" />

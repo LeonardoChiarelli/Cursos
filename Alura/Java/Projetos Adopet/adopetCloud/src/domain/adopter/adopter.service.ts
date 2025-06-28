@@ -25,7 +25,7 @@ export class AdopterService {
   async adoptersList() {
     const adoptersSaved = await this.adopterRepository.find();
     const adoptersList = adoptersSaved.map(
-      (usuario) => new AdopterListDTO(usuario.id, usuario.nome),
+      (userEntity) => new AdopterListDTO(userEntity.id, userEntity.nome),
     );
     return adoptersList;
   }

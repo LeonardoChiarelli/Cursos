@@ -4,7 +4,7 @@
 
 Essa é a aplicação Front-end que será utilizada no curso.
 
-Foi desenvolvida pela [Monica Hillman](https://cursos.alura.com.br/user/monicahillman)
+Foi desenvolvida pela [Monica Hillman](https://cursos.alura.com.br/userEntity/monicahillman)
 
 Para visualizar a mesma, após o download ou clone do projeto, abra-a com o VS Code
 

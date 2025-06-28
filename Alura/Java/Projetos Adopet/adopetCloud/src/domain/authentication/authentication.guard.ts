@@ -33,8 +33,8 @@ export class AuthenticationGuard implements CanActivate {
     return true;
   }
   private takeHeaderToken(req: Request): string | undefined {
-    //formato do cabeçalho authorizathon: "Bearer <valor_do_jwt>" -> protocolo HTTP
-    const [type, token] = req.headers.authorization?.split(' ') ?? [];
-    return type === 'Bearer' ? token : undefined;
+    //area do cabeçalho authorizathon: "Bearer <valor_do_jwt>" -> protocolo HTTP
+    const [typeEntity, token] = req.headers.authorization?.split(' ') ?? [];
+    return typeEntity === 'Bearer' ? token : undefined;
   }
 }

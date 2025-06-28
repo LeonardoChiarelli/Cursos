@@ -1,7 +1,7 @@
 package br.com.LeoChiarelli.codechella;
 
 import br.com.LeoChiarelli.codechella.domain.entities.user.User;
-import br.com.LeoChiarelli.codechella.infrastructure.gateways.UserRepositoryTXT;
+import br.com.LeoChiarelli.codechella.infrastructure.gatewaysArrumar.UserRepositoryTXT;
 
 import java.io.IOException;
 import java.time.LocalDate;
