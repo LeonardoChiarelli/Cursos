@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.LeoChiarelli</groupId>
-	<artifactId>codechella</artifactId>
+	<artifactId>codechellaDDD</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>codechella (DDD)</name>
 	<description>backend codechella</description>

@@ -9,13 +9,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="server" />
         <module name="biblioteca" />
+        <module name="codechellaDDD" />
         <module name="reflections" />
         <module name="pagamentos" />
-        <module name="codechella (DDD)" />
         <module name="vehicles" />
         <module name="pedidos" />
         <module name="Spring" />
-        <module name="codechella (TDD)" />
+        <module name="codechellaTDD" />
         <module name="CodeChella (DDD)" />
         <module name="api" />
         <module name="screenSoundSpring" />
