@@ -1,7 +1,7 @@
 package br.com.LeoChiarelli.codechellaDDD.infrastructure.ticket;
 
-import br.com.LeoChiarelli.codechellaDDD.domain.ticket.Area;
-import br.com.LeoChiarelli.codechellaDDD.domain.ticket.Definition;
+import br.com.LeoChiarelli.codechellaDDD.domain.ticket.valueObject.Area;
+import br.com.LeoChiarelli.codechellaDDD.domain.ticket.valueObject.Definition;
 import br.com.LeoChiarelli.codechellaDDD.infrastructure.event.EventEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
@@ -36,7 +36,7 @@ public class TypeEntity {
     @Enumerated(EnumType.STRING)
     private Definition definition;
 
-    private Double valor;
+    private Double value;
     private int totalAvailable;
 
     @OneToMany(mappedBy = "type", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -45,10 +45,10 @@ public class TypeEntity {
 
     private TypeEntity() {}
 
-    public TypeEntity(Area area, Definition definition, Double valor, int totalAvailable) {
+    public TypeEntity(Area area, Definition definition, Double value, int totalAvailable) {
         this.area = area;
         this.definition = definition;
-        this.valor = valor;
+        this.value = value;
         this.totalAvailable = totalAvailable;
     }
 
@@ -85,11 +85,11 @@ public class TypeEntity {
     }
 
     public Double getValue() {
-        return valor;
+        return value;
     }
 
     public void setValue(Double valor) {
-        this.valor = valor;
+        this.value = valor;
     }
 
     public int getTotalAvailable() {

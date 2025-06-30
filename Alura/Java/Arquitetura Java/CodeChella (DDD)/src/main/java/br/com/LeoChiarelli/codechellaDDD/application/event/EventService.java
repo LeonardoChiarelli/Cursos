@@ -35,8 +35,8 @@ public class EventService {
                 .collect(Collectors.toList());
 
         return new EventDTO(eventEntity.getId(), eventEntity.getCategory(),
-                eventEntity.getDescription(), new AddressDTO(eventEntity.getEndereco().getPostalCode(),
-                eventEntity.getEndereco().getNumber(), eventEntity.getEndereco().getComplement()),
+                eventEntity.getDescription(), new AddressDTO(eventEntity.getAddress().getPostalCode(),
+                eventEntity.getAddress().getNumber(), eventEntity.getAddress().getComplement()),
                 eventEntity.getDate(), dadosIngressos);
 
     }

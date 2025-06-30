@@ -31,6 +31,13 @@ public class SaleEntity {
     @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<TicketEntity> tickets = new ArrayList<>();
 
+    public SaleEntity() {}
+
+    public SaleEntity(UserEntity userEntity, List<TicketEntity> tickets) {
+        this.userEntity = userEntity;
+        this.tickets = tickets;
+    }
+
     public Long getId() {
         return id;
     }

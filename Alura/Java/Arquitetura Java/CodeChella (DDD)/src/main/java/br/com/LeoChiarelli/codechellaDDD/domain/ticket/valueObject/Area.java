@@ -1,4 +1,4 @@
-package br.com.LeoChiarelli.codechellaDDD.domain.ticket;
+package br.com.LeoChiarelli.codechellaDDD.domain.ticket.valueObject;
 
 public enum Area {
 

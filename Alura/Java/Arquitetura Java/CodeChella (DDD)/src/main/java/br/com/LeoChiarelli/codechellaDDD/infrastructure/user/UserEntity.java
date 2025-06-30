@@ -30,6 +30,13 @@ public class UserEntity {
 
     public UserEntity() {}
 
+    public UserEntity(String ssn, String name, LocalDate birth, String email) {
+        this.ssn = ssn;
+        this.name = name;
+        this.birth = birth;
+        this.email = email;
+    }
+
     public UserEntity(RegistryUserDTO dto) {
         this.ssn = dto.ssn();
         this.name = dto.name();

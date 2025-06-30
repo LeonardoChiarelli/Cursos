@@ -1,19 +1,22 @@
 package br.com.LeoChiarelli.codechellaDDD.domain.ticket;
 
-public class Type {
+import br.com.LeoChiarelli.codechellaDDD.domain.ticket.valueObject.Area;
+import br.com.LeoChiarelli.codechellaDDD.domain.ticket.valueObject.Definition;
+
+public class Type { /// Event aggregate
 
     private Area area;
     private Definition definition;
 
-    private Double valor;
+    private Double value;
     private int totalAvailable;
 
     private Type() {}
 
-    public Type(Area area, Definition definition, Double valor, int totalAvailable) {
+    public Type(Area area, Definition definition, Double value, int totalAvailable) {
         this.area = area;
         this.definition = definition;
-        this.valor = valor;
+        this.value = value;
         this.totalAvailable = totalAvailable;
     }
 
@@ -34,11 +37,11 @@ public class Type {
     }
 
     public Double getValue() {
-        return valor;
+        return value;
     }
 
     public void setValue(Double valor) {
-        this.valor = valor;
+        this.value = valor;
     }
 
     public int getTotalAvailable() {

@@ -1,6 +1,6 @@
 package br.com.LeoChiarelli.codechellaDDD.application.event;
 
-import br.com.LeoChiarelli.codechellaDDD.domain.event.Category;
+import br.com.LeoChiarelli.codechellaDDD.domain.event.valueObject.Category;
 import br.com.LeoChiarelli.codechellaDDD.application.ticket.RegistryTicketTypeDTO;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Future;

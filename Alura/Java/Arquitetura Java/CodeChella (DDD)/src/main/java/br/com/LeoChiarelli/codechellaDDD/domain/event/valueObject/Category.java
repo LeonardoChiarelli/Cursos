@@ -1,4 +1,4 @@
-package br.com.LeoChiarelli.codechellaDDD.domain.event;
+package br.com.LeoChiarelli.codechellaDDD.domain.event.valueObject;
 
 public enum Category {
     FESTIVAL,

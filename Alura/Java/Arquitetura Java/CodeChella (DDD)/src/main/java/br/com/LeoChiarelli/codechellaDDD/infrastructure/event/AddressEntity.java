@@ -12,6 +12,12 @@ public class AddressEntity {
 
     public AddressEntity() {}
 
+    public AddressEntity(String postalCode, Integer number, String complement) {
+        this.postalCode = postalCode;
+        this.number = number;
+        this.complement = complement;
+    }
+
     public AddressEntity(AddressDTO dto) {
         this.postalCode = dto.postalCode();
         this.number = dto.number();

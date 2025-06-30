@@ -1,7 +1,7 @@
 package br.com.LeoChiarelli.codechellaDDD.application.ticket;
 
-import br.com.LeoChiarelli.codechellaDDD.domain.ticket.Area;
-import br.com.LeoChiarelli.codechellaDDD.domain.ticket.Definition;
+import br.com.LeoChiarelli.codechellaDDD.domain.ticket.valueObject.Area;
+import br.com.LeoChiarelli.codechellaDDD.domain.ticket.valueObject.Definition;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 

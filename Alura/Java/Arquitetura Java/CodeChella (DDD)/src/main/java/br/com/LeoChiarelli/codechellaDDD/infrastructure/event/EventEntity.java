@@ -1,7 +1,7 @@
 package br.com.LeoChiarelli.codechellaDDD.infrastructure.event;
 
 import br.com.LeoChiarelli.codechellaDDD.application.event.RegistryEventDTO;
-import br.com.LeoChiarelli.codechellaDDD.domain.event.Category;
+import br.com.LeoChiarelli.codechellaDDD.domain.event.valueObject.Category;
 import br.com.LeoChiarelli.codechellaDDD.infrastructure.ticket.TypeEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
@@ -42,6 +42,14 @@ public class EventEntity {
 
     public EventEntity() {}
 
+    public EventEntity(Category category, String description, AddressEntity address, LocalDateTime date, List<TypeEntity> ticketsType) {
+        this.category = category;
+        this.description = description;
+        this.address = address;
+        this.date = date;
+        this.ticketsType = ticketsType;
+    }
+
     public EventEntity(RegistryEventDTO dto) {
         this.category = dto.category();
         this.description = dto.description();
@@ -79,7 +87,7 @@ public class EventEntity {
         this.description = description;
     }
 
-    public AddressEntity getEndereco() {
+    public AddressEntity getAddress() {
         return address;
     }
 

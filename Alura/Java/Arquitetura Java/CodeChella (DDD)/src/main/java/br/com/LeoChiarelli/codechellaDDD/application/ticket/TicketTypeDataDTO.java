@@ -1,7 +1,7 @@
 package br.com.LeoChiarelli.codechellaDDD.application.ticket;
 
-import br.com.LeoChiarelli.codechellaDDD.domain.ticket.Area;
-import br.com.LeoChiarelli.codechellaDDD.domain.ticket.Definition;
+import br.com.LeoChiarelli.codechellaDDD.domain.ticket.valueObject.Area;
+import br.com.LeoChiarelli.codechellaDDD.domain.ticket.valueObject.Definition;
 
 public record TicketTypeDataDTO(
 
