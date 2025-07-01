@@ -96,8 +96,7 @@ private final Category category;
         private Address address;
         private LocalDateTime date;
 
-        public EventBuilder() {
-        }
+        public EventBuilder() {}
 
         public EventBuilder withCategory(Category category) {
             this.category = category;
@@ -110,7 +109,11 @@ private final Category category;
         }
 
         public EventBuilder withAddress(String postalCode, Integer number, String complement) {
-            this.address = new Address(postalCode, number, complement);
+            this.address = Address.builder()
+                    .withPostalCode(postalCode)
+                    .withNumber(number)
+                    .withComplement(complement)
+                    .build();
             return this;
         }
 

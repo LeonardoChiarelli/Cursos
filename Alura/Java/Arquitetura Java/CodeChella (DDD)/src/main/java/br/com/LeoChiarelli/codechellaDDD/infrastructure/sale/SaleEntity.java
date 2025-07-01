@@ -26,15 +26,15 @@ public class SaleEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private UserEntity userEntity;
+    private UserEntity user;
 
-    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "sales", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<TicketEntity> tickets = new ArrayList<>();
 
     public SaleEntity() {}
 
-    public SaleEntity(UserEntity userEntity, List<TicketEntity> tickets) {
-        this.userEntity = userEntity;
+    public SaleEntity(UserEntity user, List<TicketEntity> tickets) {
+        this.user = user;
         this.tickets = tickets;
     }
 
@@ -46,11 +46,11 @@ public class SaleEntity {
         this.id = id;
     }
     public UserEntity getUser() {
-        return userEntity;
+        return user;
     }
 
     public void setUser(UserEntity userEntity) {
-        this.userEntity = userEntity;
+        this.user = userEntity;
     }
 
     public List<TicketEntity> getTickets() {

@@ -15,7 +15,12 @@ public class TicketTypeEntityMapper {
 
     public static List<Type> toDomain(List<TypeEntity> ticketTypeEntity) {
         return ticketTypeEntity.stream()
-                .map(typeEntity -> { return new Type(typeEntity.getArea(), typeEntity.getDefinition(), typeEntity.getValue(), typeEntity.getTotalAvailable()); })
+                .map(typeEntity -> { return Type.builder()
+                        .withArea(typeEntity.getArea())
+                        .withDefinition(typeEntity.getDefinition())
+                        .withValue(typeEntity.getValue())
+                        .withTotalAvailable(typeEntity.getTotalAvailable())
+                        .build(); })
                 .toList();
     }
 }

@@ -31,7 +31,10 @@ public class TicketEntityMapper {
         for (TicketEntity ticketEntity : ticketsEntity) {
             var ticketList = TicketTypeEntityMapper.toDomain(List.of(ticketEntity.getType()));
             for (Type ticketType : ticketList) {
-                tickets.add(new Ticket(ticketEntity.getCode(), ticketType));
+                tickets.add(Ticket.builder()
+                        .withCode(ticketEntity.getCode())
+                        .withType(ticketType)
+                        .build());
             }
         }
 

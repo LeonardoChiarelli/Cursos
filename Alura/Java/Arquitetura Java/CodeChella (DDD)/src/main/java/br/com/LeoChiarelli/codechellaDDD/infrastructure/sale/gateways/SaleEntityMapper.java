@@ -12,6 +12,9 @@ public class SaleEntityMapper {
     }
 
     public Sale toDomain(SaleEntity saleEntity){
-        return new Sale(UserEntityMapper.toDomain(saleEntity.getUser()), TicketEntityMapper.toDomain(saleEntity.getTickets()));
+        return Sale.builder()
+                .withUser(UserEntityMapper.toDomain(saleEntity.getUser()))
+                .withTickets(TicketEntityMapper.toDomain(saleEntity.getTickets()))
+                .build();
     }
 }

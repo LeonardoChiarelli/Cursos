@@ -9,6 +9,11 @@ public class AddressEntityMapper {
     }
 
     public static Address toDomain(AddressEntity addressEntity) {
-        return new Address(addressEntity.getPostalCode(), addressEntity.getNumber(), addressEntity.getComplement());
+        return Address.builder()
+                .withPostalCode(addressEntity.getPostalCode())
+                .withNumber(addressEntity.getNumber())
+                .withComplement(addressEntity.getComplement())
+                .build();
+
     }
 }

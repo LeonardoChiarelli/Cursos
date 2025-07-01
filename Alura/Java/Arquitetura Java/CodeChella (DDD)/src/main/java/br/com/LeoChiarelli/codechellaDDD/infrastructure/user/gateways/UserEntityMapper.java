@@ -10,6 +10,11 @@ public class UserEntityMapper {
     }
 
     public static User toDomain(UserEntity userEntity){
-        return new User(userEntity.getSsn(), userEntity.getName(), userEntity.getBirth(), userEntity.getEmail());
+        return User.builder()
+                .withSsn(userEntity.getSsn())
+                .withName(userEntity.getName())
+                .withBirth(userEntity.getBirth())
+                .withEmail(userEntity.getEmail())
+                .build();
     }
 }
