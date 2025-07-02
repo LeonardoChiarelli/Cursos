@@ -15,6 +15,7 @@
         <module name="vehicles" />
         <module name="pedidos" />
         <module name="Spring" />
+        <module name="codechella-api" />
         <module name="codechellaTDD" />
         <module name="CodeChella (DDD)" />
         <module name="api" />
@@ -22,6 +23,7 @@
         <module name="ScreenMatchPhrases" />
         <module name="gateway" />
         <module name="CodeChella (TDD)" />
+        <module name="codechella-api" />
       </profile>
       <profile name="Annotation profile for adopetThreads" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -53,6 +55,7 @@
       <module name="biblioteca" options="-parameters" />
       <module name="codechella (DDD)" options="-parameters" />
       <module name="codechella (TDD)" options="-parameters" />
+      <module name="codechella-api" options="-parameters" />
       <module name="exceptions" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="pagamentos" options="-parameters" />
