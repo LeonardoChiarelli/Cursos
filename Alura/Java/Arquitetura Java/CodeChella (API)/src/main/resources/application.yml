@@ -1,6 +1,7 @@
 spring:
   datasource:
     url: "jdbc:mysql://localhost:3306/codechella_api"
+    url: ${CODECHELLA_API_URL}
     username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
   jpa:
