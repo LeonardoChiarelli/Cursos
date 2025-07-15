@@ -1,16 +1,16 @@
     PID USER     %MEM
-    308 mysql    10.6
-    323 root      2.6
-    270 root      1.4
-   1023 root      1.2
-    282 root      0.5
-     51 root      0.5
-    127 root      0.4
-   1014 root      0.4
+    331 mysql    10.6
+   9380 999      10.5
+   9718 root      8.1
+    338 root      2.5
+   8974 root      1.4
+    214 root      1.3
+    274 root      1.2
+   8954 root      0.7
+    129 root      0.5
+     51 root      0.4
+    282 root      0.4
     219 root      0.4
+   9356 root      0.4
+   9695 root      0.3
       1 root      0.3
-    150 systemd+  0.3
-    797 devleoc+  0.2
-    216 root      0.2
-    265 syslog    0.1
-    151 systemd+  0.1

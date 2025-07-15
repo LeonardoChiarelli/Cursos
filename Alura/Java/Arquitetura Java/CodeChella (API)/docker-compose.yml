@@ -1,16 +1,17 @@
 version: '3.9'
 services:
   mysql:
-    image: mysql
+    image: mysql:8.0
     env_file: ./env/mysql.env
     volumes:
     - mysql-data:/var/lib/mysql
     restart: unless-stopped
     healthcheck:
-      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+      test: [ "CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-u", "codechella_user", "--password=codechella_pwd" ]
       interval: 5s
       timeout: 5s
       retries: 10
+
   app:
     build:
       context: .
