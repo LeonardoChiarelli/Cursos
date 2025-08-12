@@ -7,14 +7,13 @@ services:
     - mysql-data:/var/lib/mysql
     restart: unless-stopped
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-u", "codechella_user", "--password=codechella_pwd" ]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-u", "codechella_username", "--password=codechella_password" ]
       interval: 5s
       timeout: 5s
       retries: 10
 
   app:
-    build:
-      context: .
+    image: aluracursos/codechella:latest # Para subir para produção em uma instância sem precisar copiar a pasta .env
     env_file: ./env/app.env
     restart: unless-stopped
     depends_on:
@@ -22,3 +21,12 @@ services:
         condition: service_healthy
 volumes:
   mysql-data:
+
+# Colocar as pastas 'env' e 'mysql-data' no gitignore
+# Mandar o arquivo docker-compose.yml e a past env para a instância via scp
+# Apagar a pasta 'env' do seu ambiente local e consequentemente do projeto
+# Conectar-se à instância via ssh e subir o container dentro da instância em prod
+
+# Com a aplicação já em execução no ambiente de prod, como podemos acessa-la?
+  # Podemos expor a porta que vamos utilizar para acessar a aplicação -> Mas não é a opção ideal
+  # Vamos fazer um proxy reverso, que vai funcionar como um intermediário entre o cliente e o servidor
