@@ -1,0 +1,1 @@
+create index idx_ingressos_disponiveis on tickets(event_id, description);

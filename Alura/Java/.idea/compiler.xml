@@ -23,14 +23,12 @@
         <module name="ScreenMatchPhrases" />
         <module name="gateway" />
         <module name="CodeChella (TDD)" />
-        <module name="codechella-api" />
       </profile>
       <profile name="Annotation profile for adopetThreads" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
         </processorPath>
         <module name="adopetThreads" />
@@ -56,6 +54,8 @@
       <module name="codechella (DDD)" options="-parameters" />
       <module name="codechella (TDD)" options="-parameters" />
       <module name="codechella-api" options="-parameters" />
+      <module name="codechellaDDD" options="-parameters" />
+      <module name="codechellaTDD" options="-parameters" />
       <module name="exceptions" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="pagamentos" options="-parameters" />

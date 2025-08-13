@@ -3,6 +3,13 @@ spring:
     url: ${CODECHELLA_API_URL}
     username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
+    hikari:
+      minimum-idle: 15
+      maximum-pool-size: 40
+      connectionTimeout: 10000
+      idleTimeout: 600000
+      maxLifetime: 1800000
+
   jpa:
     show-sql: true
     properties:
