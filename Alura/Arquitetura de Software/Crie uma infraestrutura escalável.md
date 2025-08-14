@@ -122,39 +122,113 @@
 
 8\. Pool de conexões
 
-&nbsp;	- Como estamos utilizando o Spring, há uma biblioteca padrão que já inicializa esse pool de conexões, por padrão o Spring quando usa essa biblioteca mantém 15 conexões abertas
+ 	- Como estamos utilizando o Spring, há uma biblioteca padrão que já inicializa esse pool de conexões, por padrão o Spring quando usa essa biblioteca mantém 15 conexões abertas
 
-&nbsp;	- Para aumentar esse número de conexões, vamos até a classe 'application.yml'  e adicionar o seguinte código:
+ 	- Para aumentar esse número de conexões, vamos até a classe 'application.yml'  e adicionar o seguinte código:
 
-&nbsp;		spring:
+ 		spring:
 
-&nbsp;			datasource:
+ 			datasource:
 
-&nbsp;				hikari:
+ 				hikari:
 
-&nbsp;					minimum-idle: 15
+ 					minimum-idle: 15
 
-&nbsp;					maximum-pool-size: 40
+ 					maximum-pool-size: 40
 
-&nbsp;					connectionTimeout: 10000
+ 					connectionTimeout: 10000
 
-&nbsp;					idleTimeout: 600000
+ 					idleTimeout: 600000
 
-&nbsp;					maxLifetime: 1800000
+ 					maxLifetime: 1800000
 
 
 
 9\. Índice em tabelas
 
-&nbsp;	- Vamos nas classes repository e verificar métodos de busca com parâmetros e ver se faz sentido criar índices para estes métodos
+ 	- Vamos nas classes repository e verificar métodos de busca com parâmetros e ver se faz sentido criar índices para estes métodos
 
-&nbsp;		- Geralmente adiciona-se indices em tabelas com um grande volume de dados
+ 		- Geralmente adiciona-se indices em tabelas com um grande volume de dados
 
-&nbsp;	- Vamos criar uma nova migration para criar as tabelas de índice 
+ 	- Vamos criar uma nova migration para criar as tabelas de índice
 
 
 
 10\. ORM e SQL
 
-&nbsp;	- Vamos tentar minimizar o número de consultas no banco de dados para cada requisição que é disparada
+ 	- Vamos tentar minimizar o número de consultas no banco de dados para cada requisição que é disparada
+
+
+
+11\. Adicionando container Redis
+
+&nbsp;	- Cache auxilia em tabelas onde há muitas operações de leitura e pouca escrita (select > insert)
+
+&nbsp;	- Vamos no 'docker-compose.yml' e adicionar o container do redis:
+
+&nbsp;		redis:
+
+&nbsp;			image: redis:7.2.4
+
+&nbsp;			restart: unless-stopped
+
+
+
+12\. Configurando cache na aplicação
+
+&nbsp;	- Vamos adicionar a dependência do 'redis' no pom.xml:
+
+&nbsp;		<dependency>
+
+&nbsp;           		<groupId>org.springframework.boot</groupId>
+
+&nbsp;           		<artifactId>spring-boot-starter-data-redis</artifactId>
+
+&nbsp;       	</dependency>
+
+
+
+&nbsp;       	<dependency>
+
+&nbsp;           		<groupId>org.springframework.boot</groupId>
+
+&nbsp;           		<artifactId>spring-boot-starter-cache</artifactId>
+
+&nbsp;       	</dependency>
+
+&nbsp;	- Vamos fazer configurações no application.yml:
+
+&nbsp;		spring:
+
+&nbsp;		  redis:
+
+&nbsp;		    host: redis
+
+&nbsp;		    port: 6379
+
+&nbsp;	- Também faremos modificações na classe Main (principal) do projeto
+
+&nbsp;		@EnableCaching
+
+
+
+13\. Guardando dados no cache
+
+&nbsp;	- Vamos nas classes onde queremos guardar informações em cache e adicionar a anotação '@Cacheable' no método onde queremos guardar as informações retornadas em cache
+
+&nbsp;		- Em casos de aplicações com muitos métodos em cache, adicionamos o parâmetro "value = 'nome do cache' " na anotação para diferenciarmos os caches
+
+&nbsp;	- Vamos nas classes de retorno desses métodos e implementar a interface "Serializable" para o Java conseguir fazer a serialização destes dados (Isso para classes que não são padrão do Java)
+
+&nbsp;		- E todos os atributos desta classe também precisam implementar esta interface (Novamente, apenas para atributos que não são padrão do Java)
+
+&nbsp;	- Vamos configurar um Timeout para essas informações salvas em cache, para não manter os dados desatualizados eternamente
+
+&nbsp;		- Dentro de application.yml vamos adicionar os parâmetros:
+
+&nbsp;			- 
+
+&nbsp;	- Podemos também adicionar a anotação @CacheEvict(value ='nome do cache que queremos limpar', allEntries = true) no método que insere novos dados na tabela que manda as informações para o método anotado com o @Cacheable
+
+
 

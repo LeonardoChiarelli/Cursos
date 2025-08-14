@@ -9,12 +9,14 @@ spring:
       connectionTimeout: 10000
       idleTimeout: 600000
       maxLifetime: 1800000
-
   jpa:
     show-sql: true
     properties:
       hibernate:
         format_sql: true
+  redis:
+    host: redis
+    port: 6379
 app:
   security:
     jwt:
