@@ -231,4 +231,26 @@
 &nbsp;	- Podemos também adicionar a anotação @CacheEvict(value ='nome do cache que queremos limpar', allEntries = true) no método que insere novos dados na tabela que manda as informações para o método anotado com o @Cacheable
 
 
+14. Escalando a aplicação
+	- Vamos usar o NGINX como load balancer
+	- Vamos no docker-compose.yml e adicionar mais um container da aplicação:
+		app-1: &app
+		*Config já existentes*
+		app-2:
+			<<: *app
+
+	- Agora vamos no arquivo de config do nginx e fazer as seguintes modificações:
+		upstream servers {
+			server app-1:8080;
+			server app-2:8080;
+		}
+		
+		server {
+			listen 80;
+
+			location / {
+				proxy_pass http://servers;
+				*Config já existentes*
+
+
 
