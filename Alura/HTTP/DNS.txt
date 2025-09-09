@@ -1,0 +1,17 @@
+Hierarquia do DNS
+
+Raiz----| Top-Level Domains (TLD)
+	|- com -|
+		| -google
+	|- br --|
+		| - com --------| Sub-domínios
+		|		| - alura
+		|		| - g1
+		|		| - fiap
+		|		| - ...
+		| - gov
+		| - edu
+		| - ...	
+	|- org
+	|- net
+	| - ...

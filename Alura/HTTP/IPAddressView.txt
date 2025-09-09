@@ -1,0 +1,20 @@
+Comando: nslookup google.com
+
+Server:		10.255.255.254
+Address:	10.255.255.254#53
+
+Non-authoritative answer:
+Name:	google.com
+Address: 172.217.28.142
+Name:	google.com
+Address: 2800:3f0:4001:808::200e
+
+Server:		10.255.255.254
+Address:	10.255.255.254#53
+
+Non-authoritative answer:
+Name:	alura.com
+Address: 199.60.103.189
+Name:	alura.com
+Address: 199.60.103.89
+

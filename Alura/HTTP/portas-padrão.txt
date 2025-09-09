@@ -1,0 +1,5 @@
+80 -> HTTP
+443 -> HTTPS
+1023-65535 -> Livres para uso
+
+* Portas entre 0-1023 geralmente são reservadas para seriços padronizados

@@ -1,0 +1,15 @@
+Camadas da internet:
+	1. Física
+	2. Enlace
+		- São nessas partes que encontramos as comunicações que são literalmente as partes físicas, como o Wi-Fi, conexão cabeada, 5G
+	3. Rede
+		- São as conexões IP (Internet Protocol)
+	4. Transportes
+		- Onde se encontram os protocolos TCP (Transmission Control Protocol), UDP -> Garante que as informações cheguem de um ponto a outro
+	5. Aplicação
+		- Os navegadores, HTTP
+
+Protocolos são basicamente conversas com regras bem definidas:
+	1ª. Deve haver sempre duas pessoas "conversando" (Cliente-Servidor)
+	2ª. O cliente sempre inicia a "conversa" fazendo uma requisição
+	3ª O servidor fornce uma resposta à requisição feita pelo Cliente

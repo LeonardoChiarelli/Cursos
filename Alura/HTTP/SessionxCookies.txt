@@ -1,0 +1,11 @@
+Sessões:
+	- São uma forma de manter o estado no lado do servidor. 
+		- Armazenamento no Servidor: As informações da sessão são armazenadas no servidor, mas geralmente são identificadas por um ID. 
+		- Identificação do Cliente: Esse ID da sessão é frequentemente armazenado num cookie de sessão no navegador do cliente, que é enviado em cada requisição. Assim, o servidor pode associar as requisições a uma sessão específica. 
+	- Tempo que o usuário passa logado
+
+Cookies:
+	- São uma forma de manter o estado no lado do servidor. 
+		- Armazenamento no Servidor: As informações da sessão são armazenadas no servidor, mas geralmente são identificadas por um ID. 
+		- Identificação do Cliente: Esse ID da sessão é frequentemente armazenado num cookie de sessão no navegador do cliente, que é enviado em cada requisição. Assim, o servidor pode associar as requisições a uma sessão específica. 
+	- Mecanismo para armazenar dados no cliente

@@ -1,0 +1,11 @@
+1xx – Informational → respostas provisórias (ex: 100 Continue).
+
+2xx – Successful → quando a requisição foi bem-sucedida (ex: 200 OK, 201 Created).
+
+3xx – Redirection → quando o cliente deve seguir outra URL (ex: 301 Moved Permanently).
+
+4xx – Client Error → erro do lado do cliente (ex: 404 Not Found, 403 Forbidden).
+
+5xx – Server Error → erro do lado do servidor (ex: 500 Internal Server Error, 503 Service)
+
+

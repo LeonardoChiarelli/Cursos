@@ -1,0 +1,54 @@
+Comando: telnet localhost 80 | GET / HTTP/1.1
+
+<HTML>
+<HEAD>
+<TITLE>Directory /</TITLE>
+<BASE HREF="file:/">
+</HEAD>
+<BODY>
+<H1>Directory listing of /</H1>
+<UL>
+<LI><A HREF="./">./</A>
+<LI><A HREF="../">../</A>
+<LI><A HREF="AWS-keys">AWS-keys</A>
+<LI><A HREF="bin/">bin/</A>
+<LI><A HREF="bin.usr-is-merged/">bin.usr-is-merged/</A>
+<LI><A HREF="boot/">boot/</A>
+<LI><A HREF="dev/">dev/</A>
+<LI><A HREF="etc/">etc/</A>
+<LI><A HREF="home/">home/</A>
+<LI><A HREF="init">init</A>
+<LI><A HREF="lib/">lib/</A>
+<LI><A HREF="lib.usr-is-merged/">lib.usr-is-merged/</A>
+<LI><A HREF="lib64/">lib64/</A>
+<LI><A HREF="lost%2Bfound/">lost+found/</A>
+<LI><A HREF="media/">media/</A>
+<LI><A HREF="mnt/">mnt/</A>
+<LI><A HREF="opt/">opt/</A>
+<LI><A HREF="proc/">proc/</A>
+<LI><A HREF="root/">root/</A>
+<LI><A HREF="run/">run/</A>
+<LI><A HREF="sbin/">sbin/</A>
+<LI><A HREF="sbin.usr-is-merged/">sbin.usr-is-merged/</A>
+<LI><A HREF="snap/">snap/</A>
+<LI><A HREF="srv/">srv/</A>
+<LI><A HREF="sys/">sys/</A>
+<LI><A HREF="tmp/">tmp/</A>
+<LI><A HREF="top">top</A>
+<LI><A HREF="usr/">usr/</A>
+<LI><A HREF="var/">var/</A>
+</UL>
+</BODY>
+</HTML>
+<html><body><h1>403 Forbidden</h1>
+Request forbidden by administrative rules.
+</body></html>
+
+Para fazer uma requisição POST:
+
+POST /<endpoint> HTTP/1.1 -> linha inicial
+Host: localhost			|
+Content-Type: application/json	| - Headers (cabeçalhos)
+Content-length: 45		|
+
+{"conteúdo do": "json"} -> body (corpo)
