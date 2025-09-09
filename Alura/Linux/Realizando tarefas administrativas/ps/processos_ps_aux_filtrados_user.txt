@@ -1,0 +1,27 @@
+Comando: ps -u root -> ps -u <nome_do_usuario> 
+
+   PID TTY          TIME CMD
+      1 ?        00:00:01 systemd
+      2 ?        00:00:00 init-systemd(Ub
+      6 ?        00:00:00 init
+     51 ?        00:00:00 systemd-journal
+     93 ?        00:00:00 systemd-udevd
+    107 ?        00:00:00 snapfuse
+    109 ?        00:00:00 snapfuse
+    112 ?        00:00:00 snapfuse
+    123 ?        00:00:00 snapfuse
+    124 ?        00:00:00 snapfuse
+    128 ?        00:00:03 snapfuse
+    199 ?        00:00:00 cron
+    213 ?        00:00:01 snapd
+    215 ?        00:00:00 systemd-logind
+    219 ?        00:00:00 wsl-pro-service
+    243 hvc0     00:00:00 agetty
+    267 tty1     00:00:00 agetty
+    268 ?        00:00:10 containerd
+    275 ?        00:00:00 unattended-upgr
+    752 pts/1    00:00:00 login
+   1113 ?        00:00:00 SessionLeader
+   1114 ?        00:00:00 Relay(1118)
+   2626 ?        00:00:00 nginx
+   2748 ?        00:00:01 dockerd

@@ -1,0 +1,13 @@
+Comando: ps aux --sort=-%mem | head -n 11
+
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+mysql        319  0.9 10.7 2376128 424128 ?      Ssl  17:01   1:42 /usr/sbin/mysqld
+root        2748  0.0  2.2 2272992 87132 ?       Ssl  18:42   0:01 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root         213  0.0  1.3 2366400 53484 ?       Ssl  17:01   0:01 /usr/lib/snapd/snapd
+root         268  0.1  1.3 2245572 53008 ?       Ssl  17:01   0:11 /usr/bin/containerd
+root         275  0.0  0.5 107032 22508 ?        Ssl  17:01   0:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+root         128  0.0  0.5 526756 20848 ?        Ssl  17:01   0:04 snapfuse /var/lib/snapd/snaps/snapd_25202.snap /snap/snapd/25202 -o ro,nodev,allow_other,suid
+root          51  0.0  0.4  50436 17064 ?        S<s  17:01   0:00 /usr/lib/systemd/systemd-journald
+root         219  0.0  0.4 1755840 15960 ?       Ssl  17:01   0:00 /usr/libexec/wsl-pro-service -vv
+root           1  0.0  0.3  22248 13468 ?        Ss   17:01   0:01 /sbin/init
+systemd+     191  0.0  0.3  21456 11892 ?        Ss   17:01   0:00 /usr/lib/systemd/systemd-resolved

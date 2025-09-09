@@ -1,0 +1,27 @@
+Exploramos novos comandos e funcionalidades do nosso ambiente Linux ao longo dessa aula. Para relembrar o que vimos de forma resumida, listamos aqui os comandos investigados neste passo.
+
+top (Table of Processes): Exibe uma visão em tempo real dos processos em execução, mostrando detalhes como PID, uso de CPU e memória e o estado dos processos.
+
+ps (Process Status): Fornece uma "fotografia" dos processos em execução no momento. Algumas opções que utilizamos foram:
+
+ps aux (All Users Extended): lista todos os processos em execução com detalhes extensivos, como %CPU, %MEM, PID etc.
+ps -u [usuario] (User): filtra e exibe apenas os processos pertencentes ao usuário especificado.
+ps -p [PID] (Process ID): exibe informações detalhadas sobre um processo específico com o PID fornecido.
+ps -C [comando] (Command): filtra e exibe os processos associados ao comando especificado.
+pstree (Process Tree): Mostra a árvore de processos, ilustrando a relação hierárquica entre processos pai e filho.
+
+head (Head of File): Exibe as primeiras linhas de um arquivo ou saída de um comando. Por padrão, exibe as primeiras 10 linhas.
+
+pipe (|) (Pipe): Redireciona a saída de um comando como entrada para outro comando. É utilizado no encadeamento de comandos e processamento de dados de modo sequencial.
+
+sort (Sort): Ordena a saída de um comando ou o conteúdo de um arquivo. Pode ser combinado com outros comandos usando pipe para organizar dados.
+
+kill (Kill Process): Envia sinais para processos em execução, sendo comumente utilizado com os seguintes sinais:
+
+kill [PID] (Process ID): envia o sinal padrão de interrupção (SIGTERM) para o processo com o PID especificado, permitindo uma interrupção suave.
+kill -9 [PID] (Signal 9): envia um sinal de interrupção abrupta (SIGKILL) para o processo com o PID especificado, forçando o encerramento imediato.
+kill -STOP [PID] (Stop Signal): envia um sinal de pausa (SIGSTOP) para o processo, interrompendo sua execução sem encerrar o processo.
+kill -CONT [PID] (Continue Signal): envia um sinal de continuação (SIGCONT) para retomar a execução de um processo que foi pausado.
+pkill (Process Kill): Envia sinais para processos com base no nome do processo. Ao utilizar esse comando, lembre-se que todos os processos que correspondem ao nome fornecido poderão ser afetados.
+
+killall (Kill All): Envia sinais para todos os processos com um nome específico. É um comando bastante prático para enviar sinais a múltiplos processos de forma simultânea.

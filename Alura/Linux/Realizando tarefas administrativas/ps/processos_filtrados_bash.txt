@@ -1,0 +1,5 @@
+	Comando: ps -C bash 
+
+   PID TTY          TIME CMD
+    855 pts/1    00:00:00 bash
+   1118 pts/0    00:00:00 bash

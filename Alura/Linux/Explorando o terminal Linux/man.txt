@@ -1,0 +1,1 @@
+O comando 'man -k .' exibe uma lista completa de comandos e uma breve descrição de cada um

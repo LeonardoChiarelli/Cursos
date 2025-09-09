@@ -1,0 +1,25 @@
+Exploramos novos comandos e funcionalidades do nosso ambiente Linux ao longo dessa aula. Para relembrar o que vimos de forma resumida, listamos aqui os comandos investigados neste passo.
+
+rm (Remove): Remove arquivos especificados.
+
+rm -i (Remove Interactive): Remove arquivos especificados solicitando confirmação antes da exclusão.
+
+rmdir (Remove Directory): Remove somente diretórios vazios.
+
+rm -r (Remove Recursive): Remove diretórios e seus conteúdos de forma recursiva.
+
+ls > arquivo.txt (List to File): Redireciona a saída do comando ls para o arquivo especificado, criando o arquivo se ele não existir.
+
+ls >> arquivo.txt (Append List to File): Adiciona a saída do comando ls ao final do arquivo especificado sem sobrescrevê-lo.
+
+echo "mensagem" >> arquivo.txt (Echo Append): Adiciona a mensagem especificada ao final do arquivo, sem sobrescrever seu conteúdo.
+
+echo "mensagem" (Echo): Exibe a mensagem especificada no terminal.
+
+sudo apt update (Update Packages): Atualiza a lista de pacotes disponíveis e suas versões no sistema. O comando requer privilégios de superusuário.
+
+sudo apt upgrade (Upgrade Packages): Instala as atualizações de pacotes disponíveis no sistema. O comando requer privilégios de superusuário.
+
+sudo apt install pacote (Install Package): Instala o pacote especificado. O comando requer privilégios de superusuário.
+
+sudo apt remove pacote (Remove Package): Remove o pacote especificado do sistema.

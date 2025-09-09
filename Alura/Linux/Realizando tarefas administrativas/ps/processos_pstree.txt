@@ -1,0 +1,26 @@
+Comando: pstree
+
+systemd-+-2*[agetty]
+        |-containerd---13*[{containerd}]
+        |-cron
+        |-dbus-daemon
+        |-dockerd---13*[{dockerd}]
+        |-init-systemd(Ub-+-SessionLeader---Relay(1118)---bash---pstree
+        |                 |-init---{init}
+        |                 |-login---bash
+        |                 `-{init-systemd(Ub}
+        |-mysqld---36*[{mysqld}]
+        |-nginx---12*[nginx]
+        |-polkitd---3*[{polkitd}]
+        |-rsyslogd---3*[{rsyslogd}]
+        |-snapd---15*[{snapd}]
+        |-5*[snapfuse---2*[{snapfuse}]]
+        |-snapfuse---7*[{snapfuse}]
+        |-systemd---(sd-pam)
+        |-systemd-journal
+        |-systemd-logind
+        |-systemd-resolve
+        |-systemd-timesyn---{systemd-timesyn}
+        |-systemd-udevd
+        |-unattended-upgr---{unattended-upgr}
+        `-wsl-pro-service---7*[{wsl-pro-service}]
