@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="server" />
+        <module name="biblioteca" />
+        <module name="codechellaDDD" />
+        <module name="reflections" />
+        <module name="pagamentos" />
+        <module name="vehicles" />
+        <module name="pedidos" />
+        <module name="codechella-api" />
+        <module name="Spring" />
+        <module name="codechellaTDD" />
+        <module name="api" />
+        <module name="screenSoundSpring" />
+        <module name="ScreenMatchPhrases" />
+        <module name="gateway" />
+      </profile>
+      <profile name="Annotation profile for adopetExceptions" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
+        </processorPath>
+        <module name="adopetThreads" />
+        <module name="adopet-api" />
+        <module name="exceptions" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ScreenMatchPhrases" options="-parameters" />
+      <module name="Spring" options="-parameters" />
+      <module name="adopet-api" options="-parameters" />
+      <module name="adopetThreads" options="-parameters" />
+      <module name="api" options="-parameters" />
+      <module name="biblioteca" options="-parameters" />
+      <module name="codechella-api" options="-parameters" />
+      <module name="codechellaDDD" options="-parameters" />
+      <module name="codechellaTDD" options="-parameters" />
+      <module name="exceptions" options="-parameters" />
+      <module name="gateway" options="-parameters" />
+      <module name="pagamentos" options="-parameters" />
+      <module name="pedidos" options="-parameters" />
+      <module name="reflections" options="-parameters" />
+      <module name="screenSoundSpring" options="-parameters" />
+      <module name="server" options="-parameters" />
+      <module name="vehicles" options="-parameters" />
+    </option>
+  </component>
+</project>

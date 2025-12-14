@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/Alura/Java/Projetos/cecMed/pom.xml" />
+        <option value="$PROJECT_DIR$/Alura/Java/Projetos/vehicles/pom.xml" />
+        <option value="$PROJECT_DIR$/Alura/Java/Projetos/reflections/pom.xml" />
+        <option value="$PROJECT_DIR$/Alura/Java/Projetos/MS - OpenFeign/server/pom.xml" />
+        <option value="$PROJECT_DIR$/Alura/Java/Projetos/MS - OpenFeign/gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/Alura/Java/Projetos/MS - OpenFeign/pedidos/pom.xml" />
+        <option value="$PROJECT_DIR$/Alura/Java/Projetos/MS - OpenFeign/pagamentos/pom.xml" />
+        <option value="$PROJECT_DIR$/Alura/Java/Projetos/bibliotecaThread/pom.xml" />
+        <option value="$PROJECT_DIR$/Alura/Java/Projetos Adopet/adopetAPI/pom.xml" />
+        <option value="$PROJECT_DIR$/Alura/Java/Projetos Adopet/adopetThreads/pom.xml" />
+        <option value="$PROJECT_DIR$/Alura/Java/Projetos Adopet/adopetExceptions/pom.xml" />
+        <option value="$PROJECT_DIR$/Alura/Java/Arquitetura Java/CodeChella (API)/pom.xml" />
+        <option value="$PROJECT_DIR$/Alura/Java/Arquitetura Java/CodeChella (DDD)/pom.xml" />
+        <option value="$PROJECT_DIR$/Alura/Java/Arquitetura Java/CodeChella (TDD)/pom.xml" />
+        <option value="$PROJECT_DIR$/Alura/Java/Projetos ScreenMatch/screenMatchSpring/pom.xml" />
+        <option value="$PROJECT_DIR$/Alura/Java/Projetos ScreenMatch/screenSoundSpring/pom.xml" />
+        <option value="$PROJECT_DIR$/Alura/Java/Projetos ScreenMatch/screenMatchPhrases/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="23" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

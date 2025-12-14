@@ -1,0 +1,34 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<!--
+    Para indicar ao Spring que vamos usar os templates que vamos criar com o thymeleaf, nas classes Controller da aplicação, precisamos anotá-las com o @Controller e não mais com o @RestController.
+        Manter a anotação @RequestMapping("/...")
+
+    Criar um metodo que retorne uma String e retornar o nome do arquivo .html (usar o .html é opcional)
+        Indicar o path da classe -> @GetMapping, @PostMapping...
+
+    Adicionar a tag 'xmlns:th="http://www.thymeleaf.org"' no começo do nosso HTML
+
+    Adicionando texto dentro de uma tag HTML (Controller -> Página):
+        - th:text="#{<class_ou_id>}" -> Para receber textos de id ou class do HTML
+        - th:text="${<nome_da_variável>}" -> Para receber textos de variáveis do back
+            - No metodo que vamos criar, passamos como parâmetro a interface Model (org.springframework.ui)
+                - model.addAttribute("<nome_da_variável>", "<valor da variável>";
+
+     Adicionando texto dentro da classe controller (Página -> Controller):
+        - Vamos informar que o <input> será gerenciado pelo Thymeleaf
+            - Adicionamos a tag 'name' para o input
+        - Na class controller vamos criar um metodo para receber essa action com o mesmo tipo de requisiçao HTTP que vamos passar no 'method' retornando
+            - Na tag <form> vamos adicionar os parâmetros 'method' e 'th:action="@{<path_que_definimos_no_passo_anteriror>}"'
+
+-->

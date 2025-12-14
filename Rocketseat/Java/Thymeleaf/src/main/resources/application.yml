@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: "FrontEnd"
+  datasource:
+    url: ${PAYMENT_URL}
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8087
+
+logging:
+  level:
+    root: INFO
+
+app:
+  security:
+    token:
+      secret: ${TOKEN_PASSWORD}
