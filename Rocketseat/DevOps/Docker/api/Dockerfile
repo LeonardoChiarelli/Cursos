@@ -28,3 +28,10 @@ EXPOSE 3000
     CMD ["npm", "run", "start"]
 
     # Por ENTRYPOINT -> Imútavel a nível de CLI
+
+# docker run:
+    # --rm -> Cada container tem um ciclo de vida, esse parâmetro indica que, ao final da vida desse container, ele deve ser removido
+    # -p -> mapeamento de portas: <Portal_Local>:<Porta_No_Container>
+    # -d -> Para não travar o terminal
+
+# docker logs <ID_Do_Container> -> Para verificar os logs
